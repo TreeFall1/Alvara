@@ -3,55 +3,88 @@ import type { HomePageContent } from "@/types/content";
 export const homeContent: HomePageContent = {
   navigation: [
     { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Investors", href: "#investors" },
-    { label: "Opportunity", href: "#opportunity" },
-    { label: "News", href: "#news" },
-    { label: "ETH Dashboard", href: "#dashboard" },
+    { label: "Performance", href: "#performance" },
+    { label: "Products", href: "#products" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Security", href: "#security" },
+    { label: "FAQ", href: "#faq" },
   ],
-  dashboard: {
-    asOf: "August 31, 2026",
-    holdings: 890833,
-    stakingRewards: 26650,
-    history: [
-      { date: "Jun 13", value: 176271 }, { date: "Jul 4", value: 205634 },
-      { date: "Jul 27", value: 438190 }, { date: "Aug 17", value: 740760 },
-      { date: "Sep 14", value: 838152 }, { date: "Oct 19", value: 859853 },
-      { date: "Nov 23", value: 862029 }, { date: "Dec 28", value: 864402 },
-      { date: "Feb 1", value: 866744 }, { date: "Mar 8", value: 869154 },
-      { date: "Apr 12", value: 871563 }, { date: "May 17", value: 873924 },
-      { date: "Jun 21", value: 876285 }, { date: "Jul 26", value: 888521 },
-      { date: "Aug 31", value: 890833 },
-    ],
-  },
-  productivity: [
-    { number: "01", title: "Staked since day one", image: "/media/productivity-1.avif" },
-    { number: "02", title: "Enhanced yield incentives", image: "/media/productivity-2.avif" },
-    { number: "03", title: "Trackable day-by-day", image: "/media/productivity-3.avif" },
+  proofMetrics: [
+    { value: "79.7%", label: "Average AI algorithm win rate" },
+    { value: "26+", label: "Trading strategies in a single signal", detail: "Smart Money, ICT, Indicator Confluence" },
+    { value: "< 1 sec", label: "Trade execution on your exchange via API" },
+    { value: "$0", label: "Free start and token farming for new users" },
   ],
-  propositions: [
-    { label: "Leadership", title: "Built by Proven Pioneers", body: "Sharplink is led by former BlackRock digital asset chief Joseph Chalom, Ethereum Cofounder Joseph Lubin, and an expert team, combining protocol-level expertise with institution-caliber execution." },
-    { label: "Operations", title: "Treasury as an Operating System", body: "Sharplink runs custody, execution, risk controls, and capital deployment in-house, allowing the platform to be built with speed, precision, and operational control." },
-    { label: "Equity", title: "Public Markets as an Advantage", body: "Sharplink, a Nasdaq-listed company, uses issuance, structure, and liquidity to increase ETH concentration per share when favorable market conditions arise." },
-    { label: "Transparency", title: "Committed to Real-time Clarity", body: "We provide full visibility into ETH deployment, reward generation, and risk management." },
-    { label: "Collaboration", title: "Partnered with the Best", body: "We’re partners with Consensys, the builders behind MetaMask, Linea, and the most trusted infrastructure providers and custodians across the Ethereum ecosystem to access enhanced incentives and decentralized finance technologies." },
+  features: [
+    {
+      label: "AI Signal Generator",
+      title: "Instant Analysis for Any Token",
+      body: "AI analyzes Order Blocks, Fair Value Gaps (FVG), and RSI, MACD, and ADX oscillators to deliver a precise entry point, three Take Profit targets, and a Stop Loss with calculated risk.",
+    },
+    {
+      label: "One-Click Copy Trading",
+      title: "Trade Directly from Telegram",
+      body: "Connect your Binance, Bybit, or MEXC API keys. Tap “Copy Trade,” and the bot will place the orders on your exchange automatically based on your deposit size.",
+    },
+    {
+      label: "On-Chain & Macro Analytics",
+      title: "See What the Whales See",
+      body: "Track major capital movements, MVRV Z-Score, NUPL, Open Interest (OI), and the economic calendar in a clear format without complicated terminology.",
+    },
+    {
+      label: "F2E & Staking · $ALVARA Farming",
+      title: "Learn and Earn",
+      body: "Complete the daily AI Quiz, take part in market predictions, and stake USDT to receive daily $ALVARA token airdrops.",
+    },
   ],
-  opportunities: [
-    { title: "Ethereum is active, productive capital", body: "ETH generates native yield through staking while remaining liquid and programmable, allowing it to function as both a security mechanism and a yield-bearing asset.", icon: "/media/opportunity-1.webp" },
-    { title: "Ethereum secures the onchain economy", body: "Ethereum is the leading platform hosting trillions of value across stablecoins, tokenized assets, and decentralized finance. ETH secures this value by protecting the network.", icon: "/media/opportunity-2.webp" },
-    { title: "Ethereum scales with real economic usage", body: "As more assets and transactions settle on Ethereum, demand for ETH rises alongside the value secured by the network, linking ETH’s value to adoption rather than speculation.", icon: "/media/opportunity-3.webp" },
-    { title: "Ethereum benefits from structural tailwinds", body: "Institutional adoption, regulatory clarity, and asset tokenization continue to push financial activity onto Ethereum, reinforcing ETH’s role in capturing long-term network value.", icon: "/media/opportunity-4.webp" },
+  steps: [
+    {
+      title: "Launch the Bot in Telegram",
+      body: "Open the Alvara Trade WebApp directly in the messenger—no lengthy registration or verification required.",
+      icon: "/media/opportunity-1.webp",
+    },
+    {
+      title: "Choose a Coin and Get an AI Signal",
+      body: "The algorithm checks 26 market factors and delivers a ready-to-trade setup with an estimated probability of success.",
+      icon: "/media/opportunity-2.webp",
+    },
+    {
+      title: "Copy the Trade or Enable Auto‑Trading",
+      body: "Orders are sent to your exchange instantly. Manage risk and monitor your deposit growth from one place.",
+      icon: "/media/opportunity-3.webp",
+    },
   ],
-  news: [
-    { category: "News", date: "May 11, 2026", title: "The Galaxy Sharplink Onchain Yield Fund", image: "/media/news-galaxy.png" },
+  security: [
+    {
+      title: "Your Assets Stay Yours",
+      body: "We never accept user deposits into our accounts. Your funds remain on your own exchange at all times.",
+      badge: "Non-custodial",
+    },
+    {
+      title: "AES‑256 Encryption",
+      body: "Your API keys are stored in an isolated, encrypted vault protected by the AES-256 standard.",
+      badge: "Encrypted",
+    },
+    {
+      title: "Withdrawals Disabled",
+      body: "When creating an API key, you disable withdrawal permissions. The bot can only open and close trades.",
+      badge: "Trade-only API",
+    },
   ],
   faq: [
-    { question: "Where is Sharplink listed?", answer: "Our stock trades on the Nasdaq under the symbol SBET. Shares may be purchased through a registered stockbroker or online brokerage platform. We do not provide investment advice." },
-    { question: "What is a Digital Asset Treasury (DAT)?", answer: "A Digital Asset Treasury (DAT) is a public markets vehicle that holds and safeguards digital assets, like ETH, on behalf of investors, providing regulated access through institutional-grade custody and administration." },
-    { question: "How is Sharplink different from directly holding ETH?", answer: "Holding ETH does not generate yield, and even when investors stake through exchanges, those platforms often take a substantial share of the rewards. At Sharplink, 100% of staking yield accrues to shareholders. Through active management, DeFi participation, and accretive capital markets and corporate actions, we are continuously compounding ETH per share over time." },
-    { question: "How is Sharplink different from buying an ETF?", answer: "Many ETFs only offer spot exposure without any extra yield. To satisfy daily liquidity requirements, ETFs can realistically stake only about 50% of their holdings. Sharplink, by contrast, has staked 100% of its ETH since day one." },
-    { question: "What does it mean to maximize ETH per share?", answer: "Maximizing ETH per share focuses on growing the underlying ETH per public company share through native rewards and ETH-denominated returns, independent of ETH price movements. It also involves Sharplink using capital markets to procure additional ETH in an accretive fashion for shareholders." },
-    { question: "Does Sharplink have gaming services?", answer: "Sharplink does not have direct gaming services. In addition to the core Ethereum Digital Asset Treasury strategy, Sharplink operates an online affiliate marketing business that connects regulated gaming operators with potential customers." },
-    { question: "Where can I learn more or follow updates?", answer: "As a publicly traded company, Sharplink provides updates through press releases, regulatory filings, and our website. Find the latest information on the Investors page, the U.S. SEC website, the live dashboard, or follow Sharplink on X. For investor inquiries, contact ir@sharplink.com." },
+    {
+      question: "Do I need to pay to use Alvara Trade?",
+      answer: "Core features, trading signals, and participation in $ALVARA farming are completely free. PRO features unlock when you hold ecosystem tokens.",
+    },
+    {
+      question: "What is the minimum amount required to start?",
+      answer: "You can start with any deposit allowed by your exchange—typically from $10 on Binance or Bybit.",
+    },
+    {
+      question: "How is Alvara different from regular signal channels?",
+      answer: "We do not provide subjective forecasts. Our AI analyzes the mathematical convergence of 26 indicators and patterns in real time, then lets you execute the trade on your exchange in one click.",
+    },
   ],
+  // Replace this with the production Mini App deep link when its public username is finalized.
+  telegramUrl: "https://t.me/AlvaraTradeBot",
 };

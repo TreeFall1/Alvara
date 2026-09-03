@@ -1,6 +1,6 @@
-# SharpLink Homepage Rebuild
+# Alvara Homepage
 
-A static, responsive recreation of the SharpLink homepage built with Next.js App Router, GSAP, Lenis, Lottie, Chart.js, Embla and Three.js.
+A static, responsive Alvara homepage built with Next.js App Router, GSAP, Lenis, Chart.js, Embla and Three.js.
 
 ## Development
 

@@ -5,10 +5,10 @@ import { Faq } from "./Faq";
 describe("FAQ", () => {
   it("exposes answers through an accordion", () => {
     render(<Faq/>);
-    const question = screen.getByRole("button", { name: /Where is Sharplink listed/i });
+    const question = screen.getByRole("button", { name: /Do I need to pay to use Alvara Trade/i });
     expect(question).toHaveAttribute("aria-expanded", "false");
     fireEvent.click(question);
     expect(question).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText(/Nasdaq under the symbol SBET/i)).toBeInTheDocument();
+    expect(screen.getByText(/Core features, trading signals/i)).toBeInTheDocument();
   });
 });

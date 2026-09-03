@@ -25,8 +25,8 @@ function FaqRow({ index, question, answer }: { index: number; question: string; 
 
 export function Faq() {
   return (
-    <section className="faq page-grid" id="about">
-      <div className="faq__aside"><h2>FAQ</h2><p>got more questions?</p><button className="button button--dark" onClick={(event) => event.preventDefault()}>Reach us <Arrow/></button></div>
+    <section className="faq page-grid" id="faq">
+      <div className="faq__aside"><h2>FAQ</h2><p>Everything you need to know</p><a className="button button--dark" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Start Free <Arrow/></a></div>
       <div className="faq__list">{homeContent.faq.map((item, index) => <FaqRow key={item.question} index={index} {...item}/>)}</div>
     </section>
   );

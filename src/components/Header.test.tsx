@@ -8,7 +8,7 @@ describe("Header", () => {
     const toggle = screen.getByRole("button", { name: "Open menu" });
     fireEvent.click(toggle);
     expect(screen.getByRole("button", { name: "Close menu" })).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getAllByText("ETH Dashboard").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("How It Works").length).toBeGreaterThan(0);
     fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
     expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute("aria-expanded", "false");
   });

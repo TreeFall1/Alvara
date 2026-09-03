@@ -1,8 +1,8 @@
 export function Brand({ light = false }: { light?: boolean }) {
   return (
-    <span className={`brand ${light ? "brand--light" : ""}`} aria-label="SharpLink">
-      <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M4 5h34L17 37H4l17-17H4z" fill="currentColor"/></svg>
-      <span>sharplink</span>
+    <span className={`brand ${light ? "brand--light" : ""}`} aria-label="Alvara">
+      <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 3 39 39H29l-3.5-8H16.5L13 39H3L21 3Zm0 13-2.8 7h5.6L21 16Z" fill="currentColor"/></svg>
+      <span>alvara</span>
     </span>
   );
 }

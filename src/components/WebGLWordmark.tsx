@@ -14,7 +14,7 @@ export function WebGLWordmark() {
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: "high-performance" });
     } catch {
       element.classList.add("webgl-wordmark--fallback");
-      element.textContent = "SHARPLINK";
+      element.textContent = "ALVARA";
       return;
     }
 
@@ -26,12 +26,12 @@ export function WebGLWordmark() {
     const source = document.createElement("canvas");
     source.width = 1600; source.height = 280;
     const context = source.getContext("2d", { willReadFrequently: true });
-    if (!context) { element.classList.add("webgl-wordmark--fallback"); element.textContent = "SHARPLINK"; renderer.dispose(); return; }
+    if (!context) { element.classList.add("webgl-wordmark--fallback"); element.textContent = "ALVARA"; renderer.dispose(); return; }
     context.fillStyle = "#fff";
     context.font = "900 230px Arial Narrow, Arial, sans-serif";
     context.textAlign = "center";
     context.textBaseline = "middle";
-    context.fillText("SHARPLINK", 800, 142);
+    context.fillText("ALVARA", 800, 142);
     const pixels = context.getImageData(0, 0, source.width, source.height).data;
     for (let y = 0; y < source.height; y += 7) {
       for (let x = 0; x < source.width; x += 7) {

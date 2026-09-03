@@ -4,7 +4,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Arrow, Nasdaq } from "./Brand";
+import { homeContent } from "@/data/home";
+import { Arrow } from "./Brand";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -23,29 +24,25 @@ export function Hero() {
     return () => mm.revert();
   }, { scope: section });
 
-  const stop = (event: React.MouseEvent) => event.preventDefault();
-
   return (
     <section className="hero" id="home" ref={section}>
       <div className="hero__media" aria-hidden="true">
         <video autoPlay muted loop playsInline preload="auto" poster="/media/hero-poster.avif">
-          <source src="/media/hero.webm" type="video/webm"/>
+          <source src="/media/herovid.webm" type="video/webm"/>
         </video>
         <div className="hero__wash"/>
       </div>
       <div className="hero__content page-grid">
-        <h1 data-hero-in>Ethereum<br/><span>with an Edge</span></h1>
+        <h1 data-hero-in>Trade Like the Top 1% of Traders<br/><span>with Alvara&nbsp;<b className="hero__ai">AI</b></span></h1>
         <div className="hero__actions" data-hero-in>
-          <button className="button button--solid" onClick={stop}>Explore the Dashboard <Arrow/></button>
-          <button className="button button--glass" onClick={stop}>See Investor Information <Arrow/></button>
+          <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Launch Alvara Trade in Telegram <Arrow/></a>
+          <a className="button button--glass" href="#products">Learn More <Arrow/></a>
         </div>
-        <div className="hero__listed" data-hero-in><small>Proudly listed on</small><Nasdaq/></div>
-        <p className="hero__copy" data-hero-in>Sharplink is the institutional-grade Ethereum treasury platform giving investors a smarter, more productive access vehicle to ETH.</p>
-        <button className="hero__news" data-hero-in onClick={stop}>
-          <span><small>Company news</small><time>Aug 10, 2026</time></span>
-          <strong>Sharplink Reports Second Quarter 2026 Financial and Operating Results</strong>
-          <Arrow diagonal/>
-        </button>
+        <p className="hero__copy" data-hero-in>A smart trading ecosystem in Telegram: AI analysis across 26 strategies, one-click trade copying to exchanges, and $ALVARA token farming.</p>
+        <div className="hero__trust" data-hero-in>
+          <span><b aria-hidden="true">✓</b>Your funds never leave your exchange — API keys protected with AES-256 encryption</span>
+          <span><b aria-hidden="true">✓</b>Supports Binance, Bybit, and MEXC</span>
+        </div>
       </div>
     </section>
   );

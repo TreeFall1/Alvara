@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 
 export const metadata: Metadata = {
-  title: "SharpLink — Ethereum with an Edge",
-  description: "The institutional-grade Ethereum treasury platform giving investors smarter, more productive access to ETH.",
+  title: "Alvara Trade — AI-Powered Trading in Telegram",
+  description: "AI analysis across 26 trading strategies, one-click trade execution, and $ALVARA token farming—all inside Telegram.",
   icons: { icon: "/favicon.svg" },
 };
 

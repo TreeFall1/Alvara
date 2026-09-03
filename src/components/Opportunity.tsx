@@ -42,10 +42,10 @@ export function Opportunity() {
   }, { scope: section });
 
   return (
-    <section className="opportunity" id="opportunity" ref={section}>
+    <section className="opportunity" id="how-it-works" ref={section}>
       <div className="opportunity__intro page-grid">
-        <p className="opportunity__statement">ETH emergence as global financial infrastructure makes it the most compelling investment opportunity of our lifetime. The protocol is the world’s future financial ledger, and this is just the beginning.</p>
-        <button className="button button--outline" onClick={(event) => event.preventDefault()}>Learn more <Arrow/></button>
+        <p className="opportunity__statement">From Telegram to a live trade in minutes. Alvara turns market analysis into clear, executable decisions.</p>
+        <a className="button button--outline" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Start Trading <Arrow/></a>
       </div>
       <div className="opportunity__flow page-grid">
         <div className="opportunity__video" aria-hidden="true">
@@ -55,7 +55,7 @@ export function Opportunity() {
           </video>
         </div>
         <div className="opportunity__cards">
-          {homeContent.opportunities.map((item, index) => (
+          {homeContent.steps.map((item, index) => (
             <article className="opportunity-card" key={item.title}>
               <div className="opportunity-card__icon"><Image src={item.icon} alt="" fill sizes="64px"/></div>
               <small>0{index + 1}</small>

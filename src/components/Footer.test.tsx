@@ -1,18 +1,13 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { Footer } from "./Footer";
 
 vi.mock("./WebGLWordmark", () => ({ WebGLWordmark: () => <div data-testid="wordmark"/> }));
 
-describe("Footer newsletter", () => {
-  it("validates locally and returns a success state without navigation", () => {
+describe("Footer CTA", () => {
+  it("links to Telegram and presents the first-login reward", () => {
     render(<Footer/>);
-    const input = screen.getByPlaceholderText("Enter your email");
-    fireEvent.change(input, { target: { value: "invalid" } });
-    fireEvent.click(screen.getByRole("button", { name: /Sign up/i }));
-    expect(screen.getByRole("status")).toHaveTextContent("valid email");
-    fireEvent.change(input, { target: { value: "hello@example.com" } });
-    fireEvent.click(screen.getByRole("button", { name: /Sign up/i }));
-    expect(screen.getByRole("status")).toHaveTextContent("on the list");
+    expect(screen.getByText(/receive 100 \$ALVARA points/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Open Alvara Trade in Telegram/i })).toHaveAttribute("href", expect.stringMatching(/^https:\/\/t\.me\//));
   });
 });
