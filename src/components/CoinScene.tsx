@@ -50,7 +50,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
 
       let renderer: THREE.WebGLRenderer;
       try {
-        renderer = new THREE.WebGLRenderer({ antialias: COIN_RENDER_QUALITY.antialias, alpha: true, powerPreference: "default" });
+        renderer = new THREE.WebGLRenderer({ antialias: COIN_RENDER_QUALITY.antialias, alpha: true, powerPreference: "high-performance" });
       } catch {
         host.classList.add("coin-scene--fallback");
         return;
@@ -138,7 +138,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
       if (disposed) return;
       const loader = new GLTFLoader();
-      loader.load("/Coin2.glb", (gltf) => {
+      loader.load("/Coin.glb", (gltf) => {
         if (disposed) { disposeModel(gltf.scene); return; }
         const model = gltf.scene;
         const textureAnisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), COIN_RENDER_QUALITY.maxTextureAnisotropy);
