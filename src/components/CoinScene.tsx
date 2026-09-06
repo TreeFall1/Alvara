@@ -92,9 +92,6 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
           -0.72 + p * Math.PI * 2 * COIN_ROTATION_SPEED,
           -0.08 + Math.sin(p * Math.PI * 3) * 0.11,
         );
-        coinGroup.position.y = Math.sin(p * Math.PI * 4) * 0.16;
-        const pulse = 1 + Math.sin(p * Math.PI) * 0.08;
-        coinGroup.scale.setScalar(pulse);
         renderer.render(scene, camera);
       };
       drawRef.current = render;

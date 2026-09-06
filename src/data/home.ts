@@ -71,6 +71,33 @@ export const homeContent: HomePageContent = {
       badge: "Trade-only API",
     },
   ],
+  roadmap: [
+    {
+      phase: "Phase 1",
+      title: "Launch & Foundation",
+      period: "Q3 2026",
+      body: "Deploy the $ALVARA token, launch a liquidity pool on STON.fi with locked LP tokens, publish the whitepaper, and kick off the community.",
+      link: { label: "STON.fi", href: "https://ston.fi" },
+    },
+    {
+      phase: "Phase 2",
+      title: "Growth & Marketing",
+      period: "Q4 2026",
+      body: "Launch the Telegram Mini App with tap-to-earn and airdrop mechanics, roll out the marketing campaign, and secure listings on CoinGecko and CoinMarketCap.",
+    },
+    {
+      phase: "Phase 3",
+      title: "Ecosystem & Utility",
+      period: "Q1–Q2 2027",
+      body: "Release AI-powered services for token holders, launch staking, and secure the first CEX listing on Bybit, MEXC, or Bitget.",
+    },
+    {
+      phase: "Phase 4",
+      title: "Scaling & DAO",
+      period: "Q3 2027+",
+      body: "Transition to DAO governance, introduce a Buyback & Burn mechanism, and expand to Tier-1 exchanges.",
+    },
+  ],
   faq: [
     {
       question: "Do I need to pay to use Alvara Trade?",

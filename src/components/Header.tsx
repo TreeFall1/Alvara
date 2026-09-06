@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow, Brand } from "./Brand";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
 
@@ -24,24 +28,36 @@ export function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return (
     <header className={`header ${dark || open ? "header--dark" : ""}`}>
-      <a className="header__brand" href="#home" aria-label="Alvara Trade home"><Brand light={dark || open}/></a>
-      <nav className="header__nav" aria-label="Primary navigation">
+      <a className="header__brand" href="#home" aria-label={t("header.home")} onClick={() => setOpen(false)}><Brand light={dark || open}/></a>
+      <nav className="header__nav" aria-label={t("header.primaryNavigation")}>
         {homeContent.navigation.slice(1, 5).map((item) => <a key={item.label} href={item.href} className="roll-link"><span>{item.label}</span><span aria-hidden="true">{item.label}</span></a>)}
       </nav>
-      <a className="header__dashboard roll-link" href={homeContent.telegramUrl} target="_blank" rel="noreferrer"><span>Launch App <Arrow/></span><span aria-hidden="true">Launch App <Arrow/></span></a>
-      <button className="menu-toggle" aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>
-        <span/><span/>
-      </button>
-      <div className={`mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
+      <div className="header__actions">
+        <LanguageSwitcher onNavigate={() => setOpen(false)}/>
+        <a className="header__dashboard roll-link" href={homeContent.telegramUrl} target="_blank" rel="noreferrer"><span>{t("header.launchApp")} <Arrow/></span><span aria-hidden="true">{t("header.launchApp")} <Arrow/></span></a>
+        <button className="menu-toggle" type="button" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? t("header.closeMenu") : t("header.openMenu")} onClick={() => setOpen(!open)}>
+          <span/><span/>
+        </button>
+      </div>
+      <div id="mobile-navigation" className={`mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open} inert={!open}>
         <div className="mobile-menu__links">
           {homeContent.navigation.map((item, index) => (
             <a style={{ "--i": index } as React.CSSProperties} key={item.label} href={item.href} onClick={() => setOpen(false)}><span>{item.label}</span><Arrow diagonal/></a>
           ))}
         </div>
         <div className="mobile-menu__bottom">
-          <strong>$0 TO START</strong><p>AI-powered trading in Telegram across 26 strategies.</p>
+          <strong>{t("header.mobileStat")}</strong><p>{t("header.mobileDescription")}</p>
         </div>
       </div>
     </header>

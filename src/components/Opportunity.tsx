@@ -5,13 +5,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow } from "./Brand";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
 export function Opportunity() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const section = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -44,8 +47,8 @@ export function Opportunity() {
   return (
     <section className="opportunity" id="how-it-works" ref={section}>
       <div className="opportunity__intro page-grid">
-        <p className="opportunity__statement">From Telegram to a live trade in minutes. Alvara turns market analysis into clear, executable decisions.</p>
-        <a className="button button--outline" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Start Trading <Arrow/></a>
+        <p className="opportunity__statement">{t("opportunity.statement")}</p>
+        <a className="button button--outline" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("opportunity.startTrading")} <Arrow/></a>
       </div>
       <div className="opportunity__flow page-grid">
         <div className="opportunity__video" aria-hidden="true">

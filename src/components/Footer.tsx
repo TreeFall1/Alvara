@@ -4,13 +4,16 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow, Brand } from "./Brand";
 import { WebGLWordmark } from "./WebGLWordmark";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Footer() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const footer = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -25,20 +28,20 @@ export function Footer() {
     <footer className="footer" id="final-cta" ref={footer}>
       <div className="footer__glow" aria-hidden="true"/>
       <div className="footer__newsletter page-grid">
-        <h2>Start Trading with Data,<br/>Not Emotion</h2>
+        <h2>{t("footer.titleFirst")}<br/>{t("footer.titleSecond")}</h2>
         <div className="footer__cta-copy">
-          <p>Join the Alvara ecosystem now and receive 100 $ALVARA points on your first login.</p>
-          <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Open Alvara Trade in Telegram <Arrow/></a>
+          <p>{t("footer.copy")}</p>
+          <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("footer.openTelegram")} <Arrow/></a>
         </div>
       </div>
       <div className="footer__links page-grid">
-        <div className="footer__listed"><Brand light/><p>AI-powered trading in Telegram. One ecosystem for signals, execution, and $ALVARA rewards.</p></div>
-        <nav className="footer__nav" aria-label="Footer navigation"><small>Navigation</small>{homeContent.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}</nav>
-        <div className="footer__nav"><small>Supported Exchanges</small>{["Binance", "Bybit", "MEXC"].map((item) => <span key={item}>{item}</span>)}</div>
-        <button className="footer__top" onClick={top}>Back to top <Arrow/></button>
+        <div className="footer__listed"><Brand light/><p>{t("footer.description")}</p></div>
+        <nav className="footer__nav" aria-label={t("footer.navigation")}><small>{t("footer.navigation")}</small>{homeContent.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}</nav>
+        <div className="footer__nav"><small>{t("footer.exchanges")}</small>{["Binance", "Bybit", "MEXC"].map((item) => <span key={item}>{item}</span>)}</div>
+        <button className="footer__top" onClick={top}>{t("footer.backToTop")} <Arrow/></button>
       </div>
       <div className="footer__wordmark"><WebGLWordmark/></div>
-      <div className="footer__legal page-grid"><span>© 2026 Alvara Trade. All rights reserved</span><div><button type="button">Privacy Policy</button><button type="button">Terms of Use</button></div></div>
+      <div className="footer__legal page-grid"><span>{t("footer.copyright")}</span><div><button type="button">{t("footer.privacy")}</button><button type="button">{t("footer.terms")}</button></div></div>
     </footer>
   );
 }

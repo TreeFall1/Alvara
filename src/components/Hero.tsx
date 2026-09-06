@@ -4,12 +4,15 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow } from "./Brand";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Hero() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const section = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -28,20 +31,20 @@ export function Hero() {
     <section className="hero" id="home" ref={section}>
       <div className="hero__media" aria-hidden="true">
         <video autoPlay muted loop playsInline preload="auto" poster="/media/hero-poster.avif">
-          <source src="/media/herovid.webm" type="video/webm"/>
+          <source src="/media/hero.webm" type="video/webm"/>
         </video>
         <div className="hero__wash"/>
       </div>
       <div className="hero__content page-grid">
-        <h1 data-hero-in>Trade Like the Top 1% of Traders<br/><span>with Alvara&nbsp;<b className="hero__ai">AI</b></span></h1>
+        <h1 data-hero-in>{t("hero.titleStart")}<br/><span>{t("hero.titleEnd")}&nbsp;<b className="hero__ai">AI</b></span></h1>
         <div className="hero__actions" data-hero-in>
-          <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">Launch Alvara Trade in Telegram <Arrow/></a>
-          <a className="button button--glass" href="#products">Learn More <Arrow/></a>
+          <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("hero.launch")} <Arrow/></a>
+          <a className="button button--glass" href="#products">{t("hero.learnMore")} <Arrow/></a>
         </div>
-        <p className="hero__copy" data-hero-in>A smart trading ecosystem in Telegram: AI analysis across 26 strategies, one-click trade copying to exchanges, and $ALVARA token farming.</p>
+        <p className="hero__copy" data-hero-in>{t("hero.copy")}</p>
         <div className="hero__trust" data-hero-in>
-          <span><b aria-hidden="true">✓</b>Your funds never leave your exchange — API keys protected with AES-256 encryption</span>
-          <span><b aria-hidden="true">✓</b>Supports Binance, Bybit, and MEXC</span>
+          <span><b aria-hidden="true">✓</b>{t("hero.trustFunds")}</span>
+          <span><b aria-hidden="true">✓</b>{t("hero.trustExchanges")}</span>
         </div>
       </div>
     </section>

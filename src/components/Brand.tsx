@@ -1,7 +1,7 @@
 export function Brand({ light = false }: { light?: boolean }) {
   return (
     <span className={`brand ${light ? "brand--light" : ""}`} aria-label="Alvara">
-      <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 3 39 39H29l-3.5-8H16.5L13 39H3L21 3Zm0 13-2.8 7h5.6L21 16Z" fill="currentColor"/></svg>
+      <span className="brand__logo" aria-hidden="true" />
       <span>alvara</span>
     </span>
   );

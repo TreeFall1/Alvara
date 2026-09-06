@@ -4,12 +4,15 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 import { CoinScene, type CoinSceneHandle } from "./CoinScene";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Stack() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const section = useRef<HTMLElement>(null);
   const coin = useRef<CoinSceneHandle>(null);
 
@@ -47,7 +50,7 @@ export function Stack() {
   return (
     <section className="stack" id="products" ref={section}>
       <div className="stack__heading page-grid">
-        <p>Ecosystem Products</p><h2>Everything You Need<br/>to Trade Smarter</h2>
+        <p>{t("products.eyebrow")}</p><h2>{t("products.titleFirst")}<br/>{t("products.titleSecond")}</h2>
       </div>
       <div className="stack__body page-grid">
         <div className="stack__visual" aria-hidden="true">
@@ -63,7 +66,7 @@ export function Stack() {
         </div>
       </div>
       <div className="generation">
-        <h2 className="generation__title"><span>How It Works</span><br/><span>in Three Steps</span></h2>
+        <h2 className="generation__title"><span>{t("products.stepsFirst")}</span><br/><span>{t("products.stepsSecond")}</span></h2>
       </div>
     </section>
   );

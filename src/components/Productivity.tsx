@@ -4,11 +4,14 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { homeContent } from "@/data/home";
+import { useTranslation } from "react-i18next";
+import { useHomeContent } from "@/i18n/useHomeContent";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Productivity() {
+  const { t } = useTranslation();
+  const homeContent = useHomeContent();
   const section = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -35,14 +38,14 @@ export function Productivity() {
   return (
     <section className="productivity" id="performance" ref={section}>
       <div className="productivity__intro page-grid">
-        <h2>Proof in<br/>the Numbers</h2>
-        <p>Real-time analysis, multi-strategy confirmation, and direct API execution turn complex market data into one clear action.</p>
+        <h2>{t("performance.titleFirst")}<br/>{t("performance.titleSecond")}</h2>
+        <p>{t("performance.copy")}</p>
       </div>
       <div className="productivity__stage">
         <div className="productivity__dashboard">
           <div className="dashboard__grid" aria-hidden="true"/>
           <div className="dashboard__top page-grid">
-            <h3 className="dashboard__title">Alvara AI<br/>at a Glance</h3>
+            <h3 className="dashboard__title">{t("performance.dashboardFirst")}<br/>{t("performance.dashboardSecond")}</h3>
             <div className="dashboard__metrics">
               {homeContent.proofMetrics.map((metric) => (
                 <article className="dashboard__metric" key={metric.value}>
