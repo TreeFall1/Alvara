@@ -112,7 +112,7 @@ img, video, canvas { display: block; max-width: 100%; }
 .tokenomics__supply strong { font: 500 clamp(24px, 2.15vw, 40px)/1 "Archivo", Arial, sans-serif; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
 .tokenomics__supply small { font: inherit; color: var(--green); }
 .tokenomics__chart { position: relative; isolation: isolate; grid-column: 4 / 10; width: 100%; height: min(46vw, 650px); margin-top: 92px; }
-.tokenomics__chart canvas { position: relative; z-index: 2; cursor: pointer; }
+.tokenomics__chart canvas { position: relative; z-index: 2; cursor: pointer; outline: none; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
 .tokenomics__chart-center { position: absolute; z-index: 1; left: 50%; top: 50%; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -50%); pointer-events: none; }
 .tokenomics__chart-center strong { font: 500 clamp(46px, 5.5vw, 92px)/.78 "Archivo", Arial, sans-serif; letter-spacing: -.065em; }
 .tokenomics__chart-center span { margin-top: 14px; color: var(--green); font-size: 10px; letter-spacing: .13em; }

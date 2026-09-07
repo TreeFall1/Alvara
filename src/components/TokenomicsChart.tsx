@@ -27,7 +27,9 @@ export function TokenomicsChart({ labels, chartLabel }: TokenomicsChartProps) {
     datasets: [{
       data: [...TOKENOMICS_DISTRIBUTION],
       backgroundColor: [...TOKENOMICS_COLORS],
+      hoverBackgroundColor: [...TOKENOMICS_COLORS],
       borderColor: "#0b0c0a",
+      hoverBorderColor: "#0b0c0a",
       borderWidth: 4,
       borderRadius: 7,
       hoverBorderWidth: 2,
