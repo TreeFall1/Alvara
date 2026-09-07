@@ -27,7 +27,7 @@ export function Opportunity() {
       scrollTrigger: { trigger: ".opportunity__statement", start: "top 80%", end: "top 22%", scrub: true },
     });
     const mm = gsap.matchMedia();
-    mm.add("(min-width: 801px)", () => {
+    mm.add("(min-width: 1025px)", () => {
       ScrollTrigger.create({ trigger: ".opportunity__cards", start: "top 28%", end: "bottom 70%", pin: ".opportunity__intro", pinSpacing: false });
     });
     gsap.fromTo(".opportunity__video", { opacity: 0 }, { opacity: 0.72, scrollTrigger: { trigger: ".opportunity__cards", start: "top 80%", end: "top 35%", scrub: true } });

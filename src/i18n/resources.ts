@@ -29,6 +29,16 @@ type Translation = {
     copy: string;
     dashboardFirst: string;
     dashboardSecond: string;
+    tokenomics: {
+      eyebrow: string;
+      title: string;
+      totalSupply: string;
+      category: string;
+      allocation: string;
+      tokens: string;
+      chartLabel: string;
+      items: string[];
+    };
   };
   products: {
     eyebrow: string;
@@ -94,6 +104,23 @@ const en: Translation = {
     copy: "Real-time analysis, multi-strategy confirmation, and direct API execution turn complex market data into one clear action.",
     dashboardFirst: "Alvara AI",
     dashboardSecond: "at a Glance",
+    tokenomics: {
+      eyebrow: "$ALVARA Token",
+      title: "Token Allocation",
+      totalSupply: "Total Supply",
+      category: "Category",
+      allocation: "Allocation",
+      tokens: "Tokens",
+      chartLabel: "$ALVARA token allocation chart",
+      items: [
+        "Community, Airdrop & App",
+        "Liquidity & Market Making",
+        "Team & Developers",
+        "AI Infrastructure & Ecosystem",
+        "Market Making & Partnerships",
+        "Early Investors (Angel Round)",
+      ],
+    },
   },
   products: {
     eyebrow: "Ecosystem Products",
@@ -162,6 +189,23 @@ const ru: Translation = {
     copy: "Анализ в реальном времени, подтверждение несколькими стратегиями и прямое исполнение через API превращают сложные рыночные данные в одно понятное действие.",
     dashboardFirst: "Alvara AI",
     dashboardSecond: "в двух словах",
+    tokenomics: {
+      eyebrow: "Токен $ALVARA",
+      title: "Распределение токенов",
+      totalSupply: "Общее предложение",
+      category: "Категория",
+      allocation: "Доля",
+      tokens: "Токены",
+      chartLabel: "Диаграмма распределения токенов $ALVARA",
+      items: [
+        "Комьюнити, Airdrop и приложение",
+        "Ликвидность и маркет-мейкинг",
+        "Команда и разработчики",
+        "Инфраструктура AI и экосистема",
+        "Маркет-мейкинг и партнёрства",
+        "Ранние инвесторы (Angel Round)",
+      ],
+    },
   },
   products: {
     eyebrow: "Продукты экосистемы",
@@ -273,6 +317,23 @@ const uk: Translation = {
     copy: "Аналіз у реальному часі, підтвердження кількома стратегіями та пряме виконання через API перетворюють складні ринкові дані на одну зрозумілу дію.",
     dashboardFirst: "Alvara AI",
     dashboardSecond: "коротко про головне",
+    tokenomics: {
+      eyebrow: "Токен $ALVARA",
+      title: "Розподіл токенів",
+      totalSupply: "Загальна пропозиція",
+      category: "Категорія",
+      allocation: "Частка",
+      tokens: "Токени",
+      chartLabel: "Діаграма розподілу токенів $ALVARA",
+      items: [
+        "Спільнота, Airdrop і застосунок",
+        "Ліквідність і маркет-мейкінг",
+        "Команда та розробники",
+        "AI-інфраструктура й екосистема",
+        "Маркет-мейкінг і партнерства",
+        "Ранні інвестори (Angel Round)",
+      ],
+    },
   },
   products: {
     eyebrow: "Продукти екосистеми",

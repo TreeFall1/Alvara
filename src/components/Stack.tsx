@@ -19,7 +19,7 @@ export function Stack() {
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const mm = gsap.matchMedia();
-    mm.add("(min-width: 801px)", () => {
+    mm.add("(min-width: 1025px)", () => {
       const rotationTrigger = ScrollTrigger.create({
         trigger: ".stack__list",
         start: "top 65%",
@@ -30,15 +30,23 @@ export function Stack() {
       const pinTrigger = ScrollTrigger.create({ trigger: ".stack__body", start: "top top", endTrigger: ".generation", end: "top top", pin: ".stack__visual", pinSpacing: false });
       return () => { rotationTrigger.kill(); pinTrigger.kill(); };
     });
-    mm.add("(max-width: 800px)", () => {
+    mm.add("(max-width: 1024px)", () => {
       const rotationTrigger = ScrollTrigger.create({
-        trigger: ".stack__body",
+        trigger: ".stack__visual",
         start: "top bottom",
         end: "bottom top",
         scrub: true,
         onUpdate: ({ progress }) => coin.current?.setProgress(progress),
       });
-      return () => rotationTrigger.kill();
+      const visualEntrance = gsap.from(".stack__visual", {
+        opacity: 0,
+        scale: 0.94,
+        y: 36,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: { trigger: ".stack__visual", start: "top 88%", toggleActions: "play none none reverse" },
+      });
+      return () => { rotationTrigger.kill(); visualEntrance.kill(); };
     });
     gsap.utils.toArray<HTMLElement>(".stack-item").forEach((item) => {
       gsap.fromTo(item, { opacity: 0.36 }, { opacity: 1, scrollTrigger: { trigger: item, start: "top 65%", end: "bottom 48%", scrub: true, toggleActions: "play reverse play reverse" } });

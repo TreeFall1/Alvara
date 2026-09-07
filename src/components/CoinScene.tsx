@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import * as THREE from "three";
 
@@ -14,14 +15,6 @@ const COIN_COLORS = {
 // Full rotations across the complete scroll-driven animation.
 const COIN_ROTATION_SPEED = 2;
 const COIN_SIZE = 3;
-
-const COIN_RENDER_QUALITY = {
-  antialias: true,
-  maxPixelRatio: 2.5,
-  maxTextureAnisotropy: 16,
-  shadowMapSize: 2048,
-  shadowMapType: THREE.PCFShadowMap,
-} as const;
 
 export type CoinSceneHandle = {
   setProgress: (progress: number) => void;
@@ -47,10 +40,15 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
 
     const initialize = async () => {
       if (disposed || cleanupScene) return;
+      const isMobile = matchMedia("(max-width: 1024px)").matches;
+      const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const maxPixelRatio = isMobile ? 1.35 : 2;
+      const maxTextureAnisotropy = isMobile ? 4 : 8;
+      const shadowsEnabled = !isMobile;
 
       let renderer: THREE.WebGLRenderer;
       try {
-        renderer = new THREE.WebGLRenderer({ antialias: COIN_RENDER_QUALITY.antialias, alpha: true, powerPreference: "high-performance" });
+        renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: "high-performance" });
       } catch {
         host.classList.add("coin-scene--fallback");
         return;
@@ -59,8 +57,8 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.18;
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = COIN_RENDER_QUALITY.shadowMapType;
+      renderer.shadowMap.enabled = shadowsEnabled;
+      renderer.shadowMap.type = THREE.PCFShadowMap;
       host.prepend(renderer.domElement);
 
       const scene = new THREE.Scene();
@@ -72,8 +70,8 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       scene.add(new THREE.HemisphereLight(COIN_COLORS.hemisphereSky, COIN_COLORS.hemisphereGround, 2.2));
       const key = new THREE.DirectionalLight(COIN_COLORS.keyLight, 5.4);
       key.position.set(4, 5, 7);
-      key.castShadow = true;
-      key.shadow.mapSize.set(COIN_RENDER_QUALITY.shadowMapSize, COIN_RENDER_QUALITY.shadowMapSize);
+      key.castShadow = shadowsEnabled;
+      key.shadow.mapSize.set(1024, 1024);
       key.shadow.bias = -0.0001;
       key.shadow.normalBias = 0.02;
       scene.add(key);
@@ -85,8 +83,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       scene.add(cool);
 
       const render = (progress: number) => {
-        const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const p = reduced ? 0.18 : progress;
+        const p = prefersReducedMotion ? 0.18 : progress;
         coinGroup.rotation.set(
           0.16 + Math.sin(p * Math.PI * 2) * 0.16,
           -0.72 + p * Math.PI * 2 * COIN_ROTATION_SPEED,
@@ -99,7 +96,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       const resize = () => {
         const width = Math.max(host.clientWidth, 1);
         const height = Math.max(host.clientHeight, 1);
-        renderer.setPixelRatio(Math.min(devicePixelRatio, COIN_RENDER_QUALITY.maxPixelRatio));
+        renderer.setPixelRatio(Math.min(devicePixelRatio, maxPixelRatio));
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov / 2);
@@ -138,11 +135,11 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       loader.load("/Coin.glb", (gltf) => {
         if (disposed) { disposeModel(gltf.scene); return; }
         const model = gltf.scene;
-        const textureAnisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), COIN_RENDER_QUALITY.maxTextureAnisotropy);
+        const textureAnisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), maxTextureAnisotropy);
         model.traverse((child) => {
           if (!(child instanceof THREE.Mesh)) return;
-          child.castShadow = true;
-          child.receiveShadow = true;
+          child.castShadow = shadowsEnabled;
+          child.receiveShadow = shadowsEnabled;
           const materials = Array.isArray(child.material) ? child.material : [child.material];
           materials.forEach((material) => {
             Object.values(material).forEach((value) => {
@@ -153,7 +150,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
             });
             if (material instanceof THREE.MeshStandardMaterial) {
               material.envMapIntensity = 1.35;
-                material.dithering = true;
+              material.dithering = true;
               material.needsUpdate = true;
             }
           });
@@ -173,7 +170,9 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        void initialize();
+        void initialize().catch(() => {
+          if (!disposed) host.classList.add("coin-scene--fallback");
+        });
         observer.disconnect();
       }
     }, { rootMargin: "900px" });
@@ -188,7 +187,14 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
 
   return (
     <div className="coin-scene" ref={hostRef}>
-      <div className="coin-scene__fallback" aria-hidden="true"><span>A</span></div>
+      <div className="coin-scene__fallback" aria-hidden="true">
+        <Image
+          src="/media/coin-fallback.webp"
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 88vw, 42vw"
+        />
+      </div>
     </div>
   );
 });

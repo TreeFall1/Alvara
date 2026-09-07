@@ -20,7 +20,7 @@ export function Hero() {
     if (reduce) return;
     gsap.from("[data-hero-in]", { autoAlpha: 0, y: 24, duration: 0.8, stagger: 0.16, delay: 0.25, ease: "power3.out" });
     const mm = gsap.matchMedia();
-    mm.add("(max-width: 800px)", () => gsap.to(".hero__media", {
+    mm.add("(max-width: 1024px)", () => gsap.to(".hero__media", {
       opacity: 0,
       scrollTrigger: { trigger: section.current, start: "top top", end: "bottom center", scrub: true },
     }));
