@@ -1,0 +1,12 @@
+/* ElevenLabs corner radii. Pill for every CTA/badge; xl for cards; xxl for orb cards. */
+:root {
+  --radius-none: 0px;
+  --radius-xs: 4px;    /* inline tags */
+  --radius-sm: 6px;    /* compact rows */
+  --radius-md: 8px;    /* form inputs */
+  --radius-lg: 12px;   /* compact cards */
+  --radius-xl: 16px;   /* feature cards, pricing tiers */
+  --radius-xxl: 24px;  /* gradient orb cards */
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+}

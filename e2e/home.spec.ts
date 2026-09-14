@@ -25,7 +25,7 @@ test("mobile navigation and FAQ remain interactive", async ({ page, isMobile }) 
   await page.waitForFunction(() => document.documentElement.dataset.hydrated === "true");
   await page.getByRole("button", { name: "Open menu" }).click();
   await expect(page.getByRole("button", { name: "Close menu" })).toBeVisible();
-  await expect(page.locator(".mobile-menu")).toHaveCSS("background-color", "rgb(17, 17, 15)");
+  await expect(page.locator(".mobile-menu")).toHaveCSS("background-color", "rgb(245, 245, 245)");
   await expect(page.locator("#mobile-navigation").getByRole("link", { name: "Security", exact: true })).toBeAttached();
   await page.getByRole("button", { name: "Close menu" }).click();
   const faq = page.getByRole("button", { name: /Do I need to pay to use Alvara Trade/i });

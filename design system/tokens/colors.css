@@ -1,0 +1,52 @@
+/* ElevenLabs color tokens.
+   The brand voltage is photographic, not chromatic: warm near-black ink on an
+   off-white canvas, with pastel gradient orbs as the only "color" moments. */
+:root {
+  /* ---- Brand / primary action ---- */
+  --color-primary: #292524;          /* warm near-black ink pill */
+  --color-primary-active: #0c0a09;   /* press state */
+
+  /* ---- Text ---- */
+  --color-ink: #0c0a09;              /* display + primary text */
+  --color-body: #4e4e4e;            /* default running text */
+  --color-body-strong: #292524;     /* emphasis */
+  --color-muted: #777169;           /* sub-titles */
+  --color-muted-soft: #a8a29e;      /* disabled text */
+  --color-on-primary: #ffffff;      /* text on ink pill */
+  --color-on-dark: #ffffff;         /* text on dark hero */
+  --color-on-dark-soft: #a8a29e;    /* muted off-white on dark */
+
+  /* ---- Surfaces ---- */
+  --color-canvas: #f5f5f5;            /* off-white page floor */
+  --color-canvas-soft: #fafafa;       /* lighter alternating band */
+  --color-canvas-deep: #0c0a09;       /* rare dark hero */
+  --color-surface-card: #ffffff;      /* pure white card */
+  --color-surface-strong: #f0efed;    /* badges, voice-icon plates */
+  --color-surface-dark: #0c0a09;      /* dark hero / CTA band */
+  --color-surface-dark-elevated: #1c1917; /* cards on dark canvas */
+
+  /* ---- Hairlines ---- */
+  --color-hairline: #e7e5e4;          /* default 1px divider */
+  --color-hairline-soft: #f0efed;     /* lighter divider */
+  --color-hairline-strong: #d6d3d1;   /* stronger panel outline */
+
+  /* ---- Atmospheric gradient stops (signature — decoration only) ---- */
+  --color-gradient-mint: #a7e5d3;
+  --color-gradient-peach: #f4c5a8;
+  --color-gradient-lavender: #c8b8e0;
+  --color-gradient-sky: #a8c8e8;
+  --color-gradient-rose: #e8b8c4;
+
+  /* ---- Semantic ---- */
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  /* ---- Semantic aliases ---- */
+  --text-primary: var(--color-ink);
+  --text-body: var(--color-body);
+  --text-muted: var(--color-muted);
+  --surface-page: var(--color-canvas);
+  --surface-card: var(--color-surface-card);
+  --border-default: var(--color-hairline);
+  --action-primary: var(--color-primary);
+}

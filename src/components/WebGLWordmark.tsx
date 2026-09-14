@@ -41,7 +41,7 @@ export function WebGLWordmark() {
       }
     }
     geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-    const material = new THREE.PointsMaterial({ color: 0xfff9ef, size: 0.025, transparent: true, opacity: 0.92 });
+    const material = new THREE.PointsMaterial({ color: 0x292524, size: 0.025, transparent: true, opacity: 0.92 });
     const points = new THREE.Points(geometry, material);
     scene.add(points);
     element.appendChild(renderer.domElement);

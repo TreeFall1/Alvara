@@ -4,6 +4,7 @@ import { I18nProvider } from "@/i18n/I18nProvider";
 import { isLocale, locales } from "@/i18n/config";
 import { translations } from "@/i18n/resources";
 import "../globals.scss";
+import "../design-system.css";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

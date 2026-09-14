@@ -17,7 +17,7 @@ type TokenomicsChartProps = {
 };
 
 export const TOKENOMICS_DISTRIBUTION = [40, 15, 15, 10, 10, 10] as const;
-export const TOKENOMICS_COLORS = ["#ff5b35", "#c7ff49", "#f0ede5", "#7f9cff", "#36dec4", "#ae72ff"] as const;
+export const TOKENOMICS_COLORS = ["#a7e5d3", "#f4c5a8", "#c8b8e0", "#a8c8e8", "#e8b8c4", "#d6d3d1"] as const;
 export const TOKEN_SUPPLY = 1_000_000_000;
 
 export function TokenomicsChart({ labels, chartLabel }: TokenomicsChartProps) {
@@ -28,8 +28,8 @@ export function TokenomicsChart({ labels, chartLabel }: TokenomicsChartProps) {
       data: [...TOKENOMICS_DISTRIBUTION],
       backgroundColor: [...TOKENOMICS_COLORS],
       hoverBackgroundColor: [...TOKENOMICS_COLORS],
-      borderColor: "#0b0c0a",
-      hoverBorderColor: "#0b0c0a",
+      borderColor: "#fafafa",
+      hoverBorderColor: "#fafafa",
       borderWidth: 4,
       borderRadius: 7,
       hoverBorderWidth: 2,
@@ -62,10 +62,10 @@ export function TokenomicsChart({ labels, chartLabel }: TokenomicsChartProps) {
       legend: { display: false },
       tooltip: {
         displayColors: false,
-        backgroundColor: "#f4f1e9",
-        titleColor: "#11110f",
-        bodyColor: "#11110f",
-        borderColor: "rgba(17, 17, 15, .16)",
+        backgroundColor: "#ffffff",
+        titleColor: "#0c0a09",
+        bodyColor: "#0c0a09",
+        borderColor: "#e7e5e4",
         borderWidth: 1,
         cornerRadius: 10,
         padding: 15,

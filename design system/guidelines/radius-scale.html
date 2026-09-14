@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Corner Radius" subtitle="Pill for CTAs, xl for cards, xxl for orbs" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"/><link rel="stylesheet" href="../styles.css"/>
+<style>
+body{margin:0;background:var(--color-canvas);padding:24px;font-family:var(--font-sans)}
+.row{display:flex;gap:18px;align-items:flex-start}
+.col{display:flex;flex-direction:column;align-items:center;gap:8px}
+.box{width:74px;height:54px;background:var(--color-surface-card);border:1px solid var(--color-hairline-strong)}
+.t{font-size:11px;font-weight:500;color:var(--color-ink)}
+.n{font-size:11px;color:var(--color-muted);font-variant-numeric:tabular-nums}
+</style></head><body>
+<div class="row">
+  <div class="col"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="t">sm</span><span class="n">6px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-md)"></div><span class="t">md</span><span class="n">8px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="t">lg</span><span class="n">12px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="t">xl</span><span class="n">16px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-xxl)"></div><span class="t">xxl</span><span class="n">24px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-pill);width:90px"></div><span class="t">pill</span><span class="n">9999px</span></div>
+</div>
+</body></html>

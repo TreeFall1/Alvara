@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Buttons, Badges & Inputs" subtitle="Ink-pill CTA, pill badges, focus-ring inputs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--color-canvas); font-family: var(--font-sans); }
+  .wrap { padding: 28px; display: flex; flex-direction: column; gap: 22px; }
+  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted-soft); width: 100%; }
+</style>
+</head>
+<body>
+<div id="root" class="wrap"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Button, Badge, Input } = window.ElevenLabsDesignSystem_ff1699;
+  function Demo() {
+    return (
+      <>
+        <div className="row"><span className="label">Buttons</span>
+          <Button variant="primary">Try free</Button>
+          <Button variant="outline">Sign in</Button>
+          <Button variant="tertiary">Learn more</Button>
+          <Button variant="primary" size="sm">Small</Button>
+          <Button variant="primary" disabled>Disabled</Button>
+        </div>
+        <div className="row"><span className="label">Badges</span>
+          <Badge>New</Badge>
+          <Badge tone="dark">Pro</Badge>
+          <Badge tone="success">Live</Badge>
+          <Badge tone="error">Limit</Badge>
+          <Badge tone="outline">Beta</Badge>
+        </div>
+        <div className="row"><span className="label">Inputs</span>
+          <div style={{ width: 220 }}><Input label="Work email" placeholder="you@company.com" /></div>
+          <div style={{ width: 220 }}><Input label="Email" error="Enter a valid email" defaultValue="nope@" /></div>
+        </div>
+      </>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

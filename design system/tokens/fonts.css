@@ -1,0 +1,12 @@
+/* ElevenLabs webfonts.
+   Display: Waldenburg (licensed) — SUBSTITUTED with Newsreader (Google), a light
+   editorial serif that carries a true 300 weight, matching the "Waldenburg Light"
+   editorial signature. Body: Inter, the real ElevenLabs body face. */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200;6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Display serif — Waldenburg substitute */
+  --font-display: 'Newsreader', 'Times New Roman', serif;
+  /* Body / UI sans — real brand face */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
