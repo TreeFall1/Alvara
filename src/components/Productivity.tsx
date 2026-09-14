@@ -33,28 +33,22 @@ export function Productivity() {
         .from(".dashboard__grid", { opacity: 0 }, 0.18)
         .from(".dashboard__title", { y: 190, opacity: 0 }, 0.2)
         .from(".dashboard__metric", { y: 70, opacity: 0, stagger: 0.1 }, 0.28);
-    });
-    mm.add("(max-width: 1024px)", () => {
-      gsap.from(".dashboard__metric", {
-        y: 50, opacity: 0, stagger: 0.1, duration: 0.7,
-        scrollTrigger: { trigger: ".productivity__dashboard", start: "top 75%" },
+      gsap.from(".tokenomics__chart", {
+        y: 70,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        clearProps: "transform",
+        scrollTrigger: { trigger: ".tokenomics__chart", start: "top 82%" },
       });
-    });
-    gsap.from(".tokenomics__chart", {
-      y: 70,
-      opacity: 0,
-      duration: 0.9,
-      ease: "power3.out",
-      clearProps: "transform",
-      scrollTrigger: { trigger: ".tokenomics__chart", start: "top 82%" },
-    });
-    gsap.from(".tokenomics__item", {
-      y: 28,
-      opacity: 0,
-      stagger: 0.07,
-      duration: 0.55,
-      clearProps: "transform",
-      scrollTrigger: { trigger: ".tokenomics__list", start: "top 84%" },
+      gsap.from(".tokenomics__item", {
+        y: 28,
+        opacity: 0,
+        stagger: 0.07,
+        duration: 0.55,
+        clearProps: "transform",
+        scrollTrigger: { trigger: ".tokenomics__list", start: "top 84%" },
+      });
     });
     return () => mm.revert();
   }, { scope: section });

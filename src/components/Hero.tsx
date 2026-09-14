@@ -2,13 +2,12 @@
 
 import { useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow } from "./Brand";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 export function Hero() {
   const { t } = useTranslation();
@@ -19,12 +18,6 @@ export function Hero() {
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
     gsap.from("[data-hero-in]", { autoAlpha: 0, y: 24, duration: 0.8, stagger: 0.16, delay: 0.25, ease: "power3.out" });
-    const mm = gsap.matchMedia();
-    mm.add("(max-width: 1024px)", () => gsap.to(".hero__media", {
-      opacity: 0,
-      scrollTrigger: { trigger: section.current, start: "top top", end: "bottom center", scrub: true },
-    }));
-    return () => mm.revert();
   }, { scope: section });
 
   return (

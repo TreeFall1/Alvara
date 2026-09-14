@@ -224,7 +224,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline-color: var(
   .dashboard__metric strong { font-size: 50px; }
   .tokenomics { padding-block: 100px; }
   .tokenomics__header h3 { font-size: clamp(42px, 7vw, 64px); }
-  .tokenomics__chart { height: min(calc(100vw - 48px), 620px); }
+  .tokenomics__chart { grid-column: 1 / -1; justify-self: center; width: min(100%, 620px); height: min(calc(100vw - 48px), 620px); }
   .tokenomics__item strong { font-size: 18px; }
   .tokenomics__item > span:nth-last-child(-n+2) { font-size: 16px; }
   .stack__heading { padding-block: 100px 56px; }
