@@ -7,6 +7,7 @@ import { Productivity } from "./Productivity";
 import { Stack } from "./Stack";
 import { Opportunity } from "./Opportunity";
 import { News } from "./News";
+import { CoinPromo } from "./CoinPromo";
 import { Faq } from "./Faq";
 import { Footer } from "./Footer";
 import { SmoothScroll } from "./SmoothScroll";
@@ -27,6 +28,7 @@ export function HomePage() {
         <Stack/>
         <Opportunity/>
         <News/>
+        <CoinPromo/>
         <Faq/>
       </main>
       <Footer/>

@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("localized text fits narrow and intermediate layouts", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop-1440", "one browser covers the locale and width matrix");
 
-  for (const locale of ["en", "ru", "uk"]) {
+  for (const locale of ["en", "ru"]) {
     await page.goto(`/${locale}`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
 
@@ -32,7 +32,7 @@ test("wide localized hero stays below the fixed header", async ({ page }, testIn
   test.skip(testInfo.project.name !== "desktop-1440", "one browser covers the locale and viewport matrix");
   await page.emulateMedia({ reducedMotion: "reduce" });
 
-  for (const locale of ["en", "ru", "uk"]) {
+  for (const locale of ["en", "ru"]) {
     await page.goto(`/${locale}`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
 

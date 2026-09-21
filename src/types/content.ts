@@ -24,14 +24,6 @@ export type SecurityItem = {
   badge: string;
 };
 
-export type RoadmapItem = {
-  phase: string;
-  title: string;
-  period: string;
-  body: string;
-  link?: NavItem;
-};
-
 export type FaqItem = { question: string; answer: string };
 
 export type HomePageContent = {
@@ -40,7 +32,6 @@ export type HomePageContent = {
   features: FeatureItem[];
   steps: StepItem[];
   security: SecurityItem[];
-  roadmap: RoadmapItem[];
   faq: FaqItem[];
   telegramUrl: string;
 };

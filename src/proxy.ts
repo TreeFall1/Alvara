@@ -24,6 +24,10 @@ export function proxy(request: NextRequest) {
 
   const locale = preferredLocale(request);
   const url = request.nextUrl.clone();
+  if (pathnameLocale === "uk") {
+    url.pathname = `/ru${pathname.slice(3)}`;
+    return NextResponse.redirect(url);
+  }
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
   return NextResponse.redirect(url);
 }

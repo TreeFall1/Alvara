@@ -4,53 +4,53 @@ export const homeContent: HomePageContent = {
   navigation: [
     { label: "Home", href: "#home" },
     { label: "Performance", href: "#performance" },
-    { label: "Products", href: "#products" },
+    { label: "Strategies", href: "#products" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Security", href: "#security" },
     { label: "FAQ", href: "#faq" },
   ],
   proofMetrics: [
-    { value: "79.7%", label: "Average AI algorithm win rate" },
-    { value: "26+", label: "Trading strategies in a single signal", detail: "Smart Money, ICT, Indicator Confluence" },
-    { value: "< 1 sec", label: "Trade execution on your exchange via API" },
-    { value: "$0", label: "Free start and token farming for new users" },
+    { value: "26+", label: "Strategies checked for every signal", detail: "Smart Money, ICT, market structure and indicators" },
+    { value: "3", label: "Take-profit targets in every trade setup" },
+    { value: "< 1 sec", label: "To send an order to your exchange via API" },
+    { value: "24/7", label: "Market monitoring inside the Telegram bot" },
   ],
   features: [
     {
-      label: "AI Signal Generator",
-      title: "Instant Analysis for Any Token",
-      body: "AI analyzes Order Blocks, Fair Value Gaps (FVG), and RSI, MACD, and ADX oscillators to deliver a precise entry point, three Take Profit targets, and a Stop Loss with calculated risk.",
+      label: "Multi-strategy analysis",
+      title: "One Signal, 26+ Market Checks",
+      body: "Alvara combines Smart Money concepts, ICT patterns, market structure and technical indicators instead of relying on a single signal source.",
     },
     {
-      label: "One-Click Copy Trading",
-      title: "Trade Directly from Telegram",
-      body: "Connect your Binance, Bybit, or MEXC API keys. Tap “Copy Trade,” and the bot will place the orders on your exchange automatically based on your deposit size.",
+      label: "Complete trade setup",
+      title: "Entry, Targets and Risk in One Screen",
+      body: "The bot turns its analysis into a practical setup with an entry zone, three Take Profit targets, Stop Loss and a clear probability estimate.",
     },
     {
-      label: "On-Chain & Macro Analytics",
-      title: "See What the Whales See",
-      body: "Track major capital movements, MVRV Z-Score, NUPL, Open Interest (OI), and the economic calendar in a clear format without complicated terminology.",
+      label: "One-click execution",
+      title: "Trade Without Leaving Telegram",
+      body: "Connect Binance, Bybit or MEXC with a trade-only API key. Review the setup, choose your position size and send the order to your exchange in one tap.",
     },
     {
-      label: "F2E & Staking · $ALVARA Farming",
-      title: "Learn and Earn",
-      body: "Complete the daily AI Quiz, take part in market predictions, and stake USDT to receive daily $ALVARA token airdrops.",
+      label: "Risk and automation",
+      title: "Stay in Control of Every Position",
+      body: "Set risk limits, enable automated execution when you are ready, and monitor open positions from the same Telegram interface.",
     },
   ],
   steps: [
     {
       title: "Launch the Bot in Telegram",
-      body: "Open the Alvara Trade WebApp directly in the messenger—no lengthy registration or verification required.",
+      body: "Open Alvara Trade in Telegram and choose the exchange you already use. No separate trading terminal is required.",
       icon: "/media/opportunity-1.webp",
     },
     {
-      title: "Choose a Coin and Get an AI Signal",
-      body: "The algorithm checks 26 market factors and delivers a ready-to-trade setup with an estimated probability of success.",
+      title: "Choose a Market and Review the Analysis",
+      body: "The bot checks more than 26 strategies and shows why a setup exists, together with entry, targets and Stop Loss.",
       icon: "/media/opportunity-2.webp",
     },
     {
-      title: "Copy the Trade or Enable Auto‑Trading",
-      body: "Orders are sent to your exchange instantly. Manage risk and monitor your deposit growth from one place.",
+      title: "Confirm the Trade or Enable Automation",
+      body: "Choose the position size and send the order to your exchange. Your funds remain there while Alvara monitors the trade.",
       icon: "/media/opportunity-3.webp",
     },
   ],
@@ -71,37 +71,10 @@ export const homeContent: HomePageContent = {
       badge: "Trade-only API",
     },
   ],
-  roadmap: [
-    {
-      phase: "Phase 1",
-      title: "Launch & Foundation",
-      period: "Q3 2026",
-      body: "Deploy the $ALVARA token, launch a liquidity pool on STON.fi with locked LP tokens, publish the whitepaper, and kick off the community.",
-      link: { label: "STON.fi", href: "https://ston.fi" },
-    },
-    {
-      phase: "Phase 2",
-      title: "Growth & Marketing",
-      period: "Q4 2026",
-      body: "Launch the Telegram Mini App with tap-to-earn and airdrop mechanics, roll out the marketing campaign, and secure listings on CoinGecko and CoinMarketCap.",
-    },
-    {
-      phase: "Phase 3",
-      title: "Ecosystem & Utility",
-      period: "Q1–Q2 2027",
-      body: "Release AI-powered services for token holders, launch staking, and secure the first CEX listing on Bybit, MEXC, or Bitget.",
-    },
-    {
-      phase: "Phase 4",
-      title: "Scaling & DAO",
-      period: "Q3 2027+",
-      body: "Transition to DAO governance, introduce a Buyback & Burn mechanism, and expand to Tier-1 exchanges.",
-    },
-  ],
   faq: [
     {
       question: "Do I need to pay to use Alvara Trade?",
-      answer: "Core features, trading signals, and participation in $ALVARA farming are completely free. PRO features unlock when you hold ecosystem tokens.",
+      answer: "You can open the bot and explore its core workflow for free. Any paid plans or advanced automation options are shown clearly before you enable them.",
     },
     {
       question: "What is the minimum amount required to start?",
@@ -109,7 +82,7 @@ export const homeContent: HomePageContent = {
     },
     {
       question: "How is Alvara different from regular signal channels?",
-      answer: "We do not provide subjective forecasts. Our AI analyzes the mathematical convergence of 26 indicators and patterns in real time, then lets you execute the trade on your exchange in one click.",
+      answer: "Alvara does more than publish an entry price. It checks more than 26 strategies, explains the setup and lets you send the trade to your own exchange from Telegram.",
     },
   ],
   // Replace this with the production Mini App deep link when its public username is finalized.

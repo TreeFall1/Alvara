@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 
-const shortNames: Record<Locale, string> = { en: "EN", ru: "RU", uk: "UA" };
-const languageNames: Record<Locale, string> = { en: "English", ru: "Русский", uk: "Українська" };
+const shortNames: Record<Locale, string> = { en: "EN", ru: "RU" };
+const languageNames: Record<Locale, string> = { en: "English", ru: "Русский" };
 
 function persistLocale(locale: Locale) {
   document.cookie = `alvara-locale=${locale}; Path=/; Max-Age=31536000; SameSite=Lax`;

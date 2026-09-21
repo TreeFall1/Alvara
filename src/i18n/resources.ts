@@ -29,16 +29,7 @@ type Translation = {
     copy: string;
     dashboardFirst: string;
     dashboardSecond: string;
-    tokenomics: {
-      eyebrow: string;
-      title: string;
-      totalSupply: string;
-      category: string;
-      allocation: string;
-      tokens: string;
-      chartLabel: string;
-      items: string[];
-    };
+    strategies: string[];
   };
   products: {
     eyebrow: string;
@@ -46,6 +37,10 @@ type Translation = {
     titleSecond: string;
     stepsFirst: string;
     stepsSecond: string;
+    signalStatus: string;
+    signalCount: string;
+    signalTitle: string;
+    signalCopy: string;
   };
   opportunity: { statement: string; startTrading: string };
   security: {
@@ -53,10 +48,20 @@ type Translation = {
     titleFirst: string;
     titleSecond: string;
     badge: string;
-    protection: string;
-    roadmapEyebrow: string;
-    roadmapTitle: string;
+    systemStatus: string;
+    verified: string;
+    exchange: string;
+    exchangeCopy: string;
+    encryptedChannel: string;
+    encryptedCopy: string;
+    alvara: string;
+    alvaraCopy: string;
+    withdrawalAccess: string;
+    disabled: string;
+    tradingAccess: string;
+    enabled: string;
   };
+  coinPromo: { title: string; copy: string; cta: string; visualLabel: string };
   faq: { title: string; subtitle: string; startFree: string };
   footer: {
     titleFirst: string;
@@ -77,7 +82,7 @@ type Translation = {
 const en: Translation = {
   meta: {
     title: "Alvara Trade — AI-Powered Trading in Telegram",
-    description: "AI analysis across 26 trading strategies, one-click trade execution, and $ALVARA token farming—all inside Telegram.",
+    description: "AI market analysis across 26+ strategies, clear trade setups and one-click execution on your exchange — inside Telegram.",
   },
   header: {
     home: "Alvara Trade home",
@@ -90,65 +95,68 @@ const en: Translation = {
     mobileDescription: "AI-powered trading in Telegram across 26 strategies.",
   },
   hero: {
-    titleStart: "Trade Like the Top 1% of Traders",
+    titleStart: "Turn Market Noise into a Clear Plan",
     titleEnd: "with Alvara",
     launch: "Launch Alvara Trade in Telegram",
     learnMore: "Learn More",
-    copy: "A smart trading ecosystem in Telegram: AI analysis across 26 strategies, one-click trade copying to exchanges, and $ALVARA token farming.",
+    copy: "Alvara analyzes the market through 26+ strategies, builds a complete trade setup and lets you execute it on your exchange without leaving Telegram.",
     trustFunds: "Your funds never leave your exchange — API keys protected with AES-256 encryption",
     trustExchanges: "Supports Binance, Bybit, and MEXC",
   },
   performance: {
-    titleFirst: "Proof in",
-    titleSecond: "the Numbers",
-    copy: "Real-time analysis, multi-strategy confirmation, and direct API execution turn complex market data into one clear action.",
+    titleFirst: "Built for",
+    titleSecond: "Real Decisions",
+    copy: "From market scan to order execution, every part of Alvara is designed to make complex analysis easier to understand and act on.",
     dashboardFirst: "Alvara AI",
     dashboardSecond: "at a Glance",
-    tokenomics: {
-      eyebrow: "$ALVARA Token",
-      title: "Token Allocation",
-      totalSupply: "Total Supply",
-      category: "Category",
-      allocation: "Allocation",
-      tokens: "Tokens",
-      chartLabel: "$ALVARA token allocation chart",
-      items: [
-        "Community, Airdrop & App",
-        "Liquidity & Market Making",
-        "Team & Developers",
-        "AI Infrastructure & Ecosystem",
-        "Market Making & Partnerships",
-        "Early Investors (Angel Round)",
-      ],
-    },
+    strategies: ["Smart Money", "ICT", "Market Structure", "Order Blocks", "Fair Value Gaps", "RSI", "MACD", "ADX"],
   },
   products: {
-    eyebrow: "Ecosystem Products",
-    titleFirst: "Everything You Need",
-    titleSecond: "to Trade Smarter",
+    eyebrow: "Strategies and tools",
+    titleFirst: "Analysis You Can",
+    titleSecond: "Actually Use",
     stepsFirst: "How It Works",
     stepsSecond: "in Three Steps",
+    signalStatus: "Live market scan",
+    signalCount: "26+ strategies",
+    signalTitle: "One clear setup",
+    signalCopy: "Multiple independent checks have to agree before the bot presents a trading scenario.",
   },
   opportunity: {
-    statement: "From Telegram to a live trade in minutes. Alvara turns market analysis into clear, executable decisions.",
-    startTrading: "Start Trading",
+    statement: "From a market question to a structured trade in minutes. Alvara keeps the analysis, execution and monitoring in one Telegram bot.",
+    startTrading: "Open the Bot",
   },
   security: {
-    eyebrow: "Security First",
-    titleFirst: "Bank-Level",
-    titleSecond: "Security",
-    badge: "Non-custodial by design",
-    protection: "Protection",
-    roadmapEyebrow: "What Comes Next",
-    roadmapTitle: "Roadmap",
+    eyebrow: "Security by design",
+    titleFirst: "Built to trade.",
+    titleSecond: "Never to take custody.",
+    badge: "Non-custodial architecture",
+    systemStatus: "Security perimeter",
+    verified: "Protected",
+    exchange: "Your exchange",
+    exchangeCopy: "Assets stay here",
+    encryptedChannel: "Encrypted channel",
+    encryptedCopy: "AES-256 protected API key",
+    alvara: "Alvara Trade",
+    alvaraCopy: "Trade commands only",
+    withdrawalAccess: "Withdrawal access",
+    disabled: "Disabled",
+    tradingAccess: "Trading access",
+    enabled: "Enabled",
+  },
+  coinPromo: {
+    title: "Meet $ALVARA",
+    copy: "The Alvara ecosystem has its own utility token. Tokenomics, ways to access it and the preliminary roadmap now live on a dedicated page, so this page can stay focused on the product.",
+    cta: "Explore the Token",
+    visualLabel: "Alvara ecosystem token",
   },
   faq: { title: "FAQ", subtitle: "Everything you need to know", startFree: "Start Free" },
   footer: {
     titleFirst: "Start Trading with Data,",
     titleSecond: "Not Emotion",
-    copy: "Join the Alvara ecosystem now and receive 100 $ALVARA points on your first login.",
+    copy: "Open the Telegram bot, review a live market setup and see how Alvara fits into your trading process.",
     openTelegram: "Open Alvara Trade in Telegram",
-    description: "AI-powered trading in Telegram. One ecosystem for signals, execution, and $ALVARA rewards.",
+    description: "AI-powered market analysis, trade execution and position monitoring inside Telegram.",
     navigation: "Navigation",
     exchanges: "Supported Exchanges",
     backToTop: "Back to top",
@@ -162,7 +170,7 @@ const en: Translation = {
 const ru: Translation = {
   meta: {
     title: "Alvara Trade — трейдинг с ИИ в Telegram",
-    description: "ИИ-анализ по 26 торговым стратегиям, сделки в один клик и фарминг токена $ALVARA — всё внутри Telegram.",
+    description: "Анализ рынка по 26+ стратегиям, понятные торговые сценарии и отправка сделки на биржу прямо из Telegram.",
   },
   header: {
     home: "Главная Alvara Trade",
@@ -175,65 +183,68 @@ const ru: Translation = {
     mobileDescription: "Трейдинг с ИИ в Telegram на основе 26 стратегий.",
   },
   hero: {
-    titleStart: "Торгуйте как топ-1% трейдеров",
-    titleEnd: "вместе с Alvara",
+    titleStart: "Превратите рыночный шум",
+    titleEnd: "в торговый план с Alvara",
     launch: "Запустить Alvara Trade в Telegram",
     learnMore: "Подробнее",
-    copy: "Умная торговая экосистема в Telegram: ИИ-анализ по 26 стратегиям, копирование сделок на биржу в один клик и фарминг токена $ALVARA.",
+    copy: "Alvara проверяет рынок по 26+ стратегиям, собирает готовый торговый сценарий и помогает отправить его на вашу биржу прямо из Telegram.",
     trustFunds: "Ваши средства всегда остаются на бирже — API-ключи защищены шифрованием AES-256",
     trustExchanges: "Поддерживаются Binance, Bybit и MEXC",
   },
   performance: {
-    titleFirst: "Результат",
-    titleSecond: "в цифрах",
-    copy: "Анализ в реальном времени, подтверждение несколькими стратегиями и прямое исполнение через API превращают сложные рыночные данные в одно понятное действие.",
+    titleFirst: "Сложный анализ",
+    titleSecond: "простыми словами",
+    copy: "От поиска точки входа до отправки ордера — Alvara помогает разобраться в рыночной ситуации и принять решение без лишнего информационного шума.",
     dashboardFirst: "Alvara AI",
-    dashboardSecond: "в двух словах",
-    tokenomics: {
-      eyebrow: "Токен $ALVARA",
-      title: "Распределение токенов",
-      totalSupply: "Общее предложение",
-      category: "Категория",
-      allocation: "Доля",
-      tokens: "Токены",
-      chartLabel: "Диаграмма распределения токенов $ALVARA",
-      items: [
-        "Комьюнити, Airdrop и приложение",
-        "Ликвидность и маркет-мейкинг",
-        "Команда и разработчики",
-        "Инфраструктура AI и экосистема",
-        "Маркет-мейкинг и партнёрства",
-        "Ранние инвесторы (Angel Round)",
-      ],
-    },
+    dashboardSecond: "коротко о главном",
+    strategies: ["Smart Money", "ICT", "Структура рынка", "Order Blocks", "Fair Value Gaps", "RSI", "MACD", "ADX"],
   },
   products: {
-    eyebrow: "Продукты экосистемы",
-    titleFirst: "Всё, что нужно",
-    titleSecond: "для умной торговли",
+    eyebrow: "Стратегии и инструменты",
+    titleFirst: "Анализ, которым",
+    titleSecond: "удобно пользоваться",
     stepsFirst: "Как это работает",
     stepsSecond: "за три шага",
+    signalStatus: "Рынок анализируется",
+    signalCount: "26+ стратегий",
+    signalTitle: "Один понятный сценарий",
+    signalCopy: "Бот показывает торговую идею только тогда, когда её подтверждают несколько независимых методов анализа.",
   },
   opportunity: {
-    statement: "От Telegram до реальной сделки — за считаные минуты. Alvara превращает анализ рынка в понятные решения, готовые к исполнению.",
-    startTrading: "Начать торговать",
+    statement: "От вопроса о рынке до продуманной сделки — за несколько минут. Анализ, исполнение и контроль позиции собраны в одном Telegram-боте.",
+    startTrading: "Открыть бота",
   },
   security: {
-    eyebrow: "Безопасность прежде всего",
-    titleFirst: "Банковский уровень",
-    titleSecond: "защиты",
+    eyebrow: "Безопасность по умолчанию",
+    titleFirst: "Бот управляет сделкой.",
+    titleSecond: "Не вашими деньгами.",
     badge: "Без хранения средств",
-    protection: "Защита",
-    roadmapEyebrow: "Что дальше",
-    roadmapTitle: "Дорожная карта",
+    systemStatus: "Контур безопасности",
+    verified: "Защищён",
+    exchange: "Ваша биржа",
+    exchangeCopy: "Активы остаются здесь",
+    encryptedChannel: "Зашифрованный канал",
+    encryptedCopy: "API-ключ защищён AES-256",
+    alvara: "Alvara Trade",
+    alvaraCopy: "Только торговые команды",
+    withdrawalAccess: "Доступ к выводу",
+    disabled: "Отключён",
+    tradingAccess: "Торговые операции",
+    enabled: "Разрешены",
+  },
+  coinPromo: {
+    title: "Токен $ALVARA",
+    copy: "У экосистемы Alvara есть собственный утилитарный токен. Токеномику, способы покупки и предварительный роадмап мы собрали на отдельной странице, чтобы здесь оставить главное — продукт и бота.",
+    cta: "Перейти к странице токена",
+    visualLabel: "Токен экосистемы Alvara",
   },
   faq: { title: "FAQ", subtitle: "Всё, что важно знать", startFree: "Начать бесплатно" },
   footer: {
     titleFirst: "Торгуйте на данных,",
     titleSecond: "а не на эмоциях",
-    copy: "Присоединяйтесь к экосистеме Alvara и получите 100 баллов $ALVARA при первом входе.",
+    copy: "Откройте Telegram-бота, посмотрите живой торговый сценарий и решите, подходит ли Alvara вашему стилю торговли.",
     openTelegram: "Открыть Alvara Trade в Telegram",
-    description: "Трейдинг с ИИ в Telegram. Единая экосистема для сигналов, исполнения сделок и наград $ALVARA.",
+    description: "Анализ рынка, исполнение сделок и контроль открытых позиций в одном Telegram-боте.",
     navigation: "Навигация",
     exchanges: "Поддерживаемые биржи",
     backToTop: "Наверх",
@@ -244,181 +255,46 @@ const ru: Translation = {
   content: {
     navigation: [
       { label: "Главная", href: "#home" },
-      { label: "Результаты", href: "#performance" },
-      { label: "Продукты", href: "#products" },
+      { label: "Возможности", href: "#performance" },
+      { label: "Стратегии", href: "#products" },
       { label: "Как это работает", href: "#how-it-works" },
       { label: "Безопасность", href: "#security" },
       { label: "FAQ", href: "#faq" },
     ],
     proofMetrics: [
-      { value: "79,7%", label: "Средний процент успешных сделок алгоритма ИИ" },
-      { value: "26+", label: "Торговых стратегий в одном сигнале", detail: "Smart Money, ICT, сочетание индикаторов" },
-      { value: "< 1 сек", label: "Исполнение сделки на вашей бирже через API" },
-      { value: "$0", label: "Бесплатный старт и фарминг токенов для новых пользователей" },
+      { value: "26+", label: "Стратегий проверяются для каждого сигнала", detail: "Smart Money, ICT, структура рынка и индикаторы" },
+      { value: "3", label: "Цели Take Profit в каждом торговом сценарии" },
+      { value: "< 1 сек", label: "Нужно, чтобы отправить ордер на биржу через API" },
+      { value: "24/7", label: "Бот следит за рынком и доступен в Telegram" },
     ],
     features: [
-      { label: "Генератор ИИ-сигналов", title: "Мгновенный анализ любого токена", body: "ИИ анализирует блоки ордеров, разрывы справедливой стоимости (FVG), а также осцилляторы RSI, MACD и ADX, чтобы определить точку входа, три цели Take Profit и Stop Loss с рассчитанным риском." },
-      { label: "Копитрейдинг в один клик", title: "Торгуйте прямо из Telegram", body: "Подключите API-ключи Binance, Bybit или MEXC. Нажмите «Копировать сделку», и бот автоматически разместит ордера на вашей бирже с учётом размера депозита." },
-      { label: "Ончейн- и макроаналитика", title: "Смотрите на рынок глазами китов", body: "Отслеживайте крупные перемещения капитала, MVRV Z-Score, NUPL, открытый интерес (OI) и экономический календарь в понятном формате без сложной терминологии." },
-      { label: "F2E и стейкинг · фарминг $ALVARA", title: "Учитесь и зарабатывайте", body: "Проходите ежедневную ИИ-викторину, участвуйте в прогнозах рынка и размещайте USDT в стейкинге, чтобы ежедневно получать токены $ALVARA." },
+      { label: "Мультистратегийный анализ", title: "Один сигнал — больше 26 проверок", body: "Alvara сочетает Smart Money, паттерны ICT, структуру рынка и технические индикаторы, а не полагается на единственный источник сигнала." },
+      { label: "Готовый торговый сценарий", title: "Вход, цели и риск на одном экране", body: "Бот превращает анализ в понятный план: зона входа, три цели Take Profit, Stop Loss и оценка вероятности сценария." },
+      { label: "Исполнение в один клик", title: "Торгуйте, не выходя из Telegram", body: "Подключите Binance, Bybit или MEXC через API только для торговли. Проверьте сценарий, выберите размер позиции и отправьте ордер на биржу одним нажатием." },
+      { label: "Риск и автоматизация", title: "Держите риск под контролем", body: "Задайте ограничения по риску, включите автоисполнение, когда будете готовы, и следите за открытыми позициями в том же интерфейсе Telegram." },
     ],
     steps: [
-      { title: "Запустите бота в Telegram", body: "Откройте WebApp Alvara Trade прямо в мессенджере — без долгой регистрации и верификации.", icon: "/media/opportunity-1.webp" },
-      { title: "Выберите монету и получите ИИ-сигнал", body: "Алгоритм проверит 26 рыночных факторов и выдаст готовый торговый сценарий с оценкой вероятности успеха.", icon: "/media/opportunity-2.webp" },
-      { title: "Скопируйте сделку или включите автоторговлю", body: "Ордера мгновенно отправляются на вашу биржу. Управляйте риском и следите за ростом депозита в одном месте.", icon: "/media/opportunity-3.webp" },
+      { title: "Откройте бота в Telegram", body: "Запустите Alvara Trade и выберите биржу, которой уже пользуетесь. Отдельный торговый терминал не понадобится.", icon: "/media/opportunity-1.webp" },
+      { title: "Выберите рынок и изучите анализ", body: "Бот проверит больше 26 стратегий и покажет, почему появился сценарий, где входить и где ограничить риск.", icon: "/media/opportunity-2.webp" },
+      { title: "Подтвердите сделку или включите автоматизацию", body: "Выберите размер позиции и отправьте ордер на биржу. Средства останутся там, а Alvara продолжит следить за сделкой.", icon: "/media/opportunity-3.webp" },
     ],
     security: [
-      { title: "Ваши активы остаются у вас", body: "Мы никогда не принимаем депозиты пользователей на свои счета. Средства всегда остаются на вашей бирже.", badge: "Non-custodial" },
+      { title: "Ваши активы остаются у вас", body: "Мы никогда не принимаем депозиты пользователей на свои счета. Средства всегда остаются на вашей бирже.", badge: "Средства на вашей бирже" },
       { title: "Шифрование AES-256", body: "Ваши API-ключи хранятся в изолированном зашифрованном хранилище, защищённом стандартом AES-256.", badge: "Зашифровано" },
       { title: "Вывод средств отключён", body: "При создании API-ключа вы отключаете право на вывод. Бот может только открывать и закрывать сделки.", badge: "Только торговля" },
     ],
-    roadmap: [
-      { phase: "Этап 1", title: "Запуск и основа", period: "III кв. 2026", body: "Выпуск токена $ALVARA, запуск пула ликвидности на STON.fi с заблокированными LP-токенами, публикация whitepaper и старт сообщества.", link: { label: "STON.fi", href: "https://ston.fi" } },
-      { phase: "Этап 2", title: "Рост и маркетинг", period: "IV кв. 2026", body: "Запуск Telegram Mini App с механиками tap-to-earn и airdrop, маркетинговая кампания и листинг на CoinGecko и CoinMarketCap." },
-      { phase: "Этап 3", title: "Экосистема и польза", period: "I–II кв. 2027", body: "Запуск ИИ-сервисов для держателей токена, стейкинга и первый листинг на CEX — Bybit, MEXC или Bitget." },
-      { phase: "Этап 4", title: "Масштабирование и DAO", period: "III кв. 2027+", body: "Переход к управлению через DAO, внедрение механизма Buyback & Burn и выход на биржи первого уровня." },
-    ],
     faq: [
-      { question: "Нужно ли платить за Alvara Trade?", answer: "Основные функции, торговые сигналы и участие в фарминге $ALVARA полностью бесплатны. PRO-функции открываются при хранении токенов экосистемы." },
-      { question: "Какая минимальная сумма нужна для старта?", answer: "Можно начать с любого депозита, разрешённого вашей биржей, — обычно от $10 на Binance или Bybit." },
-      { question: "Чем Alvara отличается от обычных каналов с сигналами?", answer: "Мы не даём субъективных прогнозов. ИИ в реальном времени анализирует математическое схождение 26 индикаторов и паттернов, а затем позволяет исполнить сделку на вашей бирже в один клик." },
+      { question: "Нужно ли платить за Alvara Trade?", answer: "Открыть бота и познакомиться с основным сценарием работы можно бесплатно. Стоимость платных функций и автоматизации всегда показывается до их подключения." },
+      { question: "Какая минимальная сумма нужна для старта?", answer: "Ограничение задаёт ваша биржа — обычно начать можно примерно с $10. Для первой сделки лучше выбрать сумму, с которой вам комфортно тестировать новый инструмент." },
+      { question: "Чем Alvara отличается от обычных каналов с сигналами?", answer: "Alvara не просто публикует цену входа. Бот проверяет больше 26 стратегий, объясняет торговый сценарий и позволяет отправить сделку на вашу биржу прямо из Telegram." },
     ],
     telegramUrl: homeContent.telegramUrl,
   },
 };
 
-const uk: Translation = {
-  meta: {
-    title: "Alvara Trade — трейдинг зі ШІ в Telegram",
-    description: "ШІ-аналіз за 26 торговими стратегіями, угоди в один клік і фармінг токена $ALVARA — усе в Telegram.",
-  },
-  header: {
-    home: "Головна Alvara Trade",
-    primaryNavigation: "Основна навігація",
-    launchApp: "Запустити",
-    openMenu: "Відкрити меню",
-    closeMenu: "Закрити меню",
-    language: "Мова",
-    mobileStat: "$0 ДЛЯ СТАРТУ",
-    mobileDescription: "Трейдинг зі ШІ в Telegram на основі 26 стратегій.",
-  },
-  hero: {
-    titleStart: "Торгуйте як топ-1% трейдерів",
-    titleEnd: "разом з Alvara",
-    launch: "Запустити Alvara Trade у Telegram",
-    learnMore: "Докладніше",
-    copy: "Розумна торгова екосистема в Telegram: ШІ-аналіз за 26 стратегіями, копіювання угод на біржу в один клік і фармінг токена $ALVARA.",
-    trustFunds: "Ваші кошти завжди залишаються на біржі — API-ключі захищені шифруванням AES-256",
-    trustExchanges: "Підтримуються Binance, Bybit і MEXC",
-  },
-  performance: {
-    titleFirst: "Результат",
-    titleSecond: "у цифрах",
-    copy: "Аналіз у реальному часі, підтвердження кількома стратегіями та пряме виконання через API перетворюють складні ринкові дані на одну зрозумілу дію.",
-    dashboardFirst: "Alvara AI",
-    dashboardSecond: "коротко про головне",
-    tokenomics: {
-      eyebrow: "Токен $ALVARA",
-      title: "Розподіл токенів",
-      totalSupply: "Загальна пропозиція",
-      category: "Категорія",
-      allocation: "Частка",
-      tokens: "Токени",
-      chartLabel: "Діаграма розподілу токенів $ALVARA",
-      items: [
-        "Спільнота, Airdrop і застосунок",
-        "Ліквідність і маркет-мейкінг",
-        "Команда та розробники",
-        "AI-інфраструктура й екосистема",
-        "Маркет-мейкінг і партнерства",
-        "Ранні інвестори (Angel Round)",
-      ],
-    },
-  },
-  products: {
-    eyebrow: "Продукти екосистеми",
-    titleFirst: "Усе, що потрібно",
-    titleSecond: "для розумної торгівлі",
-    stepsFirst: "Як це працює",
-    stepsSecond: "за три кроки",
-  },
-  opportunity: {
-    statement: "Від Telegram до реальної угоди — за лічені хвилини. Alvara перетворює аналіз ринку на зрозумілі рішення, готові до виконання.",
-    startTrading: "Почати торгувати",
-  },
-  security: {
-    eyebrow: "Безпека понад усе",
-    titleFirst: "Банківський рівень",
-    titleSecond: "захисту",
-    badge: "Без зберігання коштів",
-    protection: "Захист",
-    roadmapEyebrow: "Що далі",
-    roadmapTitle: "Дорожня карта",
-  },
-  faq: { title: "FAQ", subtitle: "Усе, що варто знати", startFree: "Почати безкоштовно" },
-  footer: {
-    titleFirst: "Торгуйте на основі даних,",
-    titleSecond: "а не емоцій",
-    copy: "Приєднуйтеся до екосистеми Alvara й отримайте 100 балів $ALVARA під час першого входу.",
-    openTelegram: "Відкрити Alvara Trade у Telegram",
-    description: "Трейдинг зі ШІ в Telegram. Єдина екосистема для сигналів, виконання угод і винагород $ALVARA.",
-    navigation: "Навігація",
-    exchanges: "Підтримувані біржі",
-    backToTop: "Нагору",
-    copyright: "© 2026 Alvara Trade. Усі права захищено",
-    privacy: "Політика конфіденційності",
-    terms: "Умови використання",
-  },
-  content: {
-    navigation: [
-      { label: "Головна", href: "#home" },
-      { label: "Результати", href: "#performance" },
-      { label: "Продукти", href: "#products" },
-      { label: "Як це працює", href: "#how-it-works" },
-      { label: "Безпека", href: "#security" },
-      { label: "FAQ", href: "#faq" },
-    ],
-    proofMetrics: [
-      { value: "79,7%", label: "Середній відсоток успішних угод алгоритму ШІ" },
-      { value: "26+", label: "Торгових стратегій в одному сигналі", detail: "Smart Money, ICT, поєднання індикаторів" },
-      { value: "< 1 с", label: "Виконання угоди на вашій біржі через API" },
-      { value: "$0", label: "Безкоштовний старт і фармінг токенів для нових користувачів" },
-    ],
-    features: [
-      { label: "Генератор ШІ-сигналів", title: "Миттєвий аналіз будь-якого токена", body: "ШІ аналізує блоки ордерів, розриви справедливої вартості (FVG), а також осцилятори RSI, MACD і ADX, щоб визначити точку входу, три цілі Take Profit і Stop Loss із розрахованим ризиком." },
-      { label: "Копітрейдинг в один клік", title: "Торгуйте безпосередньо з Telegram", body: "Підключіть API-ключі Binance, Bybit або MEXC. Натисніть «Копіювати угоду», і бот автоматично розмістить ордери на вашій біржі з урахуванням розміру депозиту." },
-      { label: "Ончейн- і макроаналітика", title: "Дивіться на ринок очима китів", body: "Відстежуйте великі переміщення капіталу, MVRV Z-Score, NUPL, відкритий інтерес (OI) та економічний календар у зрозумілому форматі без складної термінології." },
-      { label: "F2E і стейкінг · фармінг $ALVARA", title: "Навчайтеся та заробляйте", body: "Проходьте щоденну ШІ-вікторину, беріть участь у прогнозах ринку та розміщуйте USDT у стейкінгу, щоб щодня отримувати токени $ALVARA." },
-    ],
-    steps: [
-      { title: "Запустіть бота в Telegram", body: "Відкрийте WebApp Alvara Trade просто в месенджері — без тривалої реєстрації та верифікації.", icon: "/media/opportunity-1.webp" },
-      { title: "Оберіть монету й отримайте ШІ-сигнал", body: "Алгоритм перевірить 26 ринкових факторів і надасть готовий торговий сценарій з оцінкою ймовірності успіху.", icon: "/media/opportunity-2.webp" },
-      { title: "Скопіюйте угоду або ввімкніть автоторгівлю", body: "Ордери миттєво надсилаються на вашу біржу. Керуйте ризиком і стежте за зростанням депозиту в одному місці.", icon: "/media/opportunity-3.webp" },
-    ],
-    security: [
-      { title: "Ваші активи залишаються у вас", body: "Ми ніколи не приймаємо депозити користувачів на свої рахунки. Кошти завжди залишаються на вашій біржі.", badge: "Non-custodial" },
-      { title: "Шифрування AES-256", body: "Ваші API-ключі зберігаються в ізольованому зашифрованому сховищі, захищеному стандартом AES-256.", badge: "Зашифровано" },
-      { title: "Виведення коштів вимкнено", body: "Під час створення API-ключа ви вимикаєте право на виведення. Бот може лише відкривати та закривати угоди.", badge: "Лише торгівля" },
-    ],
-    roadmap: [
-      { phase: "Етап 1", title: "Запуск і основа", period: "III кв. 2026", body: "Випуск токена $ALVARA, запуск пулу ліквідності на STON.fi із заблокованими LP-токенами, публікація whitepaper і старт спільноти.", link: { label: "STON.fi", href: "https://ston.fi" } },
-      { phase: "Етап 2", title: "Зростання і маркетинг", period: "IV кв. 2026", body: "Запуск Telegram Mini App із механіками tap-to-earn та airdrop, маркетингова кампанія й лістинг на CoinGecko та CoinMarketCap." },
-      { phase: "Етап 3", title: "Екосистема і користь", period: "I–II кв. 2027", body: "Запуск ШІ-сервісів для власників токена, стейкінгу та перший лістинг на CEX — Bybit, MEXC або Bitget." },
-      { phase: "Етап 4", title: "Масштабування і DAO", period: "III кв. 2027+", body: "Перехід до управління через DAO, упровадження механізму Buyback & Burn і вихід на біржі першого рівня." },
-    ],
-    faq: [
-      { question: "Чи потрібно платити за Alvara Trade?", answer: "Основні функції, торгові сигнали й участь у фармінгу $ALVARA повністю безкоштовні. PRO-функції відкриваються за умови зберігання токенів екосистеми." },
-      { question: "Яка мінімальна сума потрібна для старту?", answer: "Можна почати з будь-якого депозиту, дозволеного вашою біржею, — зазвичай від $10 на Binance або Bybit." },
-      { question: "Чим Alvara відрізняється від звичайних каналів із сигналами?", answer: "Ми не даємо суб’єктивних прогнозів. ШІ в реальному часі аналізує математичне сходження 26 індикаторів і патернів, а потім дає змогу виконати угоду на вашій біржі в один клік." },
-    ],
-    telegramUrl: homeContent.telegramUrl,
-  },
-};
-
-export const translations: Record<Locale, Translation> = { en, ru, uk };
+export const translations: Record<Locale, Translation> = { en, ru };
 
 export const resources = {
   en: { translation: en },
   ru: { translation: ru },
-  uk: { translation: uk },
 };

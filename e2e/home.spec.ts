@@ -8,12 +8,16 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await page.waitForFunction(() => document.documentElement.dataset.hydrated === "true");
   await expect(page).toHaveTitle(/Alvara/);
   await expect(page.locator("body")).not.toContainText(/sharplink/i);
-  await expect(page.getByRole("heading", { name: /Trade Like the Top 1% of Traders with Alvara AI/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Proof in the Numbers/i })).toBeAttached();
-  await expect(page.getByRole("heading", { name: /Everything You Need to Trade Smarter/i })).toBeAttached();
-  await expect(page.getByRole("heading", { name: "Roadmap", exact: true })).toBeAttached();
-  await expect(page.getByRole("heading", { name: /Launch & Foundation/i })).toBeAttached();
-  await expect(page.getByRole("heading", { name: /Scaling & DAO/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: /Turn Market Noise into a Clear Plan with Alvara AI/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Built for Real Decisions/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: /Analysis You Can Actually Use/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: /Built to trade\. Never to take custody\./i })).toBeAttached();
+  await expect(page.locator(".security-layer")).toHaveCount(3);
+  await expect(page.locator(".news-card")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Meet $ALVARA", exact: true })).toBeAttached();
+  await expect(page.locator(".tokenomics")).toHaveCount(0);
+  await expect(page.locator(".roadmap")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /Explore the Token/i })).toHaveAttribute("href", "/en/coin");
   await expect(page.getByRole("link", { name: /Launch Alvara Trade in Telegram/i })).toHaveAttribute("href", /^https:\/\/t\.me\//);
   await expect(page.locator("footer")).toBeAttached();
   expect(runtimeErrors).toEqual([]);
@@ -37,10 +41,53 @@ test("mobile navigation and FAQ remain interactive", async ({ page, isMobile }) 
 test("serves and switches localized routes", async ({ page }) => {
   await page.goto("/ru", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
-  await expect(page.getByRole("heading", { name: /Торгуйте как топ-1% трейдеров/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Превратите рыночный шум в торговый план с Alvara AI/i })).toBeVisible();
 
-  await page.getByRole("link", { name: "Українська" }).click();
-  await expect(page).toHaveURL(/\/uk(?:#.*)?$/);
-  await expect(page.locator("html")).toHaveAttribute("lang", "uk");
-  await expect(page.getByRole("heading", { name: /Торгуйте як топ-1% трейдерів/i })).toBeVisible();
+  await page.getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en(?:#.*)?$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("heading", { name: /Turn Market Noise into a Clear Plan with Alvara AI/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Русский" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Українська" })).toHaveCount(0);
+});
+
+test("connects the homepage with the localized coin page", async ({ page, isMobile }) => {
+  await page.goto("/en", { waitUntil: "domcontentloaded" });
+  if (isMobile) {
+    await page.getByRole("button", { name: "Open menu" }).click();
+    await page.locator("#mobile-navigation").getByRole("link", { name: "$ALVARA", exact: true }).click();
+  } else {
+    await page.locator(".header__nav").getByRole("link", { name: "$ALVARA", exact: true }).click();
+  }
+  await expect(page).toHaveURL(/\/en\/coin$/);
+  await expect(page.getByRole("heading", { name: /\$ALVARA — The token behind Alvara/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: "How Alvara moves forward", exact: true })).toBeAttached();
+  await expect(page.locator(".roadmap-card")).toHaveCount(9);
+
+  await page.getByRole("link", { name: "Alvara home" }).click();
+  await expect(page).toHaveURL(/\/en$/);
+
+  await page.context().clearCookies();
+  await page.goto("/coin", { waitUntil: "domcontentloaded" });
+  await expect(page).toHaveURL(/\/en\/coin$/);
+
+  await page.goto("/ru/coin", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("html")).toHaveAttribute("lang", "ru");
+  await expect(page.getByRole("heading", { name: /\$ALVARA — токен экосистемы Alvara/i })).toBeAttached();
+  await page.getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en\/coin$/);
+});
+
+test("opens the coin page at the top after navigating from deep in the homepage", async ({ page }) => {
+  await page.goto("/en", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => document.documentElement.dataset.hydrated === "true");
+
+  const coinLink = page.getByRole("link", { name: /Explore the Token/i });
+  await coinLink.scrollIntoViewIfNeeded();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await coinLink.click();
+
+  await expect(page).toHaveURL(/\/en\/coin$/);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page.locator(".ref-hero")).toBeInViewport();
 });

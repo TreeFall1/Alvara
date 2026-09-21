@@ -1,19 +1,22 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
+import { defaultLocale, isLocale } from "@/i18n/config";
 import { Arrow, Brand } from "./Brand";
 import { WebGLWordmark } from "./WebGLWordmark";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const homeContent = useHomeContent();
+  const locale = isLocale(i18n.resolvedLanguage ?? "") ? i18n.resolvedLanguage : defaultLocale;
   const footer = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -36,7 +39,7 @@ export function Footer() {
       </div>
       <div className="footer__links page-grid">
         <div className="footer__listed"><Brand light/><p>{t("footer.description")}</p></div>
-        <nav className="footer__nav" aria-label={t("footer.navigation")}><small>{t("footer.navigation")}</small>{homeContent.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}</nav>
+        <nav className="footer__nav" aria-label={t("footer.navigation")}><small>{t("footer.navigation")}</small>{homeContent.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}<Link href={`/${locale}/coin`}>$ALVARA</Link></nav>
         <div className="footer__nav"><small>{t("footer.exchanges")}</small>{["Binance", "Bybit", "MEXC"].map((item) => <span key={item}>{item}</span>)}</div>
         <button className="footer__top" onClick={top}>{t("footer.backToTop")} <Arrow/></button>
       </div>

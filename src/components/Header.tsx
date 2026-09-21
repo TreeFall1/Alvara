@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
+import { defaultLocale, isLocale } from "@/i18n/config";
 import { Arrow, Brand } from "./Brand";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const homeContent = useHomeContent();
+  const locale = isLocale(i18n.resolvedLanguage ?? "") ? i18n.resolvedLanguage : defaultLocale;
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
 
@@ -42,6 +45,7 @@ export function Header() {
       <a className="header__brand" href="#home" aria-label={t("header.home")} onClick={() => setOpen(false)}><Brand light={dark || open}/></a>
       <nav className="header__nav" aria-label={t("header.primaryNavigation")}>
         {homeContent.navigation.slice(1, 5).map((item) => <a key={item.label} href={item.href} className="roll-link"><span>{item.label}</span><span aria-hidden="true">{item.label}</span></a>)}
+        <Link href={`/${locale}/coin`} className="roll-link"><span>$ALVARA</span><span aria-hidden="true">$ALVARA</span></Link>
       </nav>
       <div className="header__actions">
         <LanguageSwitcher onNavigate={() => setOpen(false)}/>
@@ -55,6 +59,7 @@ export function Header() {
           {homeContent.navigation.map((item, index) => (
             <a style={{ "--i": index } as React.CSSProperties} key={item.label} href={item.href} onClick={() => setOpen(false)}><span>{item.label}</span><Arrow diagonal/></a>
           ))}
+          <Link style={{ "--i": homeContent.navigation.length } as React.CSSProperties} href={`/${locale}/coin`} onClick={() => setOpen(false)}><span>$ALVARA</span><Arrow diagonal/></Link>
         </div>
         <div className="mobile-menu__bottom">
           <strong>{t("header.mobileStat")}</strong><p>{t("header.mobileDescription")}</p>

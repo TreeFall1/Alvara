@@ -136,3 +136,6 @@ dist
 .pnp.*
 /test-results
 /test-results
+
+# Original standalone homepage copy; the active implementation now lives in the root app.
+/mainpage/

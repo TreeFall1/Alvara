@@ -17,8 +17,9 @@ describe("Header", () => {
   });
 
   it("renders the selected locale and all language options", () => {
-    renderWithI18n(<Header/>, { locale: "uk" });
-    expect(screen.getByRole("button", { name: "Відкрити меню" })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "Українська" }).find((link) => link.getAttribute("aria-current") === "page")).toBeDefined();
+    renderWithI18n(<Header/>, { locale: "ru" });
+    expect(screen.getByRole("button", { name: "Открыть меню" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Русский" }).find((link) => link.getAttribute("aria-current") === "page")).toBeDefined();
+    expect(screen.queryByRole("link", { name: "Українська" })).not.toBeInTheDocument();
   });
 });

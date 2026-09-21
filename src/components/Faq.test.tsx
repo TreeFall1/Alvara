@@ -10,6 +10,6 @@ describe("FAQ", () => {
     expect(question).toHaveAttribute("aria-expanded", "false");
     fireEvent.click(question);
     expect(question).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText(/Core features, trading signals/i)).toBeInTheDocument();
+    expect(screen.getByText(/explore its core workflow for free/i)).toBeInTheDocument();
   });
 });

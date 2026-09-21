@@ -6,21 +6,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
-import {
-  TOKENOMICS_COLORS,
-  TOKENOMICS_DISTRIBUTION,
-  TOKEN_SUPPLY,
-  TokenomicsChart,
-} from "./TokenomicsChart";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Productivity() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const homeContent = useHomeContent();
   const section = useRef<HTMLElement>(null);
-  const tokenomicsLabels = t("performance.tokenomics.items", { returnObjects: true }) as unknown as string[];
-  const numberFormatter = new Intl.NumberFormat(i18n.resolvedLanguage ?? "en");
+  const strategies = t("performance.strategies", { returnObjects: true }) as unknown as string[];
 
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -33,22 +26,6 @@ export function Productivity() {
         .from(".dashboard__grid", { opacity: 0 }, 0.18)
         .from(".dashboard__title", { y: 190, opacity: 0 }, 0.2)
         .from(".dashboard__metric", { y: 70, opacity: 0, stagger: 0.1 }, 0.28);
-      gsap.from(".tokenomics__chart", {
-        y: 70,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        clearProps: "transform",
-        scrollTrigger: { trigger: ".tokenomics__chart", start: "top 82%" },
-      });
-      gsap.from(".tokenomics__item", {
-        y: 28,
-        opacity: 0,
-        stagger: 0.07,
-        duration: 0.55,
-        clearProps: "transform",
-        scrollTrigger: { trigger: ".tokenomics__list", start: "top 84%" },
-      });
     });
     return () => mm.revert();
   }, { scope: section });
@@ -76,38 +53,9 @@ export function Productivity() {
           </div>
         </div>
       </div>
-      <div className="tokenomics page-grid">
-        <header className="tokenomics__header">
-          <p>{t("performance.tokenomics.eyebrow")}</p>
-          <h3>{t("performance.tokenomics.title")}</h3>
-          <div className="tokenomics__supply">
-            <span>{t("performance.tokenomics.totalSupply")}</span>
-            <strong>{numberFormatter.format(TOKEN_SUPPLY)} <small>$ALVARA</small></strong>
-          </div>
-        </header>
-        <div className="tokenomics__chart">
-          <TokenomicsChart labels={tokenomicsLabels} chartLabel={t("performance.tokenomics.chartLabel")}/>
-          <div className="tokenomics__chart-center" aria-hidden="true">
-            <strong>1B</strong>
-            <span>$ALVARA</span>
-          </div>
-        </div>
-        <div className="tokenomics__breakdown">
-          <div className="tokenomics__columns" aria-hidden="true">
-            <span>{t("performance.tokenomics.category")}</span>
-            <span>{t("performance.tokenomics.allocation")}</span>
-            <span>{t("performance.tokenomics.tokens")}</span>
-          </div>
-          <ol className="tokenomics__list">
-            {TOKENOMICS_DISTRIBUTION.map((percentage, index) => (
-              <li className="tokenomics__item" key={tokenomicsLabels[index]}>
-                <span className="tokenomics__swatch" style={{ backgroundColor: TOKENOMICS_COLORS[index] }}/>
-                <strong>{tokenomicsLabels[index]}</strong>
-                <span>{percentage}%</span>
-                <span>{numberFormatter.format(TOKEN_SUPPLY * percentage / 100)}</span>
-              </li>
-            ))}
-          </ol>
+      <div className="strategy-marquee" role="img" aria-label={strategies.join(", ")}>
+        <div className="strategy-marquee__track" aria-hidden="true">
+          {[...strategies, ...strategies].map((strategy, index) => <span key={`${strategy}-${index}`}>{strategy}</span>)}
         </div>
       </div>
     </section>
