@@ -44,7 +44,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline-color: var(
 /* The first screen uses the supplied artwork as its full-bleed composition. */
 .hero { min-height: clamp(720px, 100svh, 900px); color: #111; background: #fff; display: flex; align-items: center; justify-content: center}
 .hero::before { display: none; }
-.hero__media { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0; background: #fff url('/media/coinbg.PNG') center top / cover no-repeat; box-shadow: none; }
+.hero__media { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0; background: #fff url('/media/coinbg.jpg') center top / cover no-repeat; box-shadow: none; }
 .hero__globe, .hero__coin { display: none; }
 .hero__content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: min(56vw, 820px); min-height: clamp(720px, 100svh, 900px); height: auto; padding: clamp(265px, 30svh, 330px) 0 98px; text-align: center; }
 .hero__wordmark { display: none; }
@@ -479,7 +479,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline-color: var(
 @media (max-width: 1024px) {
   .hero { min-height: max(820px, 100svh); background: #fff; }
   .hero__media { background: #fff; }
-  .hero__globe, .hero__coin { display: block; position: absolute; left: 0; width: 100%; pointer-events: none; background-image: url('/media/coinbg-s.PNG'); background-repeat: no-repeat; }
+  .hero__globe, .hero__coin { display: block; position: absolute; left: 0; width: 100%; pointer-events: none; background-image: url('/media/coinbg-s.jpg'); background-repeat: no-repeat; }
   .hero__globe { top: 100px; height: 520px; background-size: auto 900px; background-position: left -160px; opacity: .6; }
   .hero__coin { top: 52.5%; height: 35%; background-size: auto clamp(480px, 82vw, 630px); background-position: right clamp(0px, calc(43vw - 129px), 170px) center; }
   html[lang="ru"] .hero__coin { top: calc(54.5% + 10px); background-size: auto clamp(450px, 77vw, 610px); }
