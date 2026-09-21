@@ -93,7 +93,7 @@ test("wide localized hero stays below the fixed header", async ({ page }, testIn
         expect(bounds.headingTop, `${locale} at ${width}×${height}px`).toBeGreaterThanOrEqual(bounds.headerBottom + 24);
         expect(bounds.headingRight, `${locale} at ${width}×${height}px`).toBeLessThan(bounds.heroRight);
         expect(bounds.contentScrollHeight, `${locale} at ${width}×${height}px`).toBeLessThanOrEqual(bounds.heroHeight + 2);
-        expect(bounds.background).toContain("coinbg.PNG");
+        expect(bounds.background).toContain("coinbg.png");
       }
     }
   }
