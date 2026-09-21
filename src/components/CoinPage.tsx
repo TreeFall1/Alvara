@@ -235,6 +235,7 @@ export function CoinPage(){
 
   return <div className="reference-site" ref={root}>
     <main>
+        <header className="hero-nav"><Link className="coin-home-link" href={`/${locale}`}><span aria-hidden="true">←</span> {text.backToMain}</Link><div className="socials"><a href={content.telegramUrl} aria-label="X"><SocialIcon name="x"/></a><a href={content.telegramUrl} aria-label="Instagram"><SocialIcon name="instagram"/></a><a href={content.telegramUrl} aria-label="YouTube"><SocialIcon name="youtube"/></a></div><LanguageSwitcher/></header>
         <Hero/>
 
       <section className="narrative" id="story">

@@ -479,7 +479,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline-color: var(
 @media (max-width: 1024px) {
   .hero { min-height: max(820px, 100svh); background: #fff; }
   .hero__media { background: #fff; }
-  .hero__globe, .hero__coin { display: block; position: absolute; left: 0; width: 100%; pointer-events: none; background-image: url('/media/coinbg-s.jpg'); background-repeat: no-repeat; }
+  .hero__globe, .hero__coin { display: block; position: absolute; left: 0; width: 100%; pointer-events: none; background-image: url('/media/coinbg-s.png'); background-repeat: no-repeat; }
   .hero__globe { top: 100px; height: 520px; background-size: auto 900px; background-position: left -160px; opacity: .6; }
   .hero__coin { top: 52.5%; height: 35%; background-size: auto clamp(480px, 82vw, 630px); background-position: right clamp(0px, calc(43vw - 129px), 170px) center; }
   html[lang="ru"] .hero__coin { top: calc(54.5% + 10px); background-size: auto clamp(450px, 77vw, 610px); }
