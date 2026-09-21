@@ -8,9 +8,18 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await page.waitForFunction(() => document.documentElement.dataset.hydrated === "true");
   await expect(page).toHaveTitle(/Alvara/);
   await expect(page.locator("body")).not.toContainText(/sharplink/i);
-  await expect(page.getByRole("heading", { name: /Turn Market Noise into a Clear Plan with Alvara AI/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Value Beyond Limits" })).toBeVisible();
+  await expect(page.locator(".hero__quality")).toHaveCount(4);
+  await expect(page.locator(".hero video")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: /Built for Real Decisions/i })).toBeAttached();
+  await expect(page.locator(".dashboard__metric")).toHaveCount(3);
+  await expect(page.locator(".productivity__dashboard")).not.toContainText("Take-profit targets");
+  await expect(page.locator(".productivity .pin-spacer")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: /Analysis You Can Actually Use/i })).toBeAttached();
+  await expect(page.locator(".strategy-console__sweep")).toHaveCount(1);
+  await expect(page.locator(".opportunity-card__icon svg")).toHaveCount(3);
+  await expect(page.locator(".coin-promo .coin-scene")).toHaveCount(1);
+  await expect(page.locator(".coin-promo__visual")).not.toContainText("$ALVARA");
   await expect(page.getByRole("heading", { name: /Built to trade\. Never to take custody\./i })).toBeAttached();
   await expect(page.locator(".security-layer")).toHaveCount(3);
   await expect(page.locator(".news-card")).toHaveCount(0);
@@ -18,7 +27,7 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.locator(".tokenomics")).toHaveCount(0);
   await expect(page.locator(".roadmap")).toHaveCount(0);
   await expect(page.getByRole("link", { name: /Explore the Token/i })).toHaveAttribute("href", "/en/coin");
-  await expect(page.getByRole("link", { name: /Launch Alvara Trade in Telegram/i })).toHaveAttribute("href", /^https:\/\/t\.me\//);
+  await expect(page.locator(".header__dashboard")).toHaveAttribute("href", /^https:\/\/t\.me\//);
   await expect(page.locator("footer")).toBeAttached();
   expect(runtimeErrors).toEqual([]);
 });
@@ -41,12 +50,12 @@ test("mobile navigation and FAQ remain interactive", async ({ page, isMobile }) 
 test("serves and switches localized routes", async ({ page }) => {
   await page.goto("/ru", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
-  await expect(page.getByRole("heading", { name: /Превратите рыночный шум в торговый план с Alvara AI/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Ценность без границ" })).toBeVisible();
 
   await page.getByRole("link", { name: "English" }).click();
   await expect(page).toHaveURL(/\/en(?:#.*)?$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByRole("heading", { name: /Turn Market Noise into a Clear Plan with Alvara AI/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Value Beyond Limits" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Русский" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Українська" })).toHaveCount(0);
 });

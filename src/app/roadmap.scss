@@ -39,7 +39,7 @@
   max-width: 780px;
   margin: 14px 0 0;
   letter-spacing: -.055em;
-  font: 400 clamp(48px, 5.6vw, 82px)/.94 Satoshi, sans-serif;
+  font: 600 clamp(48px, 5.6vw, 82px)/.94 var(--font-display);
 }
 
 .roadmap-heading p {
@@ -130,7 +130,7 @@
 .roadmap-card header strong {
   color: #11131835;
   letter-spacing: -.04em;
-  font: 400 27px/1 Satoshi, sans-serif;
+  font: 500 27px/1 var(--font-display);
 }
 
 .roadmap-card i {
@@ -150,7 +150,7 @@
   max-width: 320px;
   margin: auto 0 18px;
   letter-spacing: -.035em;
-  font: 500 clamp(26px, 2.25vw, 36px)/1.04 Satoshi, sans-serif;
+  font: 500 clamp(26px, 2.25vw, 36px)/1.04 var(--font-display);
 }
 
 .roadmap-card p {
@@ -229,7 +229,7 @@
   }
 
   .roadmap-card h3 {
-    font-size: 29px;
+    font-size: clamp(25px, 7.4vw, 29px);
   }
 
   .roadmap-card p {

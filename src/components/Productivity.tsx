@@ -17,17 +17,18 @@ export function Productivity() {
 
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 1025px)", () => {
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: ".productivity__stage", start: "top top", end: "+=150%", pin: true, scrub: 1 },
-      });
-      tl.fromTo(".productivity__dashboard", { clipPath: "inset(34% 27% 29% 27% round 36px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" })
-        .from(".dashboard__grid", { opacity: 0 }, 0.18)
-        .from(".dashboard__title", { y: 190, opacity: 0 }, 0.2)
-        .from(".dashboard__metric", { y: 70, opacity: 0, stagger: 0.1 }, 0.28);
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".productivity__dashboard",
+        start: "top 82%",
+        once: true,
+      },
     });
-    return () => mm.revert();
+    timeline
+      .from(".productivity__dashboard", { y: 36, autoAlpha: 0, duration: 0.75, ease: "power3.out" })
+      .from(".dashboard__title", { y: 20, autoAlpha: 0, duration: 0.55, ease: "power2.out" }, "-=0.4")
+      .from(".dashboard__signal", { scale: 0.94, autoAlpha: 0, duration: 0.7, ease: "power2.out" }, "-=0.5")
+      .from(".dashboard__metric", { y: 18, autoAlpha: 0, duration: 0.45, stagger: 0.08, ease: "power2.out" }, "-=0.42");
   }, { scope: section });
 
   return (
@@ -41,6 +42,10 @@ export function Productivity() {
           <div className="dashboard__grid" aria-hidden="true"/>
           <div className="dashboard__top page-grid">
             <h3 className="dashboard__title">{t("performance.dashboardFirst")}<br/>{t("performance.dashboardSecond")}</h3>
+            <div className="dashboard__signal" aria-hidden="true">
+              <i/><i/><i/>
+              <span/>
+            </div>
             <div className="dashboard__metrics">
               {homeContent.proofMetrics.map((metric) => (
                 <article className="dashboard__metric" key={metric.value}>

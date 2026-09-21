@@ -11,6 +11,7 @@ import { useHomeContent } from "@/i18n/useHomeContent";
 import { defaultLocale, isLocale } from "@/i18n/config";
 import { AnimatedLogo } from "./AnimatedLogo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import {Hero} from "@/components/Hero";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -31,9 +32,9 @@ const pageCopy = {
     backToMain: "Alvara home",
     buyNow: "Buy $ALVARA",
     launchApp: "Explore the ecosystem",
-    narrativeFirst: "$ALVARA connects",
+    narrativeFirst: "$ALVARA",
     narrativeSecond: "the entire ecosystem",
-    narrativeCopy: "$ALVARA is the utility token at the center of Alvara. It connects product access, community rewards, staking and future ecosystem governance in one transparent on-chain asset.",
+    narrativeCopy: "$ALVARA is already available for purchase on the leading decentralized exchanges (DEXs) of the TON network. To purchase, it is sufficient to connect your wallet (Tonkeeper, Telegram Wallet, etc.), enter the token's smart contract address, and complete a fast swap in a couple of clicks without verification or intermediaries. Join the ecosystem and unlock all the benefits of holding ALVARA right now!",
     live: "ALVARA TRADE · LIVE",
     waysTitle: "Choose how to get $ALVARA",
     waysBefore: "Discover",
@@ -94,9 +95,10 @@ const pageCopy = {
     backToMain: "На главную Alvara",
     buyNow: "Купить $ALVARA",
     launchApp: "Открыть экосистему",
-    narrativeFirst: "$ALVARA объединяет",
+    narrativeFirst: "$ALVARA",
     narrativeSecond: "всю экосистему",
-    narrativeCopy: "$ALVARA — утилитарный токен в центре экосистемы Alvara. Он объединяет доступ к продуктам, награды сообщества, стейкинг и будущие механики управления в одном прозрачном ончейн-активе.",
+    narrativeCopy: "$ALVARA уже доступен для покупки на ведущих децентрализованных биржах (DEX) сети TON.\n" +
+        "Для покупки достаточно подключить свой кошелек (Tonkeeper, Telegram Wallet и др.), ввести адрес смарт-контракта токена и совершить быстрый обмен в пару кликов без верификации и посредников. Присоединяйтесь к экосистеме и открывайте все возможности удержания ALVARA уже сейчас!",
     live: "ALVARA TRADE · ОНЛАЙН",
     waysTitle: "Как получить $ALVARA",
     waysBefore: "Найдите",
@@ -233,15 +235,13 @@ export function CoinPage(){
 
   return <div className="reference-site" ref={root}>
     <main>
-      <section className="ref-hero" id="home">
-        <header className="hero-nav"><Link className="coin-home-link" href={`/${locale}`}><span aria-hidden="true">←</span> {text.backToMain}</Link><div className="socials"><a href={content.telegramUrl} aria-label="X"><SocialIcon name="x"/></a><a href={content.telegramUrl} aria-label="Instagram"><SocialIcon name="instagram"/></a><a href={content.telegramUrl} aria-label="YouTube"><SocialIcon name="youtube"/></a></div><LanguageSwitcher/></header>
-        <AnimatedLogo className="hero-logo-art"/>
-        <div className="hero-cta"><h1>{text.heroTitle}</h1><div><a className="capsule capsule--white" href="https://ston.fi">{text.buyNow} <Arrow/></a><a className="capsule capsule--glass" href={content.telegramUrl}>{text.launchApp} <Arrow/></a></div></div>
-      </section>
+        <Hero/>
 
       <section className="narrative" id="story">
-        <div className="video-card reveal" data-reveal><video autoPlay muted loop playsInline><source src="/media/hero.webm" type="video/webm"/></video><div className="video-glitch"><span className="video-glitch-scan"/></div><div className="video-word">ALVARA</div><div className="play"><PlayIcon/></div><small>{text.live}</small></div>
-        <div className="narrative-copy reveal" data-reveal><h2><b>{text.narrativeFirst}</b><br/>{text.narrativeSecond}</h2><p>{text.narrativeCopy}</p></div>
+        <div className="video-card reveal" data-reveal>
+            <Image style={{width: '1024px', height: "auto"}} src={'/media/coins2.png'} alt={"coins"} width={1024} height={512} />
+         </div>
+        <div className="narrative-copy reveal" data-reveal><h2><b>{text.narrativeFirst}</b><br/></h2><p>{text.narrativeCopy}</p></div>
       </section>
 
       <section className="ways" id="access">

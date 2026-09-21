@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { useTranslation } from "react-i18next";
 import { defaultLocale, isLocale } from "@/i18n/config";
 import { Arrow } from "./Brand";
+import { CoinScene } from "./CoinScene";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -44,9 +45,8 @@ export function CoinPromo() {
         <Link className="button button--dark" href={`/${locale}/coin`}>{t("coinPromo.cta")} <Arrow/></Link>
       </div>
       <div className="coin-promo__visual" aria-hidden="true">
-        <span>{t("coinPromo.visualLabel")}</span>
-        <strong>$ALVARA</strong>
-        <i/>
+        <span className="coin-promo__visual-label">{t("coinPromo.visualLabel")}</span>
+        <div className="coin-promo__model"><CoinScene modelSrc="/Coin2.glb" modelSize={3.78} autoRotate/></div>
       </div>
     </section>
   );

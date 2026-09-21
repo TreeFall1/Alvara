@@ -15,13 +15,10 @@ type Translation = {
     mobileDescription: string;
   };
   hero: {
-    titleStart: string;
-    titleEnd: string;
-    launch: string;
-    learnMore: string;
-    copy: string;
-    trustFunds: string;
-    trustExchanges: string;
+    title: string;
+    subtitle: string;
+    tagline: string;
+    qualities: { title: string; description: string }[];
   };
   performance: {
     titleFirst: string;
@@ -95,13 +92,15 @@ const en: Translation = {
     mobileDescription: "AI-powered trading in Telegram across 26 strategies.",
   },
   hero: {
-    titleStart: "Turn Market Noise into a Clear Plan",
-    titleEnd: "with Alvara",
-    launch: "Launch Alvara Trade in Telegram",
-    learnMore: "Learn More",
-    copy: "Alvara analyzes the market through 26+ strategies, builds a complete trade setup and lets you execute it on your exchange without leaving Telegram.",
-    trustFunds: "Your funds never leave your exchange — API keys protected with AES-256 encryption",
-    trustExchanges: "Supports Binance, Bybit, and MEXC",
+    title: "Value Beyond Limits",
+    subtitle: "The next generation of digital value.",
+    tagline: "Innovate. Invest. Elevate.",
+    qualities: [
+      { title: "Secure", description: "Advanced security" },
+      { title: "Fast", description: "Instant transactions" },
+      { title: "Global", description: "Borderless opportunities" },
+      { title: "Growth", description: "Empowering your future" },
+    ],
   },
   performance: {
     titleFirst: "Built for",
@@ -183,13 +182,15 @@ const ru: Translation = {
     mobileDescription: "Трейдинг с ИИ в Telegram на основе 26 стратегий.",
   },
   hero: {
-    titleStart: "Превратите рыночный шум",
-    titleEnd: "в торговый план с Alvara",
-    launch: "Запустить Alvara Trade в Telegram",
-    learnMore: "Подробнее",
-    copy: "Alvara проверяет рынок по 26+ стратегиям, собирает готовый торговый сценарий и помогает отправить его на вашу биржу прямо из Telegram.",
-    trustFunds: "Ваши средства всегда остаются на бирже — API-ключи защищены шифрованием AES-256",
-    trustExchanges: "Поддерживаются Binance, Bybit и MEXC",
+    title: "Ценность без границ",
+    subtitle: "Новое поколение цифровой ценности.",
+    tagline: "Создавайте. Инвестируйте. Развивайтесь.",
+    qualities: [
+      { title: "Надёжно", description: "Современная защита" },
+      { title: "Быстро", description: "Мгновенные транзакции" },
+      { title: "Глобально", description: "Возможности без границ" },
+      { title: "Рост", description: "Ваше будущее" },
+    ],
   },
   performance: {
     titleFirst: "Сложный анализ",
@@ -263,7 +264,6 @@ const ru: Translation = {
     ],
     proofMetrics: [
       { value: "26+", label: "Стратегий проверяются для каждого сигнала", detail: "Smart Money, ICT, структура рынка и индикаторы" },
-      { value: "3", label: "Цели Take Profit в каждом торговом сценарии" },
       { value: "< 1 сек", label: "Нужно, чтобы отправить ордер на биржу через API" },
       { value: "24/7", label: "Бот следит за рынком и доступен в Telegram" },
     ],

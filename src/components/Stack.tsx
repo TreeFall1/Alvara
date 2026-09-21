@@ -60,6 +60,10 @@ export function Stack() {
             <header><span><i/>{t("products.signalStatus")}</span><strong>ALVARA / AI</strong></header>
             <div className="strategy-console__radar">
               <i className="strategy-console__ring"/><i className="strategy-console__ring"/><i className="strategy-console__ring"/>
+              <i className="strategy-console__sweep"/>
+              <i className="strategy-console__blip strategy-console__blip--one"/>
+              <i className="strategy-console__blip strategy-console__blip--two"/>
+              <i className="strategy-console__blip strategy-console__blip--three"/>
               <b>26+</b>
             </div>
             <div className="strategy-console__readout"><small>{t("products.signalCount")}</small><strong>{t("products.signalTitle")}</strong></div>

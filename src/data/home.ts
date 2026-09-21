@@ -11,7 +11,6 @@ export const homeContent: HomePageContent = {
   ],
   proofMetrics: [
     { value: "26+", label: "Strategies checked for every signal", detail: "Smart Money, ICT, market structure and indicators" },
-    { value: "3", label: "Take-profit targets in every trade setup" },
     { value: "< 1 sec", label: "To send an order to your exchange via API" },
     { value: "24/7", label: "Market monitoring inside the Telegram bot" },
   ],

@@ -5,22 +5,26 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import * as THREE from "three";
 
 const COIN_COLORS = {
-  hemisphereSky: 0xfff6e7,
-  hemisphereGround: 0x160b08,
-  keyLight: 0xfff3dd,
-  rimLight: 0xff5b35,
-  coolLight: 0x8da7ff,
+  hemisphereSky: 0xf2fff9,
+  hemisphereGround: 0x171512,
+  keyLight: 0xffffff,
+  rimLight: 0xa7e5d3,
+  coolLight: 0xc8b8e0,
 } as const;
 
 // Full rotations across the complete scroll-driven animation.
 const COIN_ROTATION_SPEED = 2;
-const COIN_SIZE = 3;
-
 export type CoinSceneHandle = {
   setProgress: (progress: number) => void;
 };
 
-export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwardedRef) {
+type CoinSceneProps = {
+  autoRotate?: boolean;
+  modelSize?: number;
+  modelSrc?: string;
+};
+
+export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function CoinScene({ autoRotate = false, modelSize = 3, modelSrc = "/Coin.glb" }, forwardedRef) {
   const hostRef = useRef<HTMLDivElement>(null);
   const drawRef = useRef<((progress: number) => void) | null>(null);
   const progressRef = useRef(0.12);
@@ -36,7 +40,14 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
     const host = hostRef.current;
     if (!host) return;
     let disposed = false;
+    let isVisible = false;
+    let animationFrame = 0;
     let cleanupScene: (() => void) | undefined;
+    let startAnimation = () => {};
+    const stopAnimation = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    };
 
     const initialize = async () => {
       if (disposed || cleanupScene) return;
@@ -75,10 +86,10 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       key.shadow.bias = -0.0001;
       key.shadow.normalBias = 0.02;
       scene.add(key);
-      const rim = new THREE.PointLight(COIN_COLORS.rimLight, 42, 18, 1.7);
+      const rim = new THREE.PointLight(COIN_COLORS.rimLight, 34, 18, 1.7);
       rim.position.set(-4.5, 0.5, 4);
       scene.add(rim);
-      const cool = new THREE.PointLight(COIN_COLORS.coolLight, 18, 15, 2);
+      const cool = new THREE.PointLight(COIN_COLORS.coolLight, 24, 15, 2);
       cool.position.set(4, -3, 2);
       scene.add(cool);
 
@@ -92,6 +103,25 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
         renderer.render(scene, camera);
       };
       drawRef.current = render;
+
+      const animate = (time: number) => {
+        if (disposed || !isVisible || !autoRotate || prefersReducedMotion) {
+          animationFrame = 0;
+          return;
+        }
+        coinGroup.rotation.set(
+          0.16 + Math.sin(time * 0.00055) * 0.08,
+          -0.72 + time * 0.00048,
+          -0.08 + Math.sin(time * 0.00038) * 0.05,
+        );
+        renderer.render(scene, camera);
+        animationFrame = requestAnimationFrame(animate);
+      };
+      startAnimation = () => {
+        if (!animationFrame && isVisible && autoRotate && !prefersReducedMotion) {
+          animationFrame = requestAnimationFrame(animate);
+        }
+      };
 
       const resize = () => {
         const width = Math.max(host.clientWidth, 1);
@@ -121,6 +151,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
         });
       };
       cleanupScene = () => {
+        stopAnimation();
         resizeObserver.disconnect();
         drawRef.current = null;
         disposeModel(coinGroup);
@@ -132,7 +163,7 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
       if (disposed) return;
       const loader = new GLTFLoader();
-      loader.load("/Coin.glb", (gltf) => {
+      loader.load(modelSrc, (gltf) => {
         if (disposed) { disposeModel(gltf.scene); return; }
         const model = gltf.scene;
         const textureAnisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), maxTextureAnisotropy);
@@ -161,29 +192,37 @@ export const CoinScene = forwardRef<CoinSceneHandle>(function CoinScene(_, forwa
         model.position.sub(center);
         const normalized = new THREE.Group();
         normalized.add(model);
-        normalized.scale.setScalar(COIN_SIZE / Math.max(size.x, size.y, size.z));
+        normalized.scale.setScalar(modelSize / Math.max(size.x, size.y, size.z));
         coinGroup.add(normalized);
         host.classList.add("coin-scene--loaded");
         render(progressRef.current);
-      }, undefined, () => { if (!disposed) host.classList.add("coin-scene--fallback"); });
+        startAnimation();
+      }, undefined, () => {
+        stopAnimation();
+        if (!disposed) host.classList.add("coin-scene--fallback");
+      });
     };
 
     const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
       if (entry.isIntersecting) {
         void initialize().catch(() => {
           if (!disposed) host.classList.add("coin-scene--fallback");
         });
-        observer.disconnect();
+        startAnimation();
+      } else {
+        stopAnimation();
       }
     }, { rootMargin: "900px" });
     observer.observe(host);
 
     return () => {
       disposed = true;
+      stopAnimation();
       observer.disconnect();
       cleanupScene?.();
     };
-  }, []);
+  }, [autoRotate, modelSize, modelSrc]);
 
   return (
     <div className="coin-scene" ref={hostRef}>
