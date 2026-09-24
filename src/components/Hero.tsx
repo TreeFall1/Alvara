@@ -33,11 +33,8 @@ export function Hero() {
   return (
     <section className="hero" id="home" ref={section}>
       <div className="hero__media" aria-hidden="true">
-        <div className="hero__globe"/>
-        <div className="hero__coin"/>
       </div>
       <div className="hero__content">
-        <div className="hero__wordmark" aria-label="Alvara" data-hero-in><i aria-hidden="true"/><span>ALVARA</span></div>
         <div className="hero__message">
           <h1 data-hero-in>{t("hero.title")}</h1>
           <p className="hero__subtitle" data-hero-in>{t("hero.subtitle")}</p>

@@ -45,8 +45,9 @@ export function CoinPromo() {
         <Link className="button button--dark" href={`/${locale}/coin`}>{t("coinPromo.cta")} <Arrow/></Link>
       </div>
       <div className="coin-promo__visual" aria-hidden="true">
-        <span className="coin-promo__visual-label">{t("coinPromo.visualLabel")}</span>
-        <div className="coin-promo__model"><CoinScene modelSrc="/Coin2.glb" modelSize={3.78} autoRotate/></div>
+        {/*<span className="coin-promo__visual-label">{t("coinPromo.visualLabel")}</span>*/}
+        {/*<div className="coin-promo__model"></div>*/}
+          <CoinScene modelSrc="/Coin2.glb" modelSize={3.78} autoRotate/>
       </div>
     </section>
   );

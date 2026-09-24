@@ -45,7 +45,7 @@ const pageCopy = {
     dex: "Decentralized exchange",
     onchain: "Onchain app",
     cex: "Centralized exchange",
-    viewOn: "TRACK ON",
+    viewOn: "VIEW ON",
     tokenomicsTitle: "ALVARA Tokenomics",
     tokenomicsCopy: "$ALVARA has a fixed supply of one billion tokens. The largest share is reserved for the community and the products that give the token its utility.",
     totalSupply: "TOTAL TOKEN SUPPLY",
@@ -109,7 +109,7 @@ const pageCopy = {
     dex: "Децентрализованная биржа",
     onchain: "Ончейн-сервис",
     cex: "Централизованная биржа",
-    viewOn: "ОТСЛЕЖИВАТЬ НА",
+    viewOn: "СМОТРЕТЬ НА",
     tokenomicsTitle: "Токеномика $ALVARA",
     tokenomicsCopy: "У $ALVARA фиксированная эмиссия — один миллиард токенов. Самая большая доля предназначена для сообщества и продуктов, в которых используется токен.",
     totalSupply: "ОБЩЕЕ ПРЕДЛОЖЕНИЕ",
@@ -158,7 +158,7 @@ const pageCopy = {
 
 function Arrow(){ return <svg className="arrow-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>; }
 function ArrowUp(){ return <svg className="arrow-up" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>; }
-function CopyIcon(){ return <svg className="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>; }
+function CopyIcon({copied=false}:{copied?:boolean}){ return copied?<svg className="copy-icon copy-icon--check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>:<svg className="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>; }
 function PlayIcon(){ return <svg className="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>; }
 function Logo({hero=false}:{hero?:boolean}){ const letters="ALVARA".split(""); return <span className={`word-logo ${hero?"hero-word":""}`}>{hero?letters.map((letter,index)=><span className="split-char" style={{"--char":index} as React.CSSProperties} key={`${letter}-${index}`}>{letter}</span>):<>AL<i>V</i>ARA</>}</span>; }
 
@@ -178,7 +178,15 @@ export function CoinPage(){
   const numberLocale = locale === "ru" ? "ru-RU" : "en-US";
   const [copied,setCopied] = useState(false);
   const root = useRef<HTMLDivElement>(null);
-  const copyContract = async () => { await navigator.clipboard.writeText(CONTRACT); setCopied(true); window.setTimeout(()=>setCopied(false),1400); };
+  const copyContract = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTRACT);
+      setCopied(true);
+      window.setTimeout(()=>setCopied(false),1600);
+    } catch (error) {
+      console.error("Could not copy contract address", error);
+    }
+  };
 
   useGSAP(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -235,19 +243,19 @@ export function CoinPage(){
 
   return <div className="reference-site" ref={root}>
     <main>
-        <header className="hero-nav"><Link className="coin-home-link" href={`/${locale}`}><span aria-hidden="true">←</span> {text.backToMain}</Link><div className="socials"><a href={content.telegramUrl} aria-label="X"><SocialIcon name="x"/></a><a href={content.telegramUrl} aria-label="Instagram"><SocialIcon name="instagram"/></a><a href={content.telegramUrl} aria-label="YouTube"><SocialIcon name="youtube"/></a></div><LanguageSwitcher/></header>
+        <header className="hero-nav"><Link className="coin-home-link" href={`/${locale}`}><span aria-hidden="true">←</span> {text.backToMain}</Link><LanguageSwitcher/></header>
         <Hero/>
 
       <section className="narrative" id="story">
-        <div className="video-card reveal" data-reveal>
-            <Image style={{width: '1024px', height: "auto"}} src={'/media/coins2.png'} alt={"coins"} width={1024} height={512} />
-         </div>
         <div className="narrative-copy reveal" data-reveal><h2><b>{text.narrativeFirst}</b><br/></h2><p>{text.narrativeCopy}</p></div>
+          <div className="video-card reveal" data-reveal>
+              <Image style={{width: '1024px', height: "auto"}} src={'/media/coins2.png'} alt={"coins"} width={1024} height={512} />
+          </div>
       </section>
 
       <section className="ways" id="access">
         <header className="center-heading reveal" data-reveal><h2>{text.waysTitle}</h2><p>{text.waysBefore} <b>$ALVARA</b> {text.waysAfter}</p></header>
-        <div className="contract-box reveal" data-reveal><div><small>{text.contract}</small><code>{CONTRACT}</code></div><button onClick={copyContract}>{copied?`✓ ${text.copied}`:<><CopyIcon/> {text.copy}</>}</button></div>
+        <div className="contract-box reveal" data-reveal><div><small>{text.contract}</small><code>{CONTRACT}</code></div><button className={copied?"is-copied":""} onClick={copyContract} aria-live="polite"><CopyIcon copied={copied}/><span>{copied?text.copied:text.copy}</span></button></div>
         <div className="way-grid">
           <Way name="Aerodrome" type={text.dex} icon="/media/platforms/aerodrome.webp" tone="red" href="https://aerodrome.finance"/>
           <Way name="Pump" type={text.onchain} icon="/media/platforms/pump.png" tone="green" href="https://app.pump.fun"/>
@@ -256,16 +264,18 @@ export function CoinPage(){
           <Way name="Kraken" type={text.cex} icon="/media/platforms/kraken.png" tone="purple" href="https://www.kraken.com"/>
           <Way name="KuCoin" type={text.cex} icon="/media/platforms/kucoin.png" tone="teal" href="https://www.kucoin.com"/>
         </div>
-        <div className="marketplaces reveal" data-reveal><span>{text.viewOn}</span><b>◉ CoinMarketCap</b><b>● coingecko</b></div>
+        <div className="marketplaces reveal" data-reveal>
+          <span className="marketplaces__label">{text.viewOn}</span>
+          <div className="marketplaces__item"><Image className="marketplaces__icon--cmc" src="/media/coinmarketcap.jpg" alt="" width={32} height={32}/><b>CoinMarketCap</b></div>
+          <div className="marketplaces__item"><Image src="/media/coingeko.jpg" alt="" width={32} height={32}/><b>coingecko</b></div>
+        </div>
       </section>
 
       <section className="ref-tokenomics" id="tokenomics">
         <header className="center-heading center-heading--light reveal" data-reveal><h2>{text.tokenomicsTitle}</h2><p>{text.tokenomicsCopy}</p></header>
         <div className="token-stats"><Stat label={text.totalSupply} value={TOKEN_SUPPLY.toLocaleString(numberLocale)} note="ALVARA" delay={0}/><Stat label={text.communityApp} value={`${tokenAllocation[0].percent}%`} note={`${(TOKEN_SUPPLY*tokenAllocation[0].percent/100).toLocaleString(numberLocale)} ${text.tokens}`} delay={1}/><Stat label={text.allocated} value={`${tokenAllocation.reduce((sum,item)=>sum+item.percent,0)}%`} note={`${tokenAllocation.length} ${text.verifiedCategories}`} delay={2}/></div>
         <div className="unlock-card reveal" data-reveal><h3>{text.allocationTitle}</h3><p className="chart-description">{text.allocationCopy}</p><TokenAllocationChart labels={text.allocationLabels} ariaLabel={text.allocationChart} numberLocale={numberLocale}/></div>
-        <div className="security-card reveal" data-reveal><h3>{text.securityTitle}</h3><p>{text.securityCopy}</p><div><article><small>◈ {text.nonCustodial}</small><b>100%</b><p>{text.assetsCopy}</p></article><article><small>◇ {text.encrypted}</small><b>{text.tradeOnly}</b><p>{text.permissionsCopy}</p></article></div></div>
-        <div className="token-buttons"><a className="capsule capsule--white" href="https://ston.fi">{text.buyNow} <Arrow/></a><a className="capsule capsule--glass" href={content.telegramUrl}>{text.launchApp}</a></div>
-      </section>
+        </section>
 
       <section className="roadmap" id="roadmap">
         <div className="roadmap-stage">
@@ -291,7 +301,7 @@ export function CoinPage(){
     </main>
 
     <footer className="ref-footer reveal" data-reveal>
-      <div className="footer-grid"><div className="footer-brand"><Logo/><small>{text.footerTagline}</small><p>{text.footerLead}</p><div className="footer-contract"><small>{text.contract}</small><button onClick={copyContract}>{CONTRACT}　▣ {text.copy}</button></div><span>◇ {text.nonCustodialDesign}</span></div><FooterColumn title={text.about} links={[[text.story,"#story"],[text.tokenomicsTitle,"#tokenomics"],[text.roadmapTitle,"#roadmap"]]}/><FooterColumn title={text.participate} links={[[text.buyNow,"https://ston.fi"],[text.launchAlvara,content.telegramUrl]]}/><FooterColumn title={text.product} links={text.utilityLinks.map(label=>[label,"#story"])}/></div>
+      <div className="footer-grid"><div className="footer-brand"><Logo/><small>{text.footerTagline}</small><p>{text.footerLead}</p><div className="footer-contract"><small>{text.contract}</small><button className={copied?"is-copied":""} onClick={copyContract} aria-live="polite"><span className="footer-contract__address">{CONTRACT}</span><CopyIcon copied={copied}/><span>{copied?text.copied:text.copy}</span></button></div><span>◇ {text.nonCustodialDesign}</span></div><div className="footer-socials socials" aria-label="Social media"><a href={content.telegramUrl} aria-label="X" target="_blank" rel="noopener noreferrer"><SocialIcon name="x"/></a><a href={content.telegramUrl} aria-label="Instagram" target="_blank" rel="noopener noreferrer"><SocialIcon name="instagram"/></a><a href={content.telegramUrl} aria-label="YouTube" target="_blank" rel="noopener noreferrer"><SocialIcon name="youtube"/></a></div></div>
       <div className="disclaimer">{text.disclaimer}</div>
       <div className="footer-wordmark">ALVARA</div>
       <div className="copyright">{text.copyright}</div>
@@ -317,4 +327,3 @@ function TokenAllocationChart({labels,ariaLabel,numberLocale}:{labels:readonly s
     <div className="allocation-list">{tokenAllocation.map((item,index)=><button className={active===index?"is-active":""} onMouseEnter={()=>setActive(index)} onFocus={()=>setActive(index)} onClick={()=>setActive(index)} key={labels[index]}><i style={{background:item.color}}/><span><b>{labels[index]}</b><small>{(TOKEN_SUPPLY*item.percent/100).toLocaleString(numberLocale)} ALVARA</small></span><strong>{item.percent}%</strong></button>)}</div>
   </div>;
 }
-function FooterColumn({title,links}:{title:string,links:string[][]}){return <nav className="footer-column"><small>{title}</small>{links.map(([label,href])=><a href={href} key={label}>{label}</a>)}</nav>}

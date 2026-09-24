@@ -254,6 +254,18 @@ img, video, canvas { display: block; max-width: 100%; }
 .footer__listed { grid-column: 1 / 5; display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 38px; }
 .footer__listed .brand { grid-column: 1 / -1; }
 .footer__listed p { grid-column: 1 / -1; margin: 0; max-width: 300px; font-size: 11px; line-height: 1.35; color: rgba(255,255,255,.55); }
+.footer__socials { grid-column: 6 / 9; align-self: start; display: flex; gap: 10px; }
+.footer__socials a { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; color: #fff; transition: transform .2s ease, background-color .2s ease; }
+.footer__socials a:hover { transform: translateY(-3px); background: rgba(255,255,255,.12); }
+.footer__socials svg { width: 17px; height: 17px; fill: currentColor; }
+.footer__contract { grid-column: 9 / 11; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; min-width: 0; }
+.footer__contract > small { color: rgba(255,255,255,.5); font-size: 9px; letter-spacing: .1em; }
+.footer__contract button { display: flex; align-items: center; gap: 8px; max-width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; background: transparent; color: #fff; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: transform .18s ease, background-color .25s ease, color .25s ease; }
+.footer__contract button:active { transform: scale(.97); }
+.footer__contract button.is-copied { background: #a7e5d3; color: #173d32; }
+.footer__contract-address { max-width: 145px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.footer__copy-icon { flex: 0 0 16px; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+.footer__copy-icon--check { transform: scale(1.12); }
 .footer__nav { grid-column: span 2; display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
 .footer__nav small { margin-bottom: 10px; text-transform: uppercase; opacity: .4; font-size: 9px; }
 .footer__nav a, .footer__nav span, .footer__top, .footer__legal button { padding: 0; border: 0; background: none; color: #fff; text-decoration: none; cursor: pointer; font-size: 12px; }
@@ -416,7 +428,9 @@ img, video, canvas { display: block; max-width: 100%; }
   .footer__newsletter form { grid-column: 1 / -1; margin-top: 70px; }
   .footer__newsletter input { font-size: 28px; }
   .footer__links { padding-top: 55px; padding-bottom: 55px; }
-  .footer__listed { grid-column: 1 / -1; margin-bottom: 55px; }
+  .footer__listed { grid-column: 1 / -1; margin-bottom: 18px; }
+  .footer__socials { grid-column: 1 / 3; }
+  .footer__contract { grid-column: 1 / -1; }
   .footer__nav { grid-column: span 2; }
   .footer__top { grid-column: 3 / 5; margin-top: 60px; }
   .footer__wordmark { height: 52vw; min-height: 240px; }

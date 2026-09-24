@@ -68,6 +68,10 @@ type Translation = {
     description: string;
     navigation: string;
     exchanges: string;
+    socialMedia: string;
+    tokenContract: string;
+    copyContract: string;
+    copied: string;
     backToTop: string;
     copyright: string;
     privacy: string;
@@ -158,6 +162,10 @@ const en: Translation = {
     description: "AI-powered market analysis, trade execution and position monitoring inside Telegram.",
     navigation: "Navigation",
     exchanges: "Supported Exchanges",
+    socialMedia: "Social media",
+    tokenContract: "$ALVARA CONTRACT · TON",
+    copyContract: "Copy address",
+    copied: "Copied",
     backToTop: "Back to top",
     copyright: "© 2026 Alvara Trade. All rights reserved",
     privacy: "Privacy Policy",
@@ -248,6 +256,10 @@ const ru: Translation = {
     description: "Анализ рынка, исполнение сделок и контроль открытых позиций в одном Telegram-боте.",
     navigation: "Навигация",
     exchanges: "Поддерживаемые биржи",
+    socialMedia: "Социальные сети",
+    tokenContract: "КОНТРАКТ $ALVARA · TON",
+    copyContract: "Скопировать адрес",
+    copied: "Скопировано",
     backToTop: "Наверх",
     copyright: "© 2026 Alvara Trade. Все права защищены",
     privacy: "Политика конфиденциальности",

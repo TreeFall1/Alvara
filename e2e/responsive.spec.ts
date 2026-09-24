@@ -18,17 +18,20 @@ test("uses Montserrat and Open Sans across localized pages", async ({ page }, te
         cardWeight: getComputedStyle(document.querySelector(".opportunity-card h3")!).fontWeight,
         bodyWeight: getComputedStyle(document.querySelector(".hero__subtitle")!).fontWeight,
         taglineBottom: document.querySelector(".hero__tagline")!.getBoundingClientRect().bottom,
-        coinTop: document.querySelector(".hero__coin")!.getBoundingClientRect().top,
+        qualitiesTop: document.querySelector(".hero__qualities")!.getBoundingClientRect().top,
+        background: getComputedStyle(document.querySelector(".hero__media")!).backgroundImage,
       }));
 
       expect(typography.body).toContain("Open Sans");
       expect(typography.heading).toContain("Montserrat");
       expect([typography.headingWeight, typography.sectionWeight, typography.cardWeight, typography.bodyWeight]).toEqual(["700", "600", "500", "400"]);
-      expect(typography.taglineBottom, `${locale} at ${width}px`).toBeLessThan(typography.coinTop);
+      expect(typography.taglineBottom, `${locale} at ${width}px`).toBeLessThan(typography.qualitiesTop);
+      expect(typography.background).toContain("bgmain-s.jpg");
     }
 
     await page.goto(`/${locale}/coin`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
+    expect(await page.locator(".hero__media").evaluate((element) => getComputedStyle(element).backgroundImage)).toContain("bgmain-s.jpg");
     const coinHeading = await page.locator(".reference-site h2").first().evaluate((element) => ({
       family: getComputedStyle(element).fontFamily,
       weight: getComputedStyle(element).fontWeight,
@@ -93,8 +96,60 @@ test("wide localized hero stays below the fixed header", async ({ page }, testIn
         expect(bounds.headingTop, `${locale} at ${width}×${height}px`).toBeGreaterThanOrEqual(bounds.headerBottom + 24);
         expect(bounds.headingRight, `${locale} at ${width}×${height}px`).toBeLessThan(bounds.heroRight);
         expect(bounds.contentScrollHeight, `${locale} at ${width}×${height}px`).toBeLessThanOrEqual(bounds.heroHeight + 2);
-        expect(bounds.background).toContain("coinbg.jpg");
+        expect(bounds.background).toContain("bgmain.jpg");
       }
+    }
+  }
+});
+
+test("portrait tablet artwork fills the hero without covering its content", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop-1440", "one browser covers the tablet matrix");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  for (const route of ["/en", "/ru/coin"]) {
+    for (const width of [600, 768, 900, 1024]) {
+      await page.setViewportSize({ width, height: 1100 });
+      await page.goto(route, { waitUntil: "networkidle" });
+
+      const bounds = await page.evaluate(() => {
+        const media = getComputedStyle(document.querySelector(".hero__media")!);
+        return {
+          background: media.backgroundImage,
+          size: media.backgroundSize,
+          messageBottom: document.querySelector(".hero__message")!.getBoundingClientRect().bottom,
+          qualitiesTop: document.querySelector(".hero__qualities")!.getBoundingClientRect().top,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+
+      expect(bounds.background, `${route} at ${width}px`).toContain("bgmain-s.jpg");
+      expect(bounds.size, `${route} at ${width}px`).toBe("cover");
+      expect(bounds.qualitiesTop - bounds.messageBottom, `${route} at ${width}px`).toBeGreaterThan(100);
+      expect(bounds.overflow, `${route} at ${width}px`).toBeLessThanOrEqual(1);
+    }
+  }
+});
+
+test("intermediate landscape artwork keeps the globe and coin in frame", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop-1440", "one browser covers the tablet matrix");
+
+  for (const route of ["/en", "/ru/coin"]) {
+    for (const [width, height] of [[768, 600], [900, 700], [1024, 768], [1100, 800], [1199, 900]]) {
+      await page.setViewportSize({ width, height });
+      await page.goto(route, { waitUntil: "networkidle" });
+
+      const artwork = await page.locator(".hero__media").evaluate((element) => {
+        const image = getComputedStyle(element, "::before");
+        return {
+          background: image.backgroundImage,
+          width: image.width,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+
+      expect(artwork.background, `${route} at ${width}×${height}px`).toContain("bgmain.jpg");
+      expect(parseFloat(artwork.width), `${route} at ${width}×${height}px`).toBe(width);
+      expect(artwork.overflow, `${route} at ${width}×${height}px`).toBeLessThanOrEqual(1);
     }
   }
 });

@@ -24,7 +24,7 @@ type CoinSceneProps = {
   modelSrc?: string;
 };
 
-export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function CoinScene({ autoRotate = false, modelSize = 3, modelSrc = "/Coin.glb" }, forwardedRef) {
+export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function CoinScene({ autoRotate = false, modelSize = 4, modelSrc = "/Coin.glb" }, forwardedRef) {
   const hostRef = useRef<HTMLDivElement>(null);
   const drawRef = useRef<((progress: number) => void) | null>(null);
   const progressRef = useRef(0.12);
