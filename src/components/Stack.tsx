@@ -17,21 +17,13 @@ export function Stack() {
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    gsap.from(".strategy-console", {
+    gsap.from(".stack__compass", {
       opacity: 0,
       scale: 0.86,
       y: 45,
       duration: 0.9,
       ease: "power3.out",
       scrollTrigger: { trigger: ".stack__body", start: "top 78%" },
-    });
-    gsap.from(".strategy-console__ring", {
-      scale: 0.55,
-      opacity: 0,
-      stagger: 0.12,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: { trigger: ".strategy-console", start: "top 74%" },
     });
     gsap.from(".stack-item", {
       y: 42,
@@ -55,18 +47,15 @@ export function Stack() {
         <h2>{t("products.titleFirst")}<br/>{t("products.titleSecond")}</h2>
       </div>
       <div className="stack__body page-grid">
-        <div className="stack__visual" aria-hidden="true">
-          <div className="strategy-console">
-            <header><span><i/>{t("products.signalStatus")}</span><strong>ALVARA / AI</strong></header>
-            <div className="strategy-console__radar">
-              <i className="strategy-console__ring"/><i className="strategy-console__ring"/><i className="strategy-console__ring"/>
-              <i className="strategy-console__sweep"/>
-              <i className="strategy-console__blip strategy-console__blip--one"/>
-              <i className="strategy-console__blip strategy-console__blip--two"/>
-              <i className="strategy-console__blip strategy-console__blip--three"/>
-              <b>26+</b>
-            </div>
-            <div className="strategy-console__readout"><small>{t("products.signalCount")}</small><strong>{t("products.signalTitle")}</strong></div>
+        <div className="stack__visual">
+          <video className="stack__compass" autoPlay muted loop playsInline preload="metadata" poster="/media/compass-poster.jpg" aria-label={t("products.signalTitle")}>
+            <source src="/media/compass.webm" type="video/webm"/>
+            <source src="/media/compass.mp4" type="video/mp4"/>
+          </video>
+          <div className="stack__video-copy">
+            <div className="stack__video-meta"><span><i/>{t("products.signalStatus")}</span><span>ALVARA / AI</span></div>
+            <small>{t("products.signalCount")}</small>
+            <h3>{t("products.signalTitle")}</h3>
             <p>{t("products.signalCopy")}</p>
           </div>
         </div>

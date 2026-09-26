@@ -21,18 +21,18 @@ test("captures the principal animation checkpoints", async ({ page }, testInfo) 
     const element = page.locator(selector);
     const top = await element.evaluate((node) => (node as HTMLElement).getBoundingClientRect().top + window.scrollY);
     await page.evaluate((y) => window.scrollTo(0, y), top + viewportOffset * page.viewportSize()!.height);
-    if (name === "stack") await expect(page.locator(".coin-scene")).toHaveClass(/coin-scene--loaded/, { timeout: 20_000 });
+    if (name === "stack") await expect(page.locator(".stack__compass")).toHaveJSProperty("readyState", 4, { timeout: 20_000 });
     await page.waitForTimeout(650);
     await expect(element).toBeAttached();
     await page.screenshot({ path: testInfo.outputPath(`${name}.png`), animations: "disabled" });
     if (name === "stack") {
-      const canvas = page.locator(".coin-scene canvas");
-      const before = await canvas.screenshot();
-      await page.evaluate(() => window.scrollBy(0, window.innerHeight * 0.65));
+      const video = page.locator(".stack__compass");
+      await video.scrollIntoViewIfNeeded();
+      await video.evaluate((node) => (node as HTMLVideoElement).play());
+      const before = await video.evaluate((node) => (node as HTMLVideoElement).currentTime);
       await page.waitForTimeout(800);
-      const after = await canvas.screenshot();
-      expect(after.equals(before), "The 3D coin must change orientation on scroll").toBe(false);
-      await page.screenshot({ path: testInfo.outputPath("stack-rotated.png"), animations: "disabled" });
+      const after = await video.evaluate((node) => (node as HTMLVideoElement).currentTime);
+      expect(after, "The compass video must play").toBeGreaterThan(before);
     }
   }
   expect(runtimeErrors).toEqual([]);

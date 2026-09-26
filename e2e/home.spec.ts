@@ -10,13 +10,19 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.locator("body")).not.toContainText(/sharplink/i);
   await expect(page.getByRole("heading", { name: "Value Beyond Limits" })).toBeVisible();
   await expect(page.locator(".hero__quality")).toHaveCount(4);
+  await expect(page.locator(".hero-actions a")).toHaveCount(2);
+  await expect(page.locator(".hero-actions a").first()).toHaveAttribute("href", /^https:\/\/t\.me\//);
+  await expect(page.locator(".hero-actions a").last()).toHaveAttribute("href", "/en/coin");
   await expect(page.locator(".hero video")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: /Built for Real Decisions/i })).toBeAttached();
   await expect(page.locator(".dashboard__metric")).toHaveCount(3);
+  await expect(page.locator(".dashboard__app img")).toHaveAttribute("src", /app\.png/);
   await expect(page.locator(".productivity__dashboard")).not.toContainText("Take-profit targets");
   await expect(page.locator(".productivity .pin-spacer")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: /Analysis You Can Actually Use/i })).toBeAttached();
-  await expect(page.locator(".strategy-console__sweep")).toHaveCount(1);
+  await expect(page.locator(".stack__compass source[type='video/webm']")).toHaveAttribute("src", "/media/compass.webm");
+  await expect(page.locator(".stack__video-copy")).toContainText("26+ strategies");
+  await expect(page.locator(".stack__video-copy")).toContainText("One clear setup");
   await expect(page.locator(".opportunity-card__icon svg")).toHaveCount(3);
   await expect(page.locator(".coin-promo .coin-scene")).toHaveCount(1);
   await expect(page.locator(".coin-promo__visual")).not.toContainText("$ALVARA");
@@ -26,7 +32,7 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Meet $ALVARA", exact: true })).toBeAttached();
   await expect(page.locator(".tokenomics")).toHaveCount(0);
   await expect(page.locator(".roadmap")).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /Explore the Token/i })).toHaveAttribute("href", "/en/coin");
+  await expect(page.locator(".coin-promo").getByRole("link", { name: /Explore the Token/i })).toHaveAttribute("href", "/en/coin");
   await expect(page.locator(".header__dashboard")).toHaveAttribute("href", /^https:\/\/t\.me\//);
   await expect(page.locator("footer")).toBeAttached();
   expect(runtimeErrors).toEqual([]);
@@ -69,7 +75,7 @@ test("connects the homepage with the localized coin page", async ({ page, isMobi
     await page.locator(".header__nav").getByRole("link", { name: "$ALVARA", exact: true }).click();
   }
   await expect(page).toHaveURL(/\/en\/coin$/);
-  await expect(page.getByRole("heading", { name: /\$ALVARA — The token behind Alvara/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: "Value Beyond Limits" })).toBeAttached();
   await expect(page.getByRole("heading", { name: "How Alvara moves forward", exact: true })).toBeAttached();
   await expect(page.locator(".roadmap-card")).toHaveCount(9);
 
@@ -82,7 +88,7 @@ test("connects the homepage with the localized coin page", async ({ page, isMobi
 
   await page.goto("/ru/coin", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
-  await expect(page.getByRole("heading", { name: /\$ALVARA — токен экосистемы Alvara/i })).toBeAttached();
+  await expect(page.getByRole("heading", { name: "Ценность без границ" })).toBeAttached();
   await page.getByRole("link", { name: "English" }).click();
   await expect(page).toHaveURL(/\/en\/coin$/);
 });
@@ -91,12 +97,12 @@ test("opens the coin page at the top after navigating from deep in the homepage"
   await page.goto("/en", { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => document.documentElement.dataset.hydrated === "true");
 
-  const coinLink = page.getByRole("link", { name: /Explore the Token/i });
+  const coinLink = page.locator(".coin-promo").getByRole("link", { name: /Explore the Token/i });
   await coinLink.scrollIntoViewIfNeeded();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
   await coinLink.click();
 
   await expect(page).toHaveURL(/\/en\/coin$/);
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-  await expect(page.locator(".ref-hero")).toBeInViewport();
+  await expect(page.locator(".hero")).toBeInViewport();
 });

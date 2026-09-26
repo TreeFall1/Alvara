@@ -77,6 +77,22 @@ export function News() {
       scrollTrigger: { trigger: ".security-visual", start: "top 74%" },
     });
 
+    media.add("(max-width: 600px)", () => {
+      gsap.from(".security-flow__node, .security-flow__route", {
+        y: 85,
+        scale: 0.82,
+        autoAlpha: 0,
+        stagger: 0.18,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".security-flow",
+          start: "top 80%",
+          end: "bottom 55%",
+          scrub: 0.6,
+        },
+      });
+    });
+
     return () => media.revert();
   }, { scope: section });
 

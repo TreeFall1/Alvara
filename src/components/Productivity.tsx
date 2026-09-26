@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -27,7 +28,7 @@ export function Productivity() {
     timeline
       .from(".productivity__dashboard", { y: 36, autoAlpha: 0, duration: 0.75, ease: "power3.out" })
       .from(".dashboard__title", { y: 20, autoAlpha: 0, duration: 0.55, ease: "power2.out" }, "-=0.4")
-      .from(".dashboard__signal", { scale: 0.94, autoAlpha: 0, duration: 0.7, ease: "power2.out" }, "-=0.5")
+      .from(".dashboard__app", { scale: 0.94, autoAlpha: 0, duration: 0.7, ease: "power2.out" }, "-=0.5")
       .from(".dashboard__metric", { y: 18, autoAlpha: 0, duration: 0.45, stagger: 0.08, ease: "power2.out" }, "-=0.42");
   }, { scope: section });
 
@@ -42,9 +43,8 @@ export function Productivity() {
           <div className="dashboard__grid" aria-hidden="true"/>
           <div className="dashboard__top page-grid">
             <h3 className="dashboard__title">{t("performance.dashboardFirst")}<br/>{t("performance.dashboardSecond")}</h3>
-            <div className="dashboard__signal" aria-hidden="true">
-              <i/><i/><i/>
-              <span/>
+            <div className="dashboard__app">
+              <Image src="/app.png" alt="Alvara Trade: интерфейс торгового бота в Telegram" width={1024} height={1536} sizes="(max-width: 600px) 100vw, (max-width: 1024px) 40vw, 30vw"/>
             </div>
             <div className="dashboard__metrics">
               {homeContent.proofMetrics.map((metric) => (

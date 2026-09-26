@@ -40,7 +40,7 @@ export function CoinPromo() {
   return (
     <section className="coin-promo page-grid" id="coin" ref={section}>
       <div className="coin-promo__copy">
-        <h2>{t("coinPromo.title")} <span className="coin-promo__inline-image" aria-hidden="true"/></h2>
+        <h2>{t("coinPromo.title")}</h2>
         <p>{t("coinPromo.copy")}</p>
         <Link className="button button--dark" href={`/${locale}/coin`}>{t("coinPromo.cta")} <Arrow/></Link>
       </div>

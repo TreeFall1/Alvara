@@ -53,13 +53,13 @@ export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function Co
       if (disposed || cleanupScene) return;
       const isMobile = matchMedia("(max-width: 1024px)").matches;
       const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const maxPixelRatio = isMobile ? 1.35 : 2;
-      const maxTextureAnisotropy = isMobile ? 4 : 8;
+      const maxPixelRatio = isMobile ? 2.7 : 4;
+      const maxTextureAnisotropy = isMobile ? 8 : 16;
       const shadowsEnabled = !isMobile;
 
       let renderer: THREE.WebGLRenderer;
       try {
-        renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: "high-performance" });
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
       } catch {
         host.classList.add("coin-scene--fallback");
         return;
@@ -82,7 +82,7 @@ export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function Co
       const key = new THREE.DirectionalLight(COIN_COLORS.keyLight, 5.4);
       key.position.set(4, 5, 7);
       key.castShadow = shadowsEnabled;
-      key.shadow.mapSize.set(1024, 1024);
+      key.shadow.mapSize.set(2048, 2048);
       key.shadow.bias = -0.0001;
       key.shadow.normalBias = 0.02;
       scene.add(key);
@@ -126,7 +126,7 @@ export const CoinScene = forwardRef<CoinSceneHandle, CoinSceneProps>(function Co
       const resize = () => {
         const width = Math.max(host.clientWidth, 1);
         const height = Math.max(host.clientHeight, 1);
-        renderer.setPixelRatio(Math.min(devicePixelRatio, maxPixelRatio));
+        renderer.setPixelRatio(Math.min(devicePixelRatio * 2, maxPixelRatio));
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov / 2);
