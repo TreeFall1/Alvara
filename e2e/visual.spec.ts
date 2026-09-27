@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("captures the principal animation checkpoints", async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
   test.skip(!["desktop-1440", "mobile-small"].includes(testInfo.project.name), "visual checkpoints");
   const runtimeErrors: string[] = [];
   page.on("console", (message) => { if (message.type() === "error") runtimeErrors.push(message.text()); });

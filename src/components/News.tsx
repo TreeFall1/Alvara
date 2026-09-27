@@ -100,12 +100,8 @@ export function News() {
     <section className="home-security page-grid" id="security" ref={section}>
       <div className="security-heading">
         <p>{t("security.eyebrow")}</p>
-        <h2>
-          {t("security.titleFirst")}<br/>
-          {t("security.titleSecond")} <span className="security-heading__mark" aria-hidden="true"><SecurityIcon name="shield"/></span>
-        </h2>
+        <h2>{t("security.titleFirst")} <br/>{t("security.titleSecond")}</h2>
       </div>
-      <div className="security__badge"><span aria-hidden="true">✓</span> {t("security.badge")}</div>
 
       <div className="security-system">
         <div className="security-visual-shell">

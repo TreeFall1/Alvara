@@ -33,18 +33,13 @@ export function Stack() {
       ease: "power2.out",
       scrollTrigger: { trigger: ".stack__list", start: "top 78%" },
     });
-    gsap.from(".generation__title span", {
-      yPercent: 110,
-      stagger: 0.06,
-      scrollTrigger: { trigger: ".generation", start: "top 75%", end: "center 45%", scrub: 0.8 },
-    });
   }, { scope: section });
 
   return (
     <section className="stack" id="products" ref={section}>
       <div className="stack__heading page-grid">
         <p>{t("products.eyebrow")}</p>
-        <h2>{t("products.titleFirst")}<br/>{t("products.titleSecond")}</h2>
+        <h2>{t("products.titleFirst")} {t("products.titleSecond")}</h2>
       </div>
       <div className="stack__body page-grid">
         <div className="stack__visual">
@@ -68,9 +63,6 @@ export function Stack() {
             </article>
           ))}
         </div>
-      </div>
-      <div className="generation">
-        <h2 className="generation__title"><span>{t("products.stepsFirst")}</span><br/><span>{t("products.stepsSecond")}</span></h2>
       </div>
     </section>
   );

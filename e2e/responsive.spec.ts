@@ -14,7 +14,7 @@ test("uses Montserrat and Open Sans across localized pages", async ({ page }, te
         body: getComputedStyle(document.body).fontFamily,
         heading: getComputedStyle(document.querySelector(".hero h1")!).fontFamily,
         headingWeight: getComputedStyle(document.querySelector(".hero h1")!).fontWeight,
-        sectionWeight: getComputedStyle(document.querySelector(".productivity__intro h2")!).fontWeight,
+        sectionWeight: getComputedStyle(document.querySelector(".dashboard__title")!).fontWeight,
         cardWeight: getComputedStyle(document.querySelector(".opportunity-card h3")!).fontWeight,
         bodyWeight: getComputedStyle(document.querySelector(".hero__subtitle")!).fontWeight,
         taglineBottom: document.querySelector(".hero__tagline")!.getBoundingClientRect().bottom,

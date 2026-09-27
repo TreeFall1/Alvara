@@ -1,9 +1,7 @@
 import { screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { renderWithI18n } from "@/test/render";
 import { Footer } from "./Footer";
-
-vi.mock("./WebGLWordmark", () => ({ WebGLWordmark: () => <div data-testid="wordmark"/> }));
 
 describe("Footer CTA", () => {
   it("links to Telegram and keeps the CTA focused on the bot", () => {

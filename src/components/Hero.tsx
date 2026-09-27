@@ -4,6 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useTranslation } from "react-i18next";
+import { HeroActions } from "./HeroActions";
 
 gsap.registerPlugin(useGSAP);
 
@@ -49,6 +50,7 @@ export function Hero() {
             </div>
           ))}
         </div>
+        <HeroActions/>
       </div>
     </section>
   );

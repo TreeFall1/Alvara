@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
-import { HeroActions } from "./HeroActions";
 import { Productivity } from "./Productivity";
 import { Stack } from "./Stack";
 import { Opportunity } from "./Opportunity";
@@ -25,7 +24,6 @@ export function HomePage() {
       <Header/>
       <main className="site-main">
         <Hero/>
-        <HeroActions/>
         <Productivity/>
         <Stack/>
         <Opportunity/>

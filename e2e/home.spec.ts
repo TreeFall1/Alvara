@@ -14,7 +14,7 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.locator(".hero-actions a").first()).toHaveAttribute("href", /^https:\/\/t\.me\//);
   await expect(page.locator(".hero-actions a").last()).toHaveAttribute("href", "/en/coin");
   await expect(page.locator(".hero video")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: /Built for Real Decisions/i })).toBeAttached();
+  await expect(page.locator(".dashboard__title")).toHaveText(/Built for\s*Real Decisions/i);
   await expect(page.locator(".dashboard__metric")).toHaveCount(3);
   await expect(page.locator(".dashboard__app img")).toHaveAttribute("src", /app\.png/);
   await expect(page.locator(".productivity__dashboard")).not.toContainText("Take-profit targets");

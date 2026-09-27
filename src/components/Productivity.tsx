@@ -34,15 +34,14 @@ export function Productivity() {
 
   return (
     <section className="productivity" id="performance" ref={section}>
-      <div className="productivity__intro page-grid">
-        <h2>{t("performance.titleFirst")}<br/>{t("performance.titleSecond")}</h2>
-        <p>{t("performance.copy")}</p>
-      </div>
       <div className="productivity__stage">
         <div className="productivity__dashboard">
           <div className="dashboard__grid" aria-hidden="true"/>
           <div className="dashboard__top page-grid">
-            <h3 className="dashboard__title">{t("performance.dashboardFirst")}<br/>{t("performance.dashboardSecond")}</h3>
+            <div className="dashboard__summary">
+              <h2 className="dashboard__title">{t("performance.titleFirst")} <br/>{t("performance.titleSecond")}</h2>
+              <p>{t("performance.copy")}</p>
+            </div>
             <div className="dashboard__app">
               <Image src="/app.png" alt="Alvara Trade: интерфейс торгового бота в Telegram" width={1024} height={1536} sizes="(max-width: 600px) 100vw, (max-width: 1024px) 40vw, 30vw"/>
             </div>

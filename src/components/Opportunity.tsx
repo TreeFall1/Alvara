@@ -35,54 +35,25 @@ export function Opportunity() {
       stagger: { each: 0.008 },
       scrollTrigger: { trigger: ".opportunity__statement", start: "top 80%", end: "top 22%", scrub: true },
     });
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 1025px)", () => {
-      ScrollTrigger.create({ trigger: ".opportunity__cards", start: "top 28%", end: "bottom 70%", pin: ".opportunity__intro", pinSpacing: false });
-    });
-    gsap.from(".opportunity__video", {
+    gsap.from(".opportunity-card", {
       autoAlpha: 0,
-      y: 36,
-      scale: 0.96,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".opportunity__flow", start: "top 78%", once: true },
+      y: 30,
+      duration: 0.65,
+      stagger: 0.12,
+      ease: "power2.out",
+      scrollTrigger: { trigger: ".opportunity__cards", start: "top 85%", once: true },
     });
-    gsap.fromTo(".opportunity__video video", { scale: 1.1 }, {
-      scale: 1.02,
-      yPercent: -2,
-      ease: "none",
-      scrollTrigger: { trigger: ".opportunity__cards", start: "top 90%", end: "bottom 20%", scrub: 0.8 },
-    });
-    gsap.to(".opportunity__intro", {
-      opacity: 0,
-      y: -140,
-      pointerEvents: "none",
-      scrollTrigger: { trigger: ".opportunity__cards", start: "top 72%", end: "top 38%", scrub: true },
-    });
-    gsap.utils.toArray<HTMLElement>(".opportunity-card").forEach((card) => {
-      gsap.from(card, { opacity: 0, y: 70, scrollTrigger: { trigger: card, start: "top 78%", end: "top 45%", scrub: 0.6 } });
-      gsap.from(card.querySelector("h3"), { yPercent: 100, scrollTrigger: { trigger: card, start: "top 78%", end: "top 52%", scrub: true } });
-      gsap.from(card.querySelector(".opportunity-card__icon"), { scale: 0.72, rotate: -10, opacity: 0, duration: 0.55, ease: "back.out(1.6)", scrollTrigger: { trigger: card, start: "top 76%" } });
-    });
-    return () => { split.revert(); mm.revert(); };
+    return () => split.revert();
   }, { scope: section });
 
   return (
     <section className="opportunity" id="how-it-works" ref={section}>
       <div className="opportunity__intro page-grid">
+        <h2 className="opportunity__heading">{t("products.stepsFirst")} {t("products.stepsSecond")}</h2>
         <p className="opportunity__statement">{t("opportunity.statement")}</p>
         <a className="button button--outline" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("opportunity.startTrading")} <Arrow/></a>
       </div>
       <div className="opportunity__flow page-grid">
-        <div className="opportunity__video" aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="metadata" poster="/media/opportunity-1.webp">
-            <source src="/media/opportunity.webm" type="video/webm"/>
-            <source src="/media/opportunity.mp4" type="video/mp4"/>
-          </video>
-          <div className="opportunity__video-wash"/>
-          <div className="opportunity__video-status"><i/><span>{t("products.signalStatus")}</span></div>
-          <div className="opportunity__video-rail"><i/><i/><i/></div>
-        </div>
         <div className="opportunity__cards">
           {homeContent.steps.map((item, index) => (
             <article className="opportunity-card" key={item.title}>

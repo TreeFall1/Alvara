@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
 import { Arrow, Brand } from "./Brand";
-import { WebGLWordmark } from "./WebGLWordmark";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -19,14 +18,13 @@ const socialPaths = {
 } as const;
 
 export function Footer() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const homeContent = useHomeContent();
   const footer = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
 
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    gsap.from(".footer__wordmark", { y: 190, scrollTrigger: { trigger: footer.current, start: "top bottom", end: "bottom bottom", scrub: 0.8 } });
     gsap.fromTo(".footer__glow", { yPercent: 25 }, { yPercent: -10, scrollTrigger: { trigger: footer.current, start: "top bottom", end: "bottom bottom", scrub: true } });
   }, { scope: footer });
 
@@ -45,7 +43,7 @@ export function Footer() {
     <footer className="footer" id="final-cta" ref={footer}>
       <div className="footer__glow" aria-hidden="true"/>
       <div className="footer__newsletter page-grid">
-        <h2>{t("footer.titleFirst")}<br/>{t("footer.titleSecond")}</h2>
+        <h2>{t("footer.titleFirst")} <br/>{t("footer.titleSecond")}</h2>
         <div className="footer__cta-copy">
           <p>{t("footer.copy")}</p>
           <a className="button button--solid" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("footer.openTelegram")} <Arrow/></a>
@@ -66,7 +64,6 @@ export function Footer() {
         </div>
         <button className="footer__top" onClick={top}>{t("footer.backToTop")} <Arrow/></button>
       </div>
-      <div className="footer__wordmark"><WebGLWordmark/></div>
       <div className="footer__legal page-grid"><span>{t("footer.copyright")}</span><div><button type="button">{t("footer.privacy")}</button><button type="button">{t("footer.terms")}</button></div></div>
     </footer>
   );
