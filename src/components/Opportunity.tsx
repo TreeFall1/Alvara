@@ -3,13 +3,13 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import { useTranslation } from "react-i18next";
 import { useHomeContent } from "@/i18n/useHomeContent";
+import Image from "next/image";
 import { Arrow } from "./Brand";
 
-gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 function GuideIcon({ index }: { index: number }) {
   if (index === 0) {
@@ -28,13 +28,6 @@ export function Opportunity() {
 
   useGSAP(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const split = new SplitText(".opportunity__statement", { type: "lines,chars", linesClass: "split-line" });
-    gsap.set(split.chars, { opacity: 0.12 });
-    gsap.to(gsap.utils.shuffle([...split.chars]), {
-      opacity: 1,
-      stagger: { each: 0.008 },
-      scrollTrigger: { trigger: ".opportunity__statement", start: "top 80%", end: "top 22%", scrub: true },
-    });
     gsap.from(".opportunity-card", {
       autoAlpha: 0,
       y: 30,
@@ -43,7 +36,6 @@ export function Opportunity() {
       ease: "power2.out",
       scrollTrigger: { trigger: ".opportunity__cards", start: "top 85%", once: true },
     });
-    return () => split.revert();
   }, { scope: section });
 
   return (
@@ -51,6 +43,9 @@ export function Opportunity() {
       <div className="opportunity__intro page-grid">
         <h2 className="opportunity__heading">{t("products.stepsFirst")} {t("products.stepsSecond")}</h2>
         <p className="opportunity__statement">{t("opportunity.statement")}</p>
+        <figure className="opportunity__artwork" aria-hidden="true">
+          <Image src="/media/fight.PNG" alt="" width={1535} height={1024} sizes="(max-width: 700px) 100vw, (max-width: 1024px) 700px, 50vw"/>
+        </figure>
         <a className="button button--outline" href={homeContent.telegramUrl} target="_blank" rel="noreferrer">{t("opportunity.startTrading")} <Arrow/></a>
       </div>
       <div className="opportunity__flow page-grid">

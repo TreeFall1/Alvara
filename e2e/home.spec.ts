@@ -14,16 +14,18 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.locator(".hero-actions a").first()).toHaveAttribute("href", /^https:\/\/t\.me\//);
   await expect(page.locator(".hero-actions a").last()).toHaveAttribute("href", "/en/coin");
   await expect(page.locator(".hero video")).toHaveCount(0);
-  await expect(page.locator(".dashboard__title")).toHaveText(/Built for\s*Real Decisions/i);
-  await expect(page.locator(".dashboard__metric")).toHaveCount(3);
-  await expect(page.locator(".dashboard__app img")).toHaveAttribute("src", /app\.png/);
-  await expect(page.locator(".productivity__dashboard")).not.toContainText("Take-profit targets");
+  await expect(page.locator(".trade-poster__copy h2")).toHaveText(/Smart Trading\s*Without the Extra Steps/i);
+  await expect(page.locator(".trade-poster__benefits li")).toHaveCount(4);
+  await expect(page.locator(".trade-poster__phone img")).toHaveAttribute("src", /phone\.png/);
+  await expect(page.locator(".trade-poster__exchanges")).toContainText("BINANCE");
+  await expect(page.locator(".trade-poster__closing")).toContainText("More than a bot.");
   await expect(page.locator(".productivity .pin-spacer")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: /Analysis You Can Actually Use/i })).toBeAttached();
   await expect(page.locator(".stack__compass source[type='video/webm']")).toHaveAttribute("src", "/media/compass.webm");
   await expect(page.locator(".stack__video-copy")).toContainText("26+ strategies");
   await expect(page.locator(".stack__video-copy")).toContainText("One clear setup");
   await expect(page.locator(".opportunity-card__icon svg")).toHaveCount(3);
+  await expect(page.locator(".opportunity__artwork img")).toHaveAttribute("src", /fight\.PNG/);
   await expect(page.locator(".coin-promo .coin-scene")).toHaveCount(1);
   await expect(page.locator(".coin-promo__visual")).not.toContainText("$ALVARA");
   await expect(page.getByRole("heading", { name: /Built to trade\. Never to take custody\./i })).toBeAttached();
@@ -34,7 +36,7 @@ test("renders the complete Alvara Trade homepage", async ({ page }) => {
   await expect(page.locator(".roadmap")).toHaveCount(0);
   await expect(page.locator(".coin-promo").getByRole("link", { name: /Explore the Token/i })).toHaveAttribute("href", "/en/coin");
   await expect(page.locator(".header__dashboard")).toHaveAttribute("href", /^https:\/\/t\.me\//);
-  await expect(page.locator("footer")).toBeAttached();
+  await expect(page.locator("#final-cta")).toBeAttached();
   expect(runtimeErrors).toEqual([]);
 });
 

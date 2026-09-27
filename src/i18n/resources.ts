@@ -21,11 +21,16 @@ type Translation = {
     qualities: { title: string; description: string }[];
   };
   performance: {
+    eyebrow: string;
     titleFirst: string;
     titleSecond: string;
     copy: string;
-    dashboardFirst: string;
-    dashboardSecond: string;
+    benefits: { title: string; detail?: string }[];
+    phoneAlt: string;
+    exchangesLabel: string;
+    exchangesMore: string;
+    closingFirst: string;
+    closingSecond: string;
     strategies: string[];
   };
   products: {
@@ -107,11 +112,21 @@ const en: Translation = {
     ],
   },
   performance: {
-    titleFirst: "Built for",
-    titleSecond: "Real Decisions",
-    copy: "From market scan to order execution, every part of Alvara is designed to make complex analysis easier to understand and act on.",
-    dashboardFirst: "Alvara AI",
-    dashboardSecond: "at a Glance",
+    eyebrow: "Trading bot in Telegram",
+    titleFirst: "Smart Trading",
+    titleSecond: "Without the Extra Steps",
+    copy: "A bot that analyzes the market and helps you trade with confidence.",
+    benefits: [
+      { title: "Automated trading", detail: "24/7" },
+      { title: "Secure connection", detail: "API key" },
+      { title: "Ready-made strategies" },
+      { title: "Leading exchanges" },
+    ],
+    phoneAlt: "Alvara Trade Telegram bot showing a BTC trade setup on a phone",
+    exchangesLabel: "Supported exchanges",
+    exchangesMore: "and more...",
+    closingFirst: "More than a bot.",
+    closingSecond: "Your trading advantage.",
     strategies: ["Smart Money", "ICT", "Market Structure", "Order Blocks", "Fair Value Gaps", "RSI", "MACD", "ADX"],
   },
   products: {
@@ -201,11 +216,21 @@ const ru: Translation = {
     ],
   },
   performance: {
-    titleFirst: "Сложный анализ",
-    titleSecond: "простыми словами",
-    copy: "От поиска точки входа до отправки ордера — Alvara помогает разобраться в рыночной ситуации и принять решение без лишнего информационного шума.",
-    dashboardFirst: "Alvara AI",
-    dashboardSecond: "коротко о главном",
+    eyebrow: "Торговый бот в Telegram",
+    titleFirst: "Умная торговля",
+    titleSecond: "без лишних действий",
+    copy: "Бот, который анализирует рынок и помогает тебе зарабатывать.",
+    benefits: [
+      { title: "Автоторговля", detail: "24/7" },
+      { title: "Безопасное подключение", detail: "API Key" },
+      { title: "Готовые стратегии" },
+      { title: "Поддержка топ бирж" },
+    ],
+    phoneAlt: "Торговый бот Alvara Trade в Telegram с графиком BTC на экране телефона",
+    exchangesLabel: "Поддерживаемые биржи",
+    exchangesMore: "и другие...",
+    closingFirst: "Больше, чем просто бот.",
+    closingSecond: "Это твоё преимущество.",
     strategies: ["Smart Money", "ICT", "Структура рынка", "Order Blocks", "Fair Value Gaps", "RSI", "MACD", "ADX"],
   },
   products: {

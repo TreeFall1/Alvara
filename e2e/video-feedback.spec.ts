@@ -13,7 +13,7 @@ test("homepage sections follow the compact layout shown in the review", async ({
     return {
       heroBottom: rect(".hero").bottom,
       actionBottom: rect(".hero-actions").bottom,
-      dashboardTop: rect(".productivity__dashboard").top,
+      posterTop: rect(".trade-poster").top,
       stackHeight: rect(".stack").height,
       stepsHeight: rect(".opportunity").height,
       cardTops: cards.map((card) => card.top),
@@ -23,7 +23,7 @@ test("homepage sections follow the compact layout shown in the review", async ({
   });
 
   expect(desktop.actionBottom).toBeLessThan(desktop.heroBottom);
-  expect(desktop.dashboardTop - desktop.heroBottom).toBeLessThan(120);
+  expect(desktop.posterTop - desktop.heroBottom).toBeLessThan(120);
   expect(desktop.stackHeight).toBeLessThan(1080);
   expect(desktop.stepsHeight).toBeLessThan(1080);
   expect(Math.max(...desktop.cardTops) - Math.min(...desktop.cardTops)).toBeLessThan(2);

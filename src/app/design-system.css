@@ -2952,6 +2952,155 @@ button:focus-visible, input:focus-visible, a:focus-visible {
     .dashboard__app { width: min(25vw, 330px); }
 }
 
+/* Alvara Trade product poster, adapted from the supplied artwork. */
+.trade-poster {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: 920px;
+    overflow: hidden;
+    border: 1px solid #e9e9e9;
+    border-radius: 30px;
+    background: radial-gradient(circle at 83% 12%, #fff 0, transparent 48%), linear-gradient(145deg, #fff 4%, #fafafa 62%, #f2f2f2 100%);
+    box-shadow: 0 28px 80px rgba(23, 23, 23, .07);
+}
+.trade-poster::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -12%;
+    bottom: -24%;
+    width: 70%;
+    aspect-ratio: 1;
+    transform: rotate(-27deg);
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, .035), transparent);
+}
+.trade-poster__header {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 42px 54px 0;
+}
+.trade-poster__brand { display: inline-flex; align-items: center; gap: 24px; line-height: 1; }
+.trade-poster__logo {
+    display: block;
+    flex: none;
+    width: 94px;
+    height: 94px;
+    background: #0b0b0b;
+    -webkit-mask: url("/media/logo.svg") center / contain no-repeat;
+    mask: url("/media/logo.svg") center / contain no-repeat;
+}
+.trade-poster__brand strong, .trade-poster__brand small { display: block; }
+.trade-poster__brand strong { font: 700 clamp(46px, 5vw, 64px)/.88 var(--ds-display); letter-spacing: -.065em; }
+.trade-poster__brand small { margin-top: 7px; font: 400 clamp(25px, 2.8vw, 36px)/1 var(--ds-sans); letter-spacing: .27em; }
+.trade-poster__eyebrow {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    max-width: 300px;
+    margin: 12px 0 0;
+    text-align: right;
+    text-transform: uppercase;
+    font: 500 16px/1.45 var(--ds-sans);
+    letter-spacing: .2em;
+}
+.trade-poster__eyebrow::before { content: ""; flex: 0 0 58px; height: 1px; margin-top: .7em; background: #333; }
+.trade-poster__body { position: relative; z-index: 2; flex: 1; min-height: 650px; padding: 0 54px; }
+.trade-poster__copy { position: relative; z-index: 2; width: 53%; max-width: 540px; padding-top: 56px; }
+.trade-poster__copy h2 {
+    max-width: 12ch;
+    margin: 0;
+    color: #0b0b0b;
+    font: 700 clamp(46px, 5.2vw, 68px)/.98 var(--ds-display);
+    letter-spacing: -.06em;
+    text-wrap: balance;
+}
+.trade-poster__copy > p { max-width: 390px; margin: 22px 0 0; color: #777; font: 400 clamp(18px, 1.65vw, 22px)/1.32 var(--ds-sans); }
+.trade-poster__benefits { display: grid; gap: 16px; margin: 30px 0 0; padding: 0; list-style: none; }
+.trade-poster__benefits li { display: flex; align-items: center; gap: 20px; min-height: 62px; }
+.trade-poster__benefit-icon { flex: none; display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: #efefef; color: #121212; }
+.trade-poster__benefit-icon svg { width: 31px; height: 31px; }
+.trade-poster__benefits strong, .trade-poster__benefits small { display: block; }
+.trade-poster__benefits strong { font: 500 clamp(19px, 1.7vw, 24px)/1.12 var(--ds-sans); letter-spacing: -.03em; }
+.trade-poster__benefits small { margin-top: 3px; color: #858585; font: 400 clamp(16px, 1.45vw, 20px)/1.15 var(--ds-sans); }
+.trade-poster__phone { position: absolute; z-index: 1; top: -114px; right: -40px; width: min(57%, 640px); filter: drop-shadow(0 24px 22px rgba(0, 0, 0, .12)); }
+.trade-poster__phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    clip-path: polygon(42% 5%, 74% 4%, 81% 5%, 87% 8%, 91% 13%, 93% 20%, 90% 49%, 86% 80%, 83% 92%, 79% 96%, 72% 98%, 29% 97%, 23% 95%, 19% 91%, 20% 69%, 23% 38%, 26% 20%, 30% 12%, 35% 7%);
+}
+.trade-poster__footer {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    min-height: 130px;
+    padding: 24px 54px 32px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, .98) 65%, rgba(255, 255, 255, 0));
+}
+.trade-poster__exchanges { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; max-width: 520px; }
+.trade-poster__exchange { color: #111; white-space: nowrap; font: 800 19px/1 var(--ds-display); letter-spacing: -.055em; }
+.trade-poster__exchange--binance { letter-spacing: -.04em; }
+.trade-poster__exchange--bybit { font-weight: 700; letter-spacing: -.085em; }
+.trade-poster__exchange--okx { font-weight: 900; letter-spacing: -.1em; }
+.trade-poster__exchange--mexc { font-weight: 800; }
+.trade-poster__exchanges small { color: #777; white-space: nowrap; font: 400 15px/1.2 var(--ds-sans); }
+.trade-poster__closing { display: flex; align-items: flex-start; gap: 18px; flex: none; margin: 0; text-transform: uppercase; white-space: nowrap; font: 500 12px/1.7 var(--ds-sans); letter-spacing: .17em; }
+.trade-poster__closing > span:first-child { flex: 0 0 48px; height: 1px; margin-top: .8em; background: #333; }
+
+@media (max-width: 1024px) {
+    .trade-poster { min-height: 840px; }
+    .trade-poster__header { padding: 34px 32px 0; }
+    .trade-poster__logo { width: 70px; height: 70px; }
+    .trade-poster__brand { gap: 16px; }
+    .trade-poster__brand strong { font-size: 44px; }
+    .trade-poster__brand small { font-size: 25px; }
+    .trade-poster__eyebrow { max-width: 180px; font-size: 12px; }
+    .trade-poster__eyebrow::before { flex-basis: 28px; }
+    .trade-poster__body { min-height: 640px; padding-inline: 32px; }
+    .trade-poster__copy { width: 55%; padding-top: 72px; }
+    .trade-poster__copy h2 { font-size: clamp(38px, 5vw, 52px); }
+    .trade-poster__phone { top: -60px; right: -55px; width: 61%; }
+    .trade-poster__footer { padding-inline: 32px; }
+    .trade-poster__closing { font-size: 10px; }
+}
+
+@media (max-width: 700px) {
+    .trade-poster { min-height: 0; border-radius: 22px; }
+    .trade-poster__header { padding: 26px 24px 0; }
+    .trade-poster__logo { width: 52px; height: 52px; }
+    .trade-poster__brand { gap: 12px; }
+    .trade-poster__brand strong { font-size: 32px; }
+    .trade-poster__brand small { margin-top: 5px; font-size: 18px; }
+    .trade-poster__eyebrow { max-width: 110px; margin-top: 2px; font-size: 9px; letter-spacing: .11em; }
+    .trade-poster__eyebrow::before { display: none; }
+    .trade-poster__body { min-height: 0; padding: 0 24px; }
+    .trade-poster__copy { width: 100%; max-width: none; padding-top: 58px; }
+    .trade-poster__copy h2 { max-width: 12ch; font-size: clamp(34px, 9vw, 48px); }
+    .trade-poster__copy > p { margin-top: 20px; font-size: 17px; }
+    .trade-poster__benefits { gap: 12px; margin-top: 28px; }
+    .trade-poster__benefits li { min-height: 52px; gap: 15px; }
+    .trade-poster__benefit-icon { width: 52px; height: 52px; }
+    .trade-poster__benefit-icon svg { width: 26px; height: 26px; }
+    .trade-poster__benefits strong { font-size: 18px; }
+    .trade-poster__benefits small { font-size: 16px; }
+    .trade-poster__phone { position: relative; top: auto; right: auto; width: min(132%, 500px); margin: 0 auto -72px; transform: translateX(-10%); }
+    .trade-poster__footer { display: block; min-height: 0; padding: 50px 24px 30px; }
+    .trade-poster__exchanges { gap: 13px 18px; }
+    .trade-poster__exchange { font-size: 16px; }
+    .trade-poster__exchanges small { font-size: 14px; }
+    .trade-poster__closing { margin-top: 34px; white-space: normal; font-size: 10px; }
+    .trade-poster__closing > span:first-child { flex-basis: 32px; }
+}
+
 .stack__heading { padding-block: 90px 48px; }
 .stack__heading h2 {
     grid-column: 3 / 13;
@@ -2973,10 +3122,36 @@ button:focus-visible, input:focus-visible, a:focus-visible {
     letter-spacing: -.025em;
 }
 .opportunity__statement {
-    grid-column: 1 / 11;
-    font-size: clamp(36px, 3.35vw, 54px);
+    grid-column: 1 / 8;
+    grid-row: 2;
+    font-size: clamp(36px, 2.8vw, 40px);
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
 }
-.opportunity__intro .button { grid-column: 11 / 13; }
+.opportunity__artwork {
+    grid-column: 8 / 13;
+    grid-row: 2 / span 2;
+    align-self: center;
+    width: 100%;
+    aspect-ratio: 1.72;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    background: radial-gradient(circle at 50% 68%, #e7e7e7, #fafafa 70%);
+}
+.opportunity__artwork img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateY(-9%);
+}
+.opportunity__intro .button {
+    grid-column: 1 / 8;
+    grid-row: 3;
+    justify-self: start;
+    align-self: start;
+}
 .opportunity__flow {
     min-height: 0;
     align-items: start;
@@ -3040,13 +3215,18 @@ button:focus-visible, input:focus-visible, a:focus-visible {
     .dashboard__title { font-size: clamp(42px, 5vw, 58px); }
     .stack__heading h2 { grid-column: 1 / -1; }
     .opportunity__intro { padding-block: 76px 48px; }
-    .opportunity__statement { grid-column: 1 / -1; font-size: clamp(36px, 5vw, 52px); }
-    .opportunity__intro .button { grid-column: 1 / -1; }
+    .opportunity__statement { grid-column: 1 / -1; grid-row: auto; font-size: clamp(36px, 5vw, 52px); }
+    .opportunity__artwork { grid-column: 1 / -1; grid-row: auto; justify-self: center; width: min(100%, 700px); }
+    .opportunity__intro .button { grid-column: 1 / -1; grid-row: auto; }
     .opportunity__flow { padding-bottom: 72px; }
     .opportunity__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 0; }
     .opportunity-card { min-height: 380px; padding: 20px; }
     .opportunity-card h3 { font-size: clamp(24px, 3.2vw, 32px); }
     .footer__cta-copy { gap: 30px; }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .opportunity-card h3 { font-size: clamp(22px, 3vw, 27px); }
 }
 
 @media (max-width: 700px) {
@@ -3055,9 +3235,65 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 }
 
 @media (max-width: 600px) {
-    .hero__content { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
-    .hero__qualities { margin-top: 42px; }
-    .hero-actions { width: 100%; margin-top: 26px; padding: 0; }
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100svh;
+        min-height: 0;
+        padding-top: 64px;
+    }
+    .hero__content { display: contents; }
+    .hero__message {
+        order: 0;
+        margin: 0;
+        padding: clamp(8px, 1.8svh, 18px) 16px 0;
+    }
+    .hero h1 { font-size: clamp(31px, 9vw, 42px); line-height: 1; }
+    .hero__subtitle { margin-top: 8px; font-size: clamp(14px, 3.7vw, 18px); }
+    .hero__rule { margin-block: 10px 8px; }
+    .hero__tagline { font-size: clamp(16px, 4vw, 20px); line-height: 1.18; }
+    .hero__media {
+        position: relative;
+        inset: auto;
+        order: 1;
+        flex: 1 1 0;
+        min-height: 80px;
+        height: auto;
+        background-size: 80% auto;
+        background-position: center 72%;
+    }
+    .hero__qualities {
+        order: 2;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        flex: none;
+        gap: 8px 10px;
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 4px 16px 0;
+    }
+    .hero__quality {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        min-height: 38px;
+        padding-inline: 2px;
+        text-align: left;
+    }
+    .hero__quality + .hero__quality { border-left: 0; }
+    .hero__quality svg { width: 23px; height: 23px; }
+    .hero__quality strong { font-size: 12px; line-height: 1.15; }
+    .hero__quality small { margin-top: 2px; font-size: 10px; line-height: 1.1; }
+    .hero-actions {
+        order: 3;
+        align-self: center;
+        width: calc(100% - 32px);
+        gap: 8px;
+        margin: 12px 16px max(12px, env(safe-area-inset-bottom));
+        padding: 0;
+    }
+    .hero-actions .button { min-height: 40px; padding: 8px 12px; font-size: 13px; }
     .productivity__stage { padding-top: 44px; }
     .productivity__dashboard, .dashboard__top { min-height: 0; }
     .dashboard__summary { grid-column: 1 / -1; grid-row: 1; }
@@ -3075,6 +3311,10 @@ button:focus-visible, input:focus-visible, a:focus-visible {
     .footer__newsletter { padding-block: 68px; }
     .footer__links { padding-block: 38px; }
     .footer__legal > div { grid-column: 1 / -1; justify-content: flex-start; flex-wrap: wrap; gap: 8px 20px; text-align: left; }
+}
+
+@media (max-width: 600px) and (min-height: 750px) {
+    .hero__media { background-size: cover; background-position: center 70%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

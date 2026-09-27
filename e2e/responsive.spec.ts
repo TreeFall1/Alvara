@@ -14,7 +14,7 @@ test("uses Montserrat and Open Sans across localized pages", async ({ page }, te
         body: getComputedStyle(document.body).fontFamily,
         heading: getComputedStyle(document.querySelector(".hero h1")!).fontFamily,
         headingWeight: getComputedStyle(document.querySelector(".hero h1")!).fontWeight,
-        sectionWeight: getComputedStyle(document.querySelector(".dashboard__title")!).fontWeight,
+        sectionWeight: getComputedStyle(document.querySelector(".trade-poster__copy h2")!).fontWeight,
         cardWeight: getComputedStyle(document.querySelector(".opportunity-card h3")!).fontWeight,
         bodyWeight: getComputedStyle(document.querySelector(".hero__subtitle")!).fontWeight,
         taglineBottom: document.querySelector(".hero__tagline")!.getBoundingClientRect().bottom,
@@ -24,7 +24,7 @@ test("uses Montserrat and Open Sans across localized pages", async ({ page }, te
 
       expect(typography.body).toContain("Open Sans");
       expect(typography.heading).toContain("Montserrat");
-      expect([typography.headingWeight, typography.sectionWeight, typography.cardWeight, typography.bodyWeight]).toEqual(["700", "600", "500", "400"]);
+      expect([typography.headingWeight, typography.sectionWeight, typography.cardWeight, typography.bodyWeight]).toEqual(["700", "700", "500", "400"]);
       expect(typography.taglineBottom, `${locale} at ${width}px`).toBeLessThan(typography.qualitiesTop);
       expect(typography.background).toContain("bgmain-s.jpg");
     }
@@ -49,12 +49,12 @@ test("localized text fits narrow and intermediate layouts", async ({ page }, tes
     await page.goto(`/${locale}`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
 
-    for (const width of [320, 1100]) {
+    for (const width of [320, 390, 1100]) {
       await page.setViewportSize({ width, height: 900 });
       await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 
       const issues = await page.evaluate(() => {
-        const clipped = [...document.querySelectorAll<HTMLElement>("h1, h2, h3, h4, .footer__cta-copy .button")]
+        const clipped = [...document.querySelectorAll<HTMLElement>("h1, h2, h3, h4, .opportunity__statement, .opportunity__statement .split-line, .footer__cta-copy .button")]
           .filter((element) => element.scrollWidth > element.clientWidth + 2)
           .map((element) => element.textContent?.trim().slice(0, 48) ?? element.tagName);
         if (document.documentElement.scrollWidth > window.innerWidth + 1) clipped.push("page overflows viewport");
@@ -66,6 +66,46 @@ test("localized text fits narrow and intermediate layouts", async ({ page }, tes
       });
 
       expect(issues, `${locale} at ${width}px`).toEqual([]);
+    }
+  }
+});
+
+test("mobile hero keeps text and actions clear of the artwork", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop-1440", "one browser covers the mobile layout matrix");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  for (const locale of ["en", "ru"]) {
+    for (const [width, height] of [[320, 568], [390, 667], [390, 844], [600, 900]]) {
+      await page.setViewportSize({ width, height });
+      await page.goto(`/${locale}`, { waitUntil: "networkidle" });
+
+      const bounds = await page.evaluate(() => {
+        const bottom = (selector: string) => document.querySelector(selector)!.getBoundingClientRect().bottom;
+        const top = (selector: string) => document.querySelector(selector)!.getBoundingClientRect().top;
+        return {
+          headerBottom: bottom(".header"),
+          messageTop: top(".hero__message"),
+          messageBottom: bottom(".hero__message"),
+          mediaTop: top(".hero__media"),
+          mediaBottom: bottom(".hero__media"),
+          qualitiesTop: top(".hero__qualities"),
+          qualitiesBottom: bottom(".hero__qualities"),
+          actionsTop: top(".hero-actions"),
+          actionsBottom: bottom(".hero-actions"),
+          heroBottom: bottom(".hero"),
+          viewportHeight: innerHeight,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+
+      const viewport = `${locale} at ${width}×${height}px`;
+      expect(bounds.messageTop, viewport).toBeGreaterThanOrEqual(bounds.headerBottom);
+      expect(bounds.messageBottom, viewport).toBeLessThanOrEqual(bounds.mediaTop + 1);
+      expect(bounds.mediaBottom, viewport).toBeLessThanOrEqual(bounds.qualitiesTop + 1);
+      expect(bounds.qualitiesBottom, viewport).toBeLessThanOrEqual(bounds.actionsTop + 1);
+      expect(bounds.actionsBottom, viewport).toBeLessThanOrEqual(bounds.heroBottom + 1);
+      expect(bounds.heroBottom, viewport).toBeLessThanOrEqual(bounds.viewportHeight + 1);
+      expect(bounds.overflow, viewport).toBeLessThanOrEqual(1);
     }
   }
 });
