@@ -3260,8 +3260,17 @@ button:focus-visible, input:focus-visible, a:focus-visible {
         flex: 1 1 0;
         min-height: 80px;
         height: auto;
-        background-size: 80% auto;
-        background-position: center 72%;
+        background-size: cover;
+        background-position: center 70%;
+    }
+    .hero__media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(90deg, #fff, transparent 15%, transparent 85%, #fff),
+            linear-gradient(180deg, #fff, transparent 12%, transparent 88%, #fff);
     }
     .hero__qualities {
         order: 2;
@@ -3311,10 +3320,6 @@ button:focus-visible, input:focus-visible, a:focus-visible {
     .footer__newsletter { padding-block: 68px; }
     .footer__links { padding-block: 38px; }
     .footer__legal > div { grid-column: 1 / -1; justify-content: flex-start; flex-wrap: wrap; gap: 8px 20px; text-align: left; }
-}
-
-@media (max-width: 600px) and (min-height: 750px) {
-    .hero__media { background-size: cover; background-position: center 70%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
